@@ -1,0 +1,146 @@
+/* Responsive css */
+
+@media (max-width: 1400px) {
+    ._headingDiv {
+        margin-bottom: 30px;
+    }
+    .navbar li>a {
+        padding: 15px 15px;
+    }
+    ._hdrInfo li {
+        padding: 0 10px;
+    }
+    ._imgCardFig {
+        height: 80px;
+    }
+    ._borderCardFig img {
+        height: 45px;
+    }
+    ._numCount {
+        font-size: 22px;
+        line-height: 22px;
+    }
+    ._imgCardTxt {
+        font-size: 16px;
+    }
+    ._headingTxt {
+        font-size: 25px;
+    }
+    ._banner {
+        min-height: 350px;
+        padding: 50px 0;
+    }
+    ._bHeading {
+        font-size: 30px;
+        line-height: 30px;
+    }
+    ._bTag {
+        font-size: 16px;
+        line-height: 25px;
+        color: #424242;
+        margin-bottom: 30px;
+    }
+    ._numText {
+        font-size: 16px;
+    }
+    ._textCard2__heading {
+        font-size: 25px;
+        margin-bottom: 15px;
+    }
+    ._textCard2__content {
+        padding-right: 115px;
+    }
+    ._ratingInfo span {
+        font-size: 15px;
+    }
+    ._startInfo span {
+        font-size: 18px;
+    }
+    ._infoBox__desc2 p {
+        font-size: 16px;
+    }
+    ._sliderDiv2 .owl-nav .owl-prev,
+    ._sliderDiv2 .owl-nav .owl-next {
+        height: 60px;
+        width: 60px;
+        line-height: 60px;
+    }
+    ._sliderDiv2 .owl-nav .owl-prev {
+        left: -50px;
+    }
+    ._sliderDiv2 .owl-nav .owl-next {
+        right: -50px;
+    }
+    ._searchDiv._searchDiv2 {
+        height: 45px;
+    }
+    ._searchDiv._searchDiv2 form .btn {
+        font-size: 14px;
+    }
+    ._searchDiv._searchDiv2 form .form-control {
+        font-size: 14px;
+    }
+    ._whyUs ._headingTxt br {
+        display: none;
+    }
+    ._infoList li:not(:last-child) {
+        margin-bottom: 25px;
+    }
+    ._infoListHead {
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+    ._whyUs {
+        padding: 30px 0 45px;
+        background-size: 500px;
+    }
+    /* ._whyUs:before {
+        position: absolute;
+        content: "";
+        height: 100%;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.3);
+        top: 0;
+        left: 0;
+    } */
+    ._clientList img {}
+}
+
+@media (max-width: 1199px) {
+    ._bHeading br {
+        display: none;
+    }
+    .navbar li>a {
+        padding: 15px 10px;
+    }
+    ._textCard2__content {
+        padding-right: 0;
+    }
+    ._numBox__row ._numBox__col2 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 33.33%;
+        flex: 0 0 33.33%;
+        max-width: 33.33%;
+    }
+}
+
+@media (max-width: 1025px) {
+    ._bHeading {
+        font-size: 25px;
+        line-height: 35px;
+    }
+    ._numCount {
+        font-size: 20px;
+    }
+    ._imgCardDiv {
+        padding: 30px 15px;
+    }
+    ._imgCardFig {
+        height: 80px;
+    }
+    .navbar li>a {
+        padding: 15px 10px;
+    }
+}
+
+@media (max-width: 991px) {}

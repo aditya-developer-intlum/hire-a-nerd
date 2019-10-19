@@ -1,0 +1,889 @@
+@extends('layouts.app')
+
+@section("content")
+
+<script type="text/javascript">
+
+$(function(){
+
+    @if(!empty($gig->widget_five))
+
+        $("#publish").trigger('click');
+
+    @elseif(!empty($gig->widget_four))
+
+        $("#gallery").trigger('click');
+
+    @elseif(!empty($gig->widget_three))
+
+        $("#Requirment").trigger('click');
+
+    @elseif(!empty($gig->widget_two))
+
+        $("#Desc").trigger('click');
+
+    @elseif(!empty($gig->widget_one))
+    
+        $("#Pricing").trigger('click');
+
+    @endif
+
+
+    @if(!empty($gig->widget_one))
+        $("#overview_tick").html("&#10004;").css("background-color","#45c327");
+        $("#overview_tick").parent().parent().addClass('active _completed');
+    @endif
+
+    @if(!empty($gig->widget_two))
+        $("#pricing_tick").html("&#10004;").css("background-color","#45c327");
+        $("#pricing_tick").parent().parent().addClass('active _completed');
+    @endif
+
+    @if(!empty($gig->widget_three))
+        $("#deck_tick").html("&#10004;").css("background-color","#45c327");
+        $("#deck_tick").parent().parent().addClass('active _completed');
+    @endif
+
+    @if(!empty($gig->widget_four))
+        $("#requirement_tick").html("&#10004;").css("background-color","#45c327");
+        $("#requirement_tick").parent().parent().addClass('active _completed');
+    @endif
+
+    @if(!empty($gig->widget_five))
+        $("#gallery_tick").html("&#10004;").css("background-color","#45c327");
+        $("#gallery_tick").parent().parent().addClass('active _completed');
+    @endif
+
+});  
+
+</script>
+<main class="main_body _dBody _grayBg _pT0">
+        <div class="container">
+            <div class="row _gRow">
+                <!-- Begin: Top Nav  -->
+                <div class="col-md-12">
+                    <div class="_gigProsessBar">
+                        <ul class="nav nav-tabs">
+                            <li>
+
+                                <a data-toggle="tab" href="#gOverview" id="overview">
+                                 <span class="_num" id="overview_tick" >1</span>
+                                    Overview
+                                    <span class="_pArr"><i class="fas fa-forward"></i></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a data-toggle="tab" href="#gPricing" id="Pricing">
+                                    <span class="_num" id="pricing_tick">2</span>
+                                    Pricing 
+                                    <span class="_pArr"><i class="fas fa-forward"></i></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a data-toggle="tab" href="#gDesc" id="Desc">
+                                    <span class="_num" id="deck_tick">3</span>
+                                    Description & FAQ
+                                    <span class="_pArr"><i class="fas fa-forward"></i></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a data-toggle="tab" href="#gRequirment" id="Requirment">
+                                    <span class="_num" id="requirement_tick">4</span>
+                                    Requirements 
+                                    <span class="_pArr"><i class="fas fa-forward"></i></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a data-toggle="tab" href="#gGallery" id="gallery">
+                                    <span class="_num" id="gallery_tick">5</span>
+                                    Gallery
+                                    <span class="_pArr"><i class="fas fa-forward"></i></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a data-toggle="tab" href="#gPublish" id="publish">
+                                    <span class="_num" id="publish_tick">6</span>
+                                    Publish
+                                    <span class="_pArr"><i class="fas fa-forward"></i></span>
+                                </a>
+                            </li>
+                        </ul>                                            
+                    </div>
+                </div>    
+                <!-- End: Top Nav  -->
+                <!-- Begin :  Section -->
+                <div class="col-lg-12 col-md-12">
+                    <div class="tab-content">
+                        <!-- Begin : Overview  -->
+                        <div id="gOverview" class="tab-pane fade in active show">
+                            <div class="row">
+                                 <!-- Begin : Left Section   -->
+                                <div class="col-lg-8 col-md-12">
+                                    <!-- Begin: Card -->
+                                    <div class="_dCard">
+                                        <div class="_dCardHeader _borderBtm">
+                                            <span class="_dHeading">Overview</span>                                    
+                                        </div>
+                                      {{--   <form action="" class="_dForm"> --}}
+                                            <div class="_dBorText">
+                                                <div class="form-group row">
+                                                    <div class="col-md-4"><label class="" for="" id="gig_title_label">Gig Title</label></div>
+                                                    <div class="col-md-8">
+                         <textarea class="form-control2" placeholder="I’m Realy good At" id="gig_title_input">{{ $gig->gig_title ?? "" }}</textarea>
+
+                                    <p class="_emTxt _mT0 text-right">
+                                        <gigTitle   >0</gigTitle> / 80 max</p>
+                                                    </div>
+                                                </div>                                       
+                                                <div class="form-group row">
+                                                    <div class="col-md-4"><label class="_label" for="" id="gig_category_label">Categorie :</label></div>
+                                                    <div class="col-md-6">
+                                                        <select name="" id="gig_category_input" class="form-control2">
+                                                            <option value="">Select</option>
+                                                    @foreach($category as $cat)
+                                                        <option value="{{ $cat->id }}" {{ empty($gig->category)?"":$gig->category == $cat->id?"selected":'' }}>{{ $cat->name }}</option>
+                                                    @endforeach
+
+                                                        </select>                                                
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-md-4"><label class="_label" for="" id="gig_sub_category_label">Sub Categorie :</label></div>
+                                                    <div class="col-md-6">
+                                                        <select name="" id="gig_sub_category_input" class="form-control2">
+                                                            <option value="">Select</option>
+                                                           
+                                                        </select>                                                
+                                                    </div>
+                                                </div>
+                    <div class="form-group row">
+                    <div class="col-md-4"><label class="" for="" id="tag_label">Search Tags :</label></div>
+                    <div class="col-md-8">
+                     <input type="text" placeholder="" class="form-control2" id="tags" value="{{ $gig->tags ??"" }}">
+                                                        <p class="_emTxt  text-right">Up to 5 terms</p>
+                                                        <p class="_emTxt"><strong>Please note:</strong> Some categories require that sellers verify their skills.</p>
+                                                    </div>
+                                                </div>  
+                                            </div>                                
+                                            <div class="_dBtnGroup">
+                                                <a href="javascript:;" class="btn _btn2 _btnSuccess " id="gig_overview">Save Changes</a>
+                                                <a href="javascript:;" class="btn _btn2 _btnDanger " id="gig_overview_cancel">Cancel</a>
+                                            </div>
+                                      {{--   </form> --}}
+                                    </div>
+                                    <!-- End : Card -->
+                                </div>
+                                <!-- End : Left Section   -->
+                                <!-- Begin : Right Section -->
+                                <div class="col-lg-4 col-md-12">
+                                    <div class="_gigDefBox">
+                                        <figure>
+                                            <img src="{{ url("public/storage/images/gig-img.png") }}" alt="">
+                                        </figure>
+                                        <p class="_gigDefHead">Start Defining Your Gig</p>
+                                        <p class="_gigDefTxt">
+                                            Create a catchy title.<br>
+                                            Choose a category that fits your Gig.<br>
+                                            Add meta data to help buyers find more information regarding your Gig.<br>
+                                            Add tags to help buyers find your Gig while searching.
+                                        </p>
+                                        <a href="#" class="btn _dBorBtn">General Gig Policy</a>
+                                    </div>
+                                </div>
+                                <!-- End : Right Section   -->
+                            </div>                                                       
+                        </div>
+                        <!-- End  : Overview  -->
+
+                        <!-- Begin:  Pricing -->
+                        <div id="gPricing" class="tab-pane fade">
+                            <div class="row">
+                                <!-- Begin : Left Section   -->
+                                <div class="col-lg-8 col-md-12">
+                                    <!-- Begin: Card -->
+                                    <div class="_dCard">
+                                        <div class="_dCardHeader _borderBtm">
+                                            <span class="_dHeading" >Pricing</span>                                   
+                                        </div>                        
+                                        <div class="_dsBody">
+                                            <form action="{{ url("api/gig-price/create/".Auth::id()) }}" class="_dForm" method="post" id="price_form">
+
+                                                <div class="form-group row">
+                                                    <div class="col-md-4"><label class="_label" for="" id="package_label">Name Your Package :</label></div>
+                                                    <div class="col-md-8">
+                                                <input type="text" placeholder="" class="form-control2" name="package_name" value="{{ $gig->package_name ?? "" }}">    
+                                                    </div>
+                                                </div>   
+                                                <div class="form-group row">
+                                                    <div class="col-md-4"><label class="_label" for="" id="describe_detail_offer_label">Describe the details of your offering :</label></div>
+                                                    <div class="col-md-8">
+                                                        <input type="text" placeholder="" class="form-control2" name="describe_detail_offer" value="{{ $gig->describe_detail_offer ?? "" }}">    
+                                                    </div>
+                                                </div>                                     
+                                                <div class="form-group row">
+                                                    <div class="col-md-4"><label class="_label" for="">Delivery Tenur :</label></div>
+
+                             <div class="col-md-5">
+                <input type="text" class="form-control2" name="delivery_time" value="{{ $gig->delivery_time ??""}}">  
+                </div>
+                <input type="hidden" id="dtp_input1" value="" /><br/>
+
+                                                    {{-- <div class="col-md-5 form_datetime">
+                                                       <input class="form-control" size="16" type="text" value="" readonly>                                               
+                                                    </div> --}}
+                                                </div>
+            {{--                                        <div class="form-group">
+                <label for="dtp_input1" class="col-md-2 control-label">DateTime Picking</label>
+                
+            </div> --}}
+                                                <div class="form-group row">
+                                                    <div class="col-md-4"><label class="_label" for="" id="revisions_label">Revisions :</label></div>
+                                                    <div class="col-md-5">
+                                                        <input type="hidden" name="widget_two" value="1">
+                                                        <select name="revisions"  class="form-control2">
+                                                            <option value="">Select</option>
+    <option value="1" {{ !empty($gig->revisions)?$gig->revisions==1?"selected":"":"" }}>Go offline For</option>
+    <option value="2" {{ !empty($gig->revisions)?$gig->revisions==2?"selected":"":"" }}>Go offline For</option>
+    <option value="3" {{ !empty($gig->revisions)?$gig->revisions==3?"selected":"":"" }}>Go offline For</option>
+                                                        </select>                                                
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-md-4"><label class="_label" for="" id="initial_concept_label"># of Initial Concepts Included :</label></div>
+                                                    <div class="col-md-5">
+                                                        <select name="initial_concept" id="" class="form-control2">
+    <option value="">Select</option>
+    <option value="1" {{ !empty($gig->revisions)?$gig->initial_concept==1?"selected":"":"" }}>Go offline For</option>
+    <option value="2" {{ !empty($gig->revisions)?$gig->initial_concept==2?"selected":"":"" }}>Go offline For</option>
+    <option value="3" {{ !empty($gig->revisions)?$gig->initial_concept==3?"selected":"":"" }}>Go offline For</option>
+                                                        </select>                                                
+                                                      </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-md-4"><label class="" for="" id="price_tag_label">Search Tags :</label></div>
+                                                    <div class="col-md-8">
+        <input type="text" placeholder="" class="form-control2" name="price_tag" value="{{ $gig->price_tag ?? "" }}">
+                                                        <p class="_emTxt  text-right">Up to 5 terms</p>
+                                                        <p class="_emTxt"><strong>Please note:</strong> Some categories require that sellers verify their skills.</p>
+                                                    </div>
+                                                </div> 
+                                                <div class="row form-group">
+                                                    <div class="form-group col-md-6">
+                                                        <div class="row">
+                                                            <div class="col-md-8"><label class="_label" for="">Source File</label></div>
+                                                            <div class="col-md-4">
+                                                                <label class="_mCheckbox">
+<input type="checkbox" class="skills_price" value="1" id="source_file_price" name="is_source_file" {{ !empty($gig->is_source_file)?"checked":"" }}>
+                                                                    <span></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <div class="row">
+                                                            <div class="col-md-8"><label class="_label" for="">Stationery Designs</label></div>
+                                                            <div class="col-md-4">
+                                                                <label class="_mCheckbox">
+<input type="checkbox" class="skills_price" name="is_stationary" value="1" {{ !empty($gig->is_stationary)?"checked":"" }}>
+                                                                    <span></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group  col-md-6">
+                                                        <div class="row">
+                                                            <div class="col-md-8"><label class="_label" for="">Logo Transparency</label></div>
+                                                            <div class="col-md-4">
+                                                                <label class="_mCheckbox">
+<input type="checkbox" class="skills_price" name="is_logo_transparency" value="1" {{ !empty($gig->is_logo_transparency)?"checked":"" }}>
+                                                                    <span></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <div class="row">
+                                                            <div class="col-md-8"><label class="_label" for="">Social Media Kit</label></div>
+                                                            <div class="col-md-4">
+                                                                <label class="_mCheckbox">
+<input type="checkbox" class="skills_price" name="is_social_media" value="1" {{ !empty($gig->is_social_media)?"checked":"" }}>
+                                                                    <span></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 form-group ">
+                                                        <div class="row">
+                                                            <div class="col-md-8"><label class="_label" for="">High Resolution</label></div>
+                                                            <div class="col-md-4">
+                                                                <label class="_mCheckbox">
+<input type="checkbox" class="skills_price" name="is_high_resolution" value="1" {{ !empty($gig->is_high_resolution)?"checked":"" }}>
+                                                                    <span></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 form-group">
+                                                        <div class=" row">
+                                                            <div class="col-md-8"><label class="_label" for="">Vector File</label></div>
+                                                            <div class="col-md-4">
+                                                                <label class="_mCheckbox">
+<input type="checkbox" class="skills_price" name="is_vector_file" value="1" {{ !empty($gig->is_vector_file)?"checked":"" }}>
+                                                                    <span></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 form-group">
+                                                        <div class=" row">
+                                                            <div class="col-md-8"><label class="_label" for="">3D Mockup</label></div>
+                                                            <div class="col-md-4">
+                                                                <label class="_mCheckbox">
+<input type="checkbox" class="skills_price" name="is_3d_mock" value="1" {{ !empty($gig->is_3d_mock)?"checked":"" }}>
+                                                                    <span></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div> 
+                                                <div class="form-group row">
+                                                    <div class="col-md-4"><label class="_label" for="" id="price_label">Select Price</label></div>
+                                                    <div class="col-md-5">
+                                                        <select name="price" class="form-control2">
+                                                            <option value="">Select</option>
+    <option value="500" {{ !empty($gig->revisions)?$gig->price==500?"selected":"":"" }}>500$</option>
+    <option value="2000" {{ !empty($gig->revisions)?$gig->price==2000?"selected":"":"" }}>2000$</option>
+    <option value="10000" {{ !empty($gig->revisions)?$gig->price==10000?"selected":"":"" }}>10000$</option>
+                                                        </select>                                                
+                                                    </div>
+                                                </div>                                      
+                                         
+                                        </div>
+                                    </div>
+                                    <!-- End : Card -->
+                                    <!-- Begin: Card -->
+                                    <div class="_dCard">
+                                        <div class="_dCardHeader _borderBtm">
+                                            <span class="_dHeading">My Gig Extras</span>                                    
+                                        </div>
+                                        
+                                            <div class="_dBorText">
+                                                <div class="row form-group">
+                                                    <div class="form-group col-md-6">
+                                                        <div class="row">
+                                                            <div class="col-md-8"><label class="_label" for="">Extra fast delivery</label></div>
+                                                            <div class="col-md-4">
+                                                                <label class="_mCheckbox">
+<input type="checkbox" name="is_extra_fast_delivery" value="1" {{ !empty($gig->is_extra_fast_delivery)?"checked":"" }}>
+                                                                    <span></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <div class="row">
+                                                            <div class="col-md-8"><label class="_label" for="">High Resolution</label></div>
+                                                            <div class="col-md-4">
+                                                                <label class="_mCheckbox">
+<input type="checkbox" name="is_extra_high_rev" value="1" {{ !empty($gig->is_extra_high_rev)?"checked":"" }}>
+                                                                    <span></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group  col-md-6">
+                                                        <div class="row">
+                                                            <div class="col-md-8"><label class="_label" for="">Additional Revision	</label></div>
+                                                            <div class="col-md-4">
+                                                                <label class="_mCheckbox">
+<input type="checkbox" name="is_add_rev" value="1" {{ !empty($gig->is_add_rev)?"checked":"" }}>  
+                                                                    <span></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <div class="row">
+                                                            <div class="col-md-8"><label class="_label" for="">3D Mockup</label></div>
+                                                            <div class="col-md-4">
+                                                                <label class="_mCheckbox">
+<input type="checkbox" name="is_extra_3d_mock" value="1" {{ !empty($gig->is_extra_3d_mock)?"checked":"" }}>
+                                                                    <span></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 form-group ">
+                                                        <div class="row">
+                                                            <div class="col-md-8"><label class="_label" for="">Additional Logo	</label></div>
+                                                            <div class="col-md-4">
+                                                                <label class="_mCheckbox">
+<input type="checkbox" name="is_add_logo" value="1" {{ !empty($gig->is_add_logo)?"checked":"" }}>
+                                                                    <span></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 form-group">
+                                                        <div class=" row">
+                                                            <div class="col-md-8"><label class="_label" for="">Stationery Designs</label></div>
+                                                            <div class="col-md-4">
+                                                                <label class="_mCheckbox">
+<input type="checkbox" name="is_extra_stationary" value="1" {{ !empty($gig->is_extra_stationary)?"checked":"" }}>
+                                                                    <span></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 form-group">
+                                                        <div class=" row">
+                                                            <div class="col-md-8"><label class="_label" for="">Source File	</label></div>
+                                                            <div class="col-md-4">
+                                                                <label class="_mCheckbox">
+<input type="checkbox" name="is_extra_source" value="1" {{ !empty($gig->is_extra_source)?"checked":"" }}>
+                                                                    <span></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 form-group">
+                                                        <div class=" row">
+                                                            <div class="col-md-8"><label class="_label" for="">Social Media Kit</label></div>
+                                                            <div class="col-md-4">
+                                                                <label class="_mCheckbox">
+<input type="checkbox" name="is_extra_social_media" value="1" {{ !empty($gig->is_extra_social_media)?"checked":"" }}>
+                                                                    <span></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 form-group">
+                                                        <div class=" row">
+                                                            <div class="col-md-8"><label class="_label" for="">Logo Transparency	</label></div>
+                                                            <div class="col-md-4">
+                                                                <label class="_mCheckbox">
+<input type="checkbox" name="is_extra_log_trans" value="1" {{ !empty($gig->is_extra_log_trans)?"checked":"" }}>
+                                                                    <span></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 form-group">
+                                                        <div class=" row">
+                                                            <div class="col-md-8"><label class="_label" for="">Vector File</label></div>
+                                                            <div class="col-md-4">
+                                                                <label class="_mCheckbox">
+<input type="checkbox" name="is_extra_vector" value="1" {{ !empty($gig->is_extra_vector)?"checked":"" }}>
+                                                                    <span></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>                                            
+                                                </div> 
+                                                <div class="form-group">
+                                                    <a href="#" class="btn _dBorBtn">Add gig Extra<span class="_iconRight"><i class="fas fa-plus"></i></span></a>
+                                                </div>                                  
+                                            </div>                                
+                                            <div class="_dBtnGroup">
+                                                <button type="submit" class="btn _btn2 _btnSuccess ">Save Changes</button>
+                                                
+                                                <a href="#" class="btn _btn2">Cancel</a>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- End : Card --> 
+                                </div>
+                                <!-- End : Left Section   -->
+                                <!-- Begin : Right Section -->
+                                <div class="col-lg-4 col-md-12">
+                                    <div class="_gigDefBox">
+                                        <figure>
+                                            <img src="{{ url("public/storage/images/gig-img.png") }}" alt="">
+                                        </figure>
+                                        <p class="_gigDefHead">Set your packages</p>
+                                        <p class="_gigDefTxt">
+                                            Set the prices for your 3 packages. Select the elements you want to include in each offer.<br>
+                                            Add Extras to increase your order value.
+                                        </p>
+                                        <a href="#" class="btn _dBorBtn">See examples</a>
+                                    </div>
+                                </div>
+                                <!-- End : Right Section   -->
+                            </div>
+                            
+                        </div>
+                        <!-- End:  Pricing -->
+
+                        <!-- Begin : Description -->
+                        <div id="gDesc" class="tab-pane fade">
+                            <div class="row">
+                                <!-- Begin : Left Section   -->
+                                <div class="col-lg-8 col-md-12">
+                                     <!-- Begin: Card -->
+                                    <div class="_dCard">
+                                        <div class="_dCardHeader _borderBtm">
+                                            <span class="_dHeading">Description & FAQ</span>                                    
+                                        </div>
+                                        <div class="_dsBody">
+                                            <form action="" class="_dForm">
+                                                <div class="form-group row">
+                                                    <div class="col-md-4"><label class="" for="" id="describe_your_gig_label">Briefly Describe Your Gig :</label></div>
+                                                    <div class="col-md-8">
+  <textarea placeholder="" class="form-control2" style="min-height: 125px" id="describe_your_gig">{{ $gig->describe_your_gig ?? "" }} </textarea>
+                                                        <div>
+                                                            <p class="_emTxt float-left min_description">min. 120</p>
+                                                            <p class="_emTxt  float-right text-right">
+
+                    <BrieflyDescribeYourGig></BrieflyDescribeYourGig>/1200 Characters</p>
+                                                        </div>   
+                                                    </div>
+                                                </div> 
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!-- End : Card -->
+                                    <!-- Begin: Card -->
+                                    <div class="_dCard">
+                                        <div class="_dCardHeader _borderBtm">
+                                            <span class="_dHeading">Frequently Asked Questions</span>
+                                            <a href="#" class="btn _dBorBtn">Add FAQ<span class="_iconRight"><i class="fas fa-plus"></i></span></a>
+                                        </div>                        
+                                        <div class="_dsBody">
+                                            <form action="" class="_dForm">
+                                                <div class="_dBorText">
+                                                    <div class="form-group">
+                                                        <p>Add Questions & Answers for Your Buyers. </p>
+                                                        <a href="#" class="btn _dBorBtn _dsucces">Add FAQ<span class="_iconRight"><i class="fas fa-plus"></i></span></a>
+                                                    </div>
+                                                </div>                                       
+                                                <div class="form-group ">
+                                                    <div class="_dBtnGroup">
+                                                        <a href="javascript:;" class="btn _btn2 _btnSuccess " id="describe_your_gig_save">Save Changes</a>
+                                                        <a href="#" class="btn _btn2">Cancel</a>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!-- End : Card -->
+                                </div>
+                                <!-- End : Left Section   -->
+                                <!-- Begin : Right Section -->
+                                <div class="col-lg-4 col-md-12">
+                                    <div class="_gigDefBox">
+                                        <figure>
+                                            <img src="{{ url("public/storage/images/gig-img.png") }}" alt="">
+                                        </figure>
+                                        <p class="_gigDefHead">Write Your Description & FAQ</p>
+                                        <p class="_gigDefTxt">
+                                            Include the most important information for your Gig.<br>
+                                            Add frequently asked questions and answers to the most commonly asked questions.
+                                        </p>
+                                        <a href="#" class="btn _dBorBtn">See examples</a>
+                                    </div>
+                                </div>
+                                <!-- End : Right Section   -->
+                            </div>
+                           
+                        </div>
+                        <!-- End  : Description  -->
+                       
+                        <!-- Begin : Requirment -->
+                        <div id="gRequirment" class="tab-pane fade">
+                            <div class="row">
+                                <!-- Begin : Left Section   -->
+                                <div class="col-lg-8 col-md-12">
+                                    <!-- Begin: Card -->
+                                    <div class="_dCard">
+                                        <div class="_dCardHeader _borderBtm">
+                                            <span class="_dHeading">Requirements</span>                                   
+                                        </div>                        
+                                        <div class="_dsBody">
+                                            <form action="" class="_dForm">
+                                                <div class="_dBorText">                                        
+                                                    <div class="form-group" style="margin-bottom: 35px;">
+                                                        <p class="_lText">Tell your buyer what you need to get started.</p>
+                                                        <p>Structure your Buyer Instructions as free text, a multiple choice question or file upload.</p>
+                                                    </div>                                         
+                                                    <div class="form-group row">
+                                                        <div class="col-md-4"><label class="" for="" id="requirement_label">Requirement #1 :</label></div>
+                                                        <div class="col-md-8">
+ <textarea placeholder="For example: specifications, dimensions, brand guidelines, or background materials." class="form-control2" style="min-height: 125px" id="requirement">{{ $gig->requirement ?? "" }} </textarea>                                                
+                                                            <p class="_emTxt text-right">
+
+                                                                <requirement></requirement> / 450 Characters</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-md-4"><label class="" for="" id="answer_type_label">Answer Type :</label></div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <select id="answer_type" class="form-control2">
+                                                                    <option value="">Select</option>
+<option value="1" {{ !empty($gig->answer_type)?$gig->answer_type==1?"selected":"":"" }}>Go offline1 For</option>
+<option value="2" {{ !empty($gig->answer_type)?$gig->answer_type==2?"selected":"":"" }}>Go offline2 For</option>
+<option value="3" {{ !empty($gig->answer_type)?$gig->answer_type==3?"selected":"":"" }}>Go offline3 For</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="_mCheckbox">
+<input type="checkbox" value="1" id="is_mandatory" {{ !empty($gig->is_mandatory)?"checked":"" }}> Answer is mandatory
+                                                                    <span></span>
+                                                                </label>        
+                                                            </div>
+                                                                <div class="form-group">
+                                                                <div class="_dBtnGroup2">
+                                                                    <a href="#" class="btn _btn2 _btnSuccess ">Add</a>
+                                                                    <a href="#" class="btn _btn2 _btnDanger">Cancel</a>
+                                                                </div>       
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            
+                                                <div class="_dBtnGroup">
+                                                    <a href="javascript:;" id="requirement_submit" class="btn _btn2 _btnSuccess ">Save & Continue</a>
+                                                    <a href="#" class="btn _btn2">Back</a>
+                                                </div>
+                                                
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!-- End : Card -->
+                                </div>
+                                <!-- End : Left Section   -->
+                                <!-- Begin : Right Section -->
+                                <div class="col-lg-4 col-md-12">
+                                    <div class="_gigDefBox">
+                                        <figure>
+                                            <img src="{{ url("public/storage/images/gig-img.png") }}" alt="">
+                                        </figure>
+                                        <p class="_gigDefHead">Provide Your Requirements</p>
+                                        <p class="_gigDefTxt">
+                                        Indicate what you need before you can start working.
+                                        </p>
+                                        <a href="#" class="btn _dBorBtn">See examples</a>
+                                    </div>
+                                </div>
+                                <!-- End : Right Section   -->
+                            </div>
+                            
+                        </div>
+                        <!-- End : Requirment -->
+
+                        <!-- Begin : Gallery -->
+                        <div id="gGallery" class="tab-pane fade">
+                            <div class="row">
+                                <!-- Begin : Left Section   -->
+                                <div class="col-lg-8 col-md-12">
+                                     <!-- Begin: Card -->
+                                    <div class="_dCard">
+                                        <div class="_dCardHeader _borderBtm">
+                                            <span class="_dHeading">Build Your Gig Gallery</span>                                   
+                                        </div>                        
+     <div class="_dsBody">
+    <form action="{{ url("api/gig-gallery/create/".Auth::id()) }}" 
+    class="_dForm" method="post" id="gallery_form" enctype="multipart/form-data">
+
+             <input type="hidden" name="widget_five" value="1">
+        <div class="_dBorText">   
+                                                    <!-- Begin : row  --> 
+        <div class="form-group row">
+            <div class="col-md-4">
+                <label class="" >
+                    <p class="_lText">Gig Photos</p>
+                    <p>Upload photos that describe or are related to your Gig.</p>
+                </label>
+            </div>
+
+                                                        <div class="col-md-8">
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group _custom__uploadField _cF2">								
+    <input type="file" id="_agntFile-1" class="inputfile" name="gig_photo_one">
+
+                                            <label for="_agntFile-1">
+                                                                            <span id="_agntFile1_label">                                                                                                                                              
+                    <img src="{{ url("public/storage/images/img-icon.png") }}" alt="" class="_attIcon" id="show_first_image">
+                                                                                Drag a Photo or <br>
+                                                                                <a href="javascript:;">Browse</a>
+                                                                            </span>
+                                                                        </label>                                                                              
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group _custom__uploadField _cF2">								
+ <input type="file" id="_agntFile-2" class="inputfile inputfile-2" name="gig_photo_two">
+                                                                        <label for="_agntFile-2">
+                                                                            <span id="_agntFile2_label">                                                                                                                                              
+                                                                                <img src="{{ url("public/storage/images/img-icon.png") }}" alt="" class="_attIcon">
+                                                                                Drag a Photo or <br>
+                                                                                <a href="#">Browse</a>
+                                                                            </span>
+                                                                        </label>                                                                              
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group _custom__uploadField _cF2">								
+<input type="file" id="_agntFile-3" class="inputfile inputfile-2" name="gig_photo_three">
+                                                                        <label for="_agntFile-3">
+                                                                            <span id="_agntFile3_label">                                                                                                                                              
+                                                                                <img src="{{ url("public/storage/images/img-icon.png") }}" alt="" class="_attIcon">
+                                                                                Drag a Photo or <br>
+                                                                                <a href="#">Browse</a>
+                                                                            </span>
+                                                                        </label>                                                                              
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- End : row  -->
+                                                    <!-- Begin : row  --> 
+                                                    <div class="form-group row">
+                                                        <div class="col-md-4">
+                                                            <label class="" >
+                                                                <p class="_lText">Gig Video</p>
+                                                                <p>Add a relevant, high quality video that best showcases your Gig.</p>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group _custom__uploadField _cF2">								
+<input type="file" id="_agntFile-4" class="inputfile inputfile-2" name="gig_video">
+                                                                        <label for="_agntFile-4">
+                                                                            <span>                                                                                                                                              
+                                                                                <img src="{{ url("public/storage/images/video-icon.png") }}" alt="" class="_attIcon">
+                                                                                Drag a Video or <br>
+                                                                                <a href="#">Browse</a>
+                                                                            </span>
+                                                                        </label>                                                                              
+                                                                    </div>
+                                                                </div>                                                        
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- End : row  --> 
+                                                    <!-- Begin : row  --> 
+                                                    <div class="form-group row">
+                                                        <div class="col-md-4">
+                                                            <label class="" >
+                                                                <p class="_lText">Gig PDFs</p>
+                                                                <p>We only recommend adding a PDF file if it further clarifies the service you will be providing</p>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group _custom__uploadField _cF2">								
+<input type="file" id="_agntFile-5" class="inputfile inputfile-2" name="gig_pdf_one">
+                                                                        <label for="_agntFile-5">
+                                                                            <span>                                                                                                                                              
+                                                                                <img src="{{ url("public/storage/images/pdf-icon.png") }}" alt="" class="_attIcon">
+                                                                                Drag a Photo or <br>
+                                                                                <a href="#">Browse</a>
+                                                                            </span>
+                                                                        </label>                                                                              
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group _custom__uploadField _cF2">								
+<input type="file" id="_agntFile-6" class="inputfile inputfile-2" name="gig_pdf_two">
+                                                                        <label for="_agntFile-6">
+                                                                            <span>                                                                                                                                              
+                                                                                <img src="{{ url("public/storage/images/pdf-icon.png") }}" alt="" class="_attIcon">
+                                                                                Drag a Photo or <br>
+                                                                                <a href="#">Browse</a>
+                                                                            </span>
+                                                                        </label>                                                                              
+                                                                    </div>
+                                                                </div>                                                      
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- End : row  -->                                   
+                                                </div>
+                                                <div class="_dBtnGroup">
+                                                    <button class="btn _btn2 _btnSuccess">Save & Continue</button>
+                                                    
+                                                    <a href="#" class="btn _btn2">Back</a>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!-- End : Card -->
+                                </div>
+                                <!-- End : Left Section   -->
+                                <!-- Begin : Right Section -->
+                                <div class="col-lg-4 col-md-12">
+                                    <div class="_gigDefBox">
+                                        <figure>
+                                            <img src="{{ url("public/storage/images/gig-img.png") }}" alt="">
+                                        </figure>
+                                        <p class="_gigDefHead">Showcase Your Talent</p>
+                                        <p class="_gigDefTxt">
+                                            Add photos, an introduction video, or PDF files that best represent your service.
+                                        </p>
+                                        <a href="#" class="btn _dBorBtn">See examples</a>
+                                    </div>
+                                </div>
+                                <!-- End : Right Section   -->
+                            </div>
+                           
+                        </div>
+                        <!-- End : Gallery -->
+                        
+                        <!-- Begin : Publish  -->
+                        <div id="gPublish" class="tab-pane fade">
+                            <div class="row">
+                                <div class="col-lg-8 col-md-12">
+                                    <!-- Begin: Card -->
+                                    <div class="_dCard">                                                        
+                                        <div class="_dsBody">
+                                            <div class="_publishDiv text-center">
+                                                <figure>
+                                                    <img src="{{ url("public/storage/images/publish-img.png") }}" alt="">
+                                                </figure>
+                                                <p class="_boldGreenTxt">Almost There...</p>
+                                                <p>Let's publish your Gig and get  some buyers rolling in.</p>
+                             <a href="javascript:;" class="btn _btn2 _btnSuccess " id="publish_gig">Publish Gig</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End : Card -->
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                        <!-- Begin : Publish  -->
+                        
+                    </div>
+                </div>
+                <!-- End :  Section -->
+               
+            </div>
+        </div>        
+    </main>
+
+    @component('scripts/gig-script')
+
+
+    @endcomponent
+
+    <script type="text/javascript">
+        $("#gig_category_input").change(function(event) {
+
+    $.post('{{ route('get.subcat') }}', {id: this.value,"_token":"{{ csrf_token() }}"}, function(data, textStatus, xhr) {
+        
+         $("#gig_sub_category_input").empty().append(` <option value="">Select</option>`);
+        $.each(data, function(index, val) {
+             $("#gig_sub_category_input").append(`<option value="${val.id}" ${"{{ $gig->sub_category ?? ""}}"==val.id?"selected":''}>${val.name}</option>`);
+        });
+        
+    });
+}).change();
+    </script>
+@endsection
+
