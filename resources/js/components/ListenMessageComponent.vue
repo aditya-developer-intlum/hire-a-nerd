@@ -106,7 +106,7 @@
                  @keydown="typeMessage"
                  autocomplete="off" >
                  <input type="hidden" value="1" name="is_seen" v-model="fields.is_seen" v-if="online">
-                <!-- <input type="file" name="files"  v-bind:id="fileId" style="display: none"> -->
+                <input type="file" name="files"  id="file_input" style="display: none"> 
                 <button class="btn _submitBtn2" type="submit" >Send </button>
               
          </form>
@@ -142,7 +142,7 @@
 
     <div class="_replyActionBox">
         <ul class="_replyAction__lists">                                                                    
-            <li><a href="#" @click.prevent="openFile( fileId )"><i class="fas fa-paperclip"></i></a></li>
+            <li @click="openFile"><i class="fas fa-paperclip"></i></li>
             <!-- <li><a href="#"><i class="fas fa-camera"></i></a></li> -->
             <li><a href="#"><i class="far fa-grin"></i></a></li>
         </ul> 
@@ -210,7 +210,6 @@ export default {
     },
     props: ['userData'],
         mounted() {
-            console.log('mounted');
         	this.tab = `user${this.userData.tab}`;
         	this.user = this.userData.name;
         	this.active = this.userData.active;
@@ -319,14 +318,16 @@ export default {
                
                 });
             },
-            openFile(args){
-               document.getElementById(args).click();
+            openFile(){
+                
+                document.getElementById('file_input').click();
+               
             },
             insert(emoji) {
-                this.input += emoji
+                this.input += emoji;
             },
             test(){
-                alert('clicked');
+                //alert('clicked');
             }
             
 

@@ -1991,7 +1991,6 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_chat_scroll__WEBPACK_IMPORTED
   mounted: function mounted() {
     var _this = this;
 
-    console.log('mounted');
     this.tab = "user".concat(this.userData.tab);
     this.user = this.userData.name;
     this.active = this.userData.active;
@@ -2085,14 +2084,13 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_chat_scroll__WEBPACK_IMPORTED
         });
       });
     },
-    openFile: function openFile(args) {
-      document.getElementById(args).click();
+    openFile: function openFile() {
+      document.getElementById('file_input').click();
     },
     insert: function insert(emoji) {
       this.input += emoji;
     },
-    test: function test() {
-      alert('clicked');
+    test: function test() {//alert('clicked');
     }
   }
 });
@@ -65735,6 +65733,11 @@ var render = function() {
                   })
                 : _vm._e(),
               _vm._v(" "),
+              _c("input", {
+                staticStyle: { display: "none" },
+                attrs: { type: "file", name: "files", id: "file_input" }
+              }),
+              _vm._v(" "),
               _c(
                 "button",
                 { staticClass: "btn _submitBtn2", attrs: { type: "submit" } },
@@ -65746,20 +65749,8 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "_replyActionBox" }, [
           _c("ul", { staticClass: "_replyAction__lists" }, [
-            _c("li", [
-              _c(
-                "a",
-                {
-                  attrs: { href: "#" },
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      return _vm.openFile(_vm.fileId)
-                    }
-                  }
-                },
-                [_c("i", { staticClass: "fas fa-paperclip" })]
-              )
+            _c("li", { on: { click: _vm.openFile } }, [
+              _c("i", { staticClass: "fas fa-paperclip" })
             ]),
             _vm._v(" "),
             _vm._m(1)
@@ -78275,15 +78266,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!************************************************************!*\
   !*** ./resources/js/components/ListenMessageComponent.vue ***!
   \************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ListenMessageComponent_vue_vue_type_template_id_32fbca48___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ListenMessageComponent.vue?vue&type=template&id=32fbca48& */ "./resources/js/components/ListenMessageComponent.vue?vue&type=template&id=32fbca48&");
 /* harmony import */ var _ListenMessageComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ListenMessageComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/ListenMessageComponent.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _ListenMessageComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _ListenMessageComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -78313,7 +78303,7 @@ component.options.__file = "resources/js/components/ListenMessageComponent.vue"
 /*!*************************************************************************************!*\
   !*** ./resources/js/components/ListenMessageComponent.vue?vue&type=script&lang=js& ***!
   \*************************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

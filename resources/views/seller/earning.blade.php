@@ -84,11 +84,11 @@
                                 <div class="form-group  _payMentOption">
                                     <div class="_radioList">
                                         <label class="_radio">
-                                            <input type="radio" name="example_1" value="1"> payPal <img src="images/paypal.png" class="pay-img" alt="">
+                                            <input type="radio" name="example_1" value="1"> PayPal <img src="images/paypal.png" class="pay-img" alt="">
                                             <span></span>
                                         </label>
                                         <label class="_radio">
-                                            <input type="radio" name="example_1" value="2"> Skrill <img src="images/skrill.png" class="pay-img" alt="">
+                                            <input type="radio" name="example_1" value="2"> Stripe <img src="images/skrill.png" class="pay-img" alt="">
                                             <span></span>
                                         </label>                         
                                     </div>											
