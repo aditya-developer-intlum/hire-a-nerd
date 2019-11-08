@@ -82,3 +82,12 @@ Route::post("admin/testimonial/{id}/update","Api\Admin\Testimonial@update");
 
 Route::get("admin/user","Api\Admin\UserController@index");
 
+/*Message Files*/
+Route::post("upload-message-file","Seller\MessageController@files");
+
+
+
+
+
+
+

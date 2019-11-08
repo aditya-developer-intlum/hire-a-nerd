@@ -1959,6 +1959,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -1981,7 +1986,9 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_chat_scroll__WEBPACK_IMPORTED
       search: '',
       current_avatar: '',
       submitButton: false,
-      online: false
+      online: false,
+      file: null,
+      showFile: null
     };
   },
   components: {
@@ -2030,10 +2037,17 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_chat_scroll__WEBPACK_IMPORTED
       var _this2 = this;
 
       this.errors = {};
+
+      if (this.file != null) {
+        this.fields.url = this.file;
+        this.fields.image = this.showFile;
+      }
+
       this.fields.sender_id = this.userData.id;
       this.fields.receiver_id = this.userData.tab;
       axios.post('message', this.fields).then(function (response) {
         var data = {
+          files: _this2.showFile ? _this2.showFile : null,
           message: response.data.message,
           is_sender: false,
           time: response.data.created_at
@@ -2075,9 +2089,11 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_chat_scroll__WEBPACK_IMPORTED
       }).then(function (response) {
         response.data.forEach(function (val, index) {
           var data = {
+            files: val.file,
             message: val.message,
             is_sender: val.sender_id == _this4.receiver_id ? true : false,
-            time: val.created_at
+            time: val.created_at,
+            url: val.url
           };
 
           _this4.items.push(data);
@@ -2090,7 +2106,98 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_chat_scroll__WEBPACK_IMPORTED
     insert: function insert(emoji) {
       this.input += emoji;
     },
-    test: function test() {//alert('clicked');
+    uploadImage: function uploadImage(e) {
+      var _this5 = this;
+
+      var img = e.target.files[0];
+      var fd = new FormData();
+      fd.append('file', img);
+      axios.post("".concat(this.userData.url, "/api/upload-message-file"), fd).then(function (resp) {
+        _this5.file = "".concat(_this5.userData.url, "/public/storage/").concat(resp.data);
+
+        _this5.popUpFile();
+      })["catch"](function (error) {
+        console.log(error);
+
+        if (error.response.status === 422) {
+          Swal.fire({
+            icon: 'error',
+            text: error.response.data.errors.file[0]
+          });
+        }
+      });
+    },
+    popUpFile: function popUpFile() {
+      var _this6 = this;
+
+      switch (this.getFileExtenstion(this.file)) {
+        case 'zip':
+          this.showFile = "".concat(this.userData.url, "/public/icons/file-archive-solid.svg");
+          break;
+
+        case 'pdf':
+          this.showFile = "".concat(this.userData.url, "/public/icons/file-pdf-solid.svg");
+          break;
+
+        case 'csv':
+          this.showFile = "".concat(this.userData.url, "/public/icons/file-csv-solid.svg");
+          break;
+
+        case 'xlsx':
+          this.showFile = "".concat(this.userData.url, "/public/icons/file-excel-solid.svg");
+          break;
+
+        case 'xls':
+          this.showFile = "".concat(this.userData.url, "/public/icons/file-excel-solid.svg");
+          break;
+
+        case 'ods':
+          this.showFile = "".concat(this.userData.url, "/public/icons/file-excel-solid.svg");
+          break;
+
+        case 'txt':
+          this.showFile = "".concat(this.userData.url, "/public/icons/file-solid.svg");
+          break;
+
+        case 'jpg':
+          this.showFile = this.file;
+          break;
+
+        case 'jpeg':
+          this.showFile = this.file;
+          break;
+
+        case 'gif':
+          this.showFile = this.file;
+          break;
+
+        case 'png':
+          this.showFile = this.file;
+          break;
+
+        case 'svg':
+          this.showFile = this.file;
+          break;
+
+        default:
+          this.showFile = "".concat(this.userData.url, "/public/icons/file-solid.svg");
+          break;
+      }
+
+      Swal.fire({
+        input: 'text',
+        imageUrl: this.showFile,
+        imageWidth: 400,
+        imageHeight: 200,
+        confirmButtonText: 'send'
+      }).then(function (result) {
+        _this6.fields.message = result.value;
+
+        _this6.submit();
+      });
+    },
+    getFileExtenstion: function getFileExtenstion(filename) {
+      return filename.split('.').pop();
     }
   }
 });
@@ -65595,6 +65702,26 @@ var render = function() {
                     _c("div", { staticClass: "_msgBox-inner" }, [
                       _c("div", { staticClass: "_msgDiv" }, [
                         _c("div", { staticClass: "_msgTextBox" }, [
+                          item.files
+                            ? _c("div", [
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: { href: item.url, target: "_blank" }
+                                  },
+                                  [
+                                    _c("img", {
+                                      attrs: {
+                                        src: item.files,
+                                        alt: "",
+                                        width: "70%"
+                                      }
+                                    })
+                                  ]
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
                           _c("div", { staticClass: "_msgContent" }, [
                             _vm._v(
                               _vm._s(item.message) +
@@ -65735,7 +65862,8 @@ var render = function() {
               _vm._v(" "),
               _c("input", {
                 staticStyle: { display: "none" },
-                attrs: { type: "file", name: "files", id: "file_input" }
+                attrs: { type: "file", name: "files", id: "file_input" },
+                on: { change: _vm.uploadImage }
               }),
               _vm._v(" "),
               _c(
@@ -65772,51 +65900,7 @@ var staticRenderFns = [
             _c("span", { staticClass: "_dHdr__icon" }, [
               _c("i", { staticClass: "fas fa-cog" })
             ])
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass:
-                "hoverDropdown__wrapper hoverDropdown__wrapper__right"
-            },
-            [
-              _c("div", { staticClass: "hoverDropdown__inner" }, [
-                _c("div", { staticClass: "hoverDropdown__header" }, [
-                  _vm._v("Settings")
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "hoverDropdown__body" }, [
-                  _c("ul", { staticClass: "hoverDropdown_content" }, [
-                    _c("li", { staticClass: "_imgTxtCard active" }, [
-                      _c("a", { staticClass: "flex-view" }, [
-                        _c("figure", { staticClass: "_imgTxtCard__Image" }, [
-                          _c("img", {
-                            staticClass: "img-fluid",
-                            attrs: { src: "", alt: "" }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "_imgTxtCard__content " }, [
-                          _c("div", { staticClass: "_imgTxtCard__txt" }, [
-                            _c("span", { staticClass: "_content__txtMsg" }, [
-                              _vm._v(
-                                "Lorem Ipsum is simply dummy text of the printing."
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("span", { staticClass: "_content__txTime" }, [
-                              _vm._v("10 days ago")
-                            ])
-                          ])
-                        ])
-                      ])
-                    ])
-                  ])
-                ])
-              ])
-            ]
-          )
+          ])
         ])
       ])
     ])
@@ -65859,7 +65943,11 @@ var render = function() {
     _vm._l(_vm.friends, function(friend) {
       return _c(
         "li",
-        { staticClass: "_chatList", attrs: { id: "_online" + friend.user.id } },
+        {
+          staticClass: "_chatList",
+          class: friend.is_online ? "_online" : "",
+          attrs: { id: "_online" + friend.user.id }
+        },
         [
           _c(
             "div",
@@ -65891,9 +65979,13 @@ var render = function() {
                       _vm._v(" " + _vm._s(friend.user.name))
                     ]),
                     _vm._v(" "),
-                    _c("span", { staticClass: "_time" }, [
-                      _vm._v(_vm._s(_vm._f("formatDate")(friend.last_login)))
-                    ]),
+                    friend.is_online == false
+                      ? _c("span", { staticClass: "_time" }, [
+                          _vm._v(
+                            _vm._s(_vm._f("formatDate")(friend.updated_at))
+                          )
+                        ])
+                      : _vm._e(),
                     _vm._v(" "),
                     _c("span", { staticClass: "_star-imp active" })
                   ]),

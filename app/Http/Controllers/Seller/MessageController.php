@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Chat;
 use App\ChatRelation;
+use App\ChatFile;
 use App\Events\SendMessage;
 use Auth;
 
@@ -27,7 +28,9 @@ class MessageController extends Controller
     	$chat = Chat::create([
     		"sender_id" => $request->sender_id,
     		"receiver_id" => $request->receiver_id,
-    		"message" => $request->message,
+    		"message" => $request->message ?? null,
+            "file" => $request->image ?? null,
+            "url" => $request->url ?? null,
             "is_seen" => $request->is_seen ?? 0
     	]);
     	event(new SendMessage($chat));
@@ -62,5 +65,17 @@ class MessageController extends Controller
     public function readMessage(Request $request)
     {
         Chat::where('sender_id',$request->sender_id)->where('receiver_id',$request->receiver_id)->update(['is_seen'=>true]);
+    }
+    public function files(Request $request)
+    {
+        $request->validate(
+            [
+                'file' => ['required','mimes:jpeg,gif,png,jpg,svg,pdf,csv,xlsx,xls,zip,ods,txt']
+            ],
+            [
+                'file.mimes' => "These type of file is not allowed"
+            ]   
+        );
+        return $request->file->store('temp','public');
     }
 }

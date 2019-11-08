@@ -3,7 +3,7 @@
     <ul class="_chatLists nav nav-tabs" id="chat_lists" >
                                                 
                 <!-- li begin  -->
-                <li  v-for="friend in friends" class="_chatList" :id="'_online'+friend.user.id">
+                <li  v-for="friend in friends" class="_chatList" :class="friend.is_online?'_online':''" :id="'_online'+friend.user.id">
                     <div class="_chatCont" data-toggle="tab" :href="'#user'+friend.user.id" @click="readMessage(friend.user.id)">
                         <div class="_chatCont-in _flexDiv">
                             <div class="_proImg-cont">
@@ -15,7 +15,7 @@
                             <div class="_proTxt-cont">
                                 <div class="_chatInfo _flexDiv">
                                     <span class="_name"> {{ friend.user.name }}</span>
-                                    <span class="_time">{{ friend.last_login | formatDate}}</span>
+                                    <span class="_time" v-if="friend.is_online==false" >{{ friend.updated_at | formatDate}}</span>
                                     <span class="_star-imp active">
                                     <!--    <i class="far fa-star"></i> -->
                                     </span>

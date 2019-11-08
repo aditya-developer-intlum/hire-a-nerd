@@ -148,7 +148,8 @@
 	                                        'name' => $friend->user->name,
 	                                        'avatar' => asset("public/storage/{$friend->user->userdetail->avatar}"),
 	                                        'active' => true,
-	                                        'image' => asset("public/storage/{$profile}")
+	                                        'image' => asset("public/storage/{$profile}"),
+                                            'url' => url("")
 
                                         ]) 
                                     }}">

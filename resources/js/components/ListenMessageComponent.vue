@@ -29,7 +29,7 @@
                                                                                                 <i class="fas fa-cog"></i>
                                                                                             </span>
                                                                                         </a>                         
-       <div class="hoverDropdown__wrapper hoverDropdown__wrapper__right">                            
+       <!-- <div class="hoverDropdown__wrapper hoverDropdown__wrapper__right">                            
             <div class="hoverDropdown__inner">
             <div class="hoverDropdown__header">Settings</div> 
        <div class="hoverDropdown__body">
@@ -48,7 +48,7 @@
                                                                                                     </ul>
                                                                                                 </div>                                                                                            
                                                                                             </div>                            
-                                                                                        </div>                      
+                                                                                        </div> -->                      
                                                                                     </div>
                                                                                     <!-- end  -->
                                                                                     
@@ -61,6 +61,7 @@
                                                                         </div>          
                                                                     </div>
                                                                     <!-- Header end  -->
+                                                                   
 <div class="_chatBox__bdy">
 	<div class="_chatInnerBody" v-chat-scroll>
 
@@ -70,12 +71,17 @@
 					<div class="_msgDiv">
 					
 						<div class="_msgTextBox">
+                    <div v-if="item.files">
+                        <a :href="item.url" target="_blank"><img :src="item.files" alt="" width="70%"></a>
+
+                    </div>
+
+
 						<div class="_msgContent">{{ item.message }}                                                    
 						</div>                      
 						</div>
 					<ul class="_inlineList _msgInfo">
 						<li> <span class="_time">{{ item.time }}</span></li>
-						
 					</ul>
 
 					</div>
@@ -106,10 +112,9 @@
                  @keydown="typeMessage"
                  autocomplete="off" >
                  <input type="hidden" value="1" name="is_seen" v-model="fields.is_seen" v-if="online">
-                <input type="file" name="files"  id="file_input" style="display: none"> 
+                <input type="file" name="files" id="file_input" style="display: none" @change="uploadImage" > 
                 <button class="btn _submitBtn2" type="submit" >Send </button>
-              
-         </form>
+            </form>
            
     </div>
     <!-- <emoji-picker @emoji="insert" :search="search">
@@ -202,6 +207,8 @@ export default {
             current_avatar:'',
             submitButton:false,
             online:false,
+            file : null,
+            showFile: null
 	    	
 	    }
 	},
@@ -261,16 +268,22 @@ export default {
 
             submit(){
                     this.errors = {};
+                    if(this.file != null ){
+                        this.fields.url = this.file;
+                        this.fields.image = this.showFile;
+                    }
                     this.fields.sender_id = this.userData.id;
                     this.fields.receiver_id = this.userData.tab;
                     axios.post('message', this.fields).then(response => {
 
                        const data = {
+                            files:this.showFile?this.showFile:null,
+
                             message: response.data.message,
                             is_sender: false,
                             time: response.data.created_at
                         };
-                     
+
                         this.items.push(data);
                      
                        
@@ -309,9 +322,11 @@ export default {
                     response.data.forEach((val,index) => {
                         
                         let data = {
+                            files: val.file,
                             message: val.message,
                             is_sender:val.sender_id == this.receiver_id?true:false,
-                            time:val.created_at
+                            time:val.created_at,
+                            url: val.url
                         };
                         this.items.push(data);
                     });
@@ -326,8 +341,84 @@ export default {
             insert(emoji) {
                 this.input += emoji;
             },
-            test(){
-                //alert('clicked');
+            uploadImage (e) {
+                let img = e.target.files[0]
+                let fd = new FormData()
+
+                fd.append('file', img)
+
+                axios.post(`${this.userData.url}/api/upload-message-file`, fd)
+                    .then(resp => {
+
+                        this.file = `${this.userData.url}/public/storage/${resp.data}`;
+                        this.popUpFile();
+                        
+                }).catch(error => {
+                        console.log(error);
+                        if (error.response.status === 422) {
+                            Swal.fire({
+                                icon: 'error',
+                                text: error.response.data.errors.file[0],
+                            });
+                        }
+                });
+            },
+            popUpFile (){
+
+                switch (this.getFileExtenstion(this.file)) {
+                    case 'zip':
+                        this.showFile = `${this.userData.url}/public/icons/file-archive-solid.svg`;
+                        break;
+                    case 'pdf':
+                         this.showFile = `${this.userData.url}/public/icons/file-pdf-solid.svg`;
+                        break;
+                    case 'csv':
+                         this.showFile = `${this.userData.url}/public/icons/file-csv-solid.svg`;
+                        break;
+                    case 'xlsx':
+                         this.showFile = `${this.userData.url}/public/icons/file-excel-solid.svg`;
+                        break;
+                    case 'xls':
+                         this.showFile = `${this.userData.url}/public/icons/file-excel-solid.svg`;
+                        break;
+                    case 'ods':
+                         this.showFile = `${this.userData.url}/public/icons/file-excel-solid.svg`;
+                        break;
+                    case 'txt':
+                         this.showFile = `${this.userData.url}/public/icons/file-solid.svg`;
+                        break;
+                    case 'jpg':
+                        this.showFile = this.file;
+                        break;
+                    case 'jpeg':
+                        this.showFile = this.file;
+                        break;
+                    case 'gif':
+                        this.showFile = this.file;
+                        break;
+                    case 'png':
+                        this.showFile = this.file;
+                        break;
+                    case 'svg':
+                        this.showFile = this.file;
+                        break;
+                    default:
+                         this.showFile = `${this.userData.url}/public/icons/file-solid.svg`;
+                        break;
+                }
+                Swal.fire({
+                    input: 'text',
+                    imageUrl: this.showFile,
+                    imageWidth: 400,
+                    imageHeight: 200,
+                    confirmButtonText:'send'
+                }).then((result) => {
+                    this.fields.message = result.value;
+                    this.submit();
+                })
+            },
+            getFileExtenstion(filename){
+                return filename.split('.').pop();
             }
             
 

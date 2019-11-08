@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Validator;
 use Auth;
+use App\ChatRelation;
 
 class LoginController extends Controller
 {
@@ -64,6 +65,11 @@ class LoginController extends Controller
         {
             if(Auth::attempt(["email"=>$request->email,"password"=>$request->password,'status'=>1]))
             {
+                    $chatRelation = ChatRelation::whereReceiverId(auth()->user()->id)->update(
+                        [
+                            'is_online' => true
+                        ]
+                    );
                 return response()->json(array(
                 'success' => true
 
@@ -103,6 +109,13 @@ class LoginController extends Controller
      */
     public function logout(Request $request)
     {
+        $chatRelation = ChatRelation::whereReceiverId(auth()->user()->id)->update(
+            [
+                'last_login' => date('Y-m-d h:i:s a'),
+                'is_online' => false
+            ]
+        );
+
         $this->guard()->logout();
 
         $request->session()->invalidate();
