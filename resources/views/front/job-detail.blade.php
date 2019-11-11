@@ -184,7 +184,7 @@
 <div class="_bCard" id="description">
                                 <!-- Begin:  Header  -->
                                 <div class="_bCard__hdr">
-                                    <div class="_bCard__heading">About This Gig</div>
+                                    <div class="_bCard__heading">About This Service</div>
                                     <div class="_bCard__desc">
                                         
                                     </div>
@@ -207,7 +207,7 @@
       @isset ($gigs->gigFaqs[0])
           
      
-                            <div class="_bCard" id="description">
+                            <div class="_bCard" id="dBill">
                                 
                                 <div class="_bCard__hdr">
                                     <div class="_bCard__heading">FAQ</div>

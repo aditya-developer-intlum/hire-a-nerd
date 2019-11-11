@@ -31,4 +31,14 @@ class DashboardController extends Controller
                 ->get();
         return view('home',compact('gigs','weekly','wish'));
     }
+    public function show()
+    {
+        $wish = WishList::where('user_id',auth()->user()->id)->get();
+
+        $gigs = Gig::with('user','user.userDetail','menu','subMenu')->whereStatus(true)
+                ->whereIsStatus(1)
+                ->orderBy('id',"desc")
+                ->paginate(50);
+        return view('services',compact('gigs','wish'));
+    }
 }

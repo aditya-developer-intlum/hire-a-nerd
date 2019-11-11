@@ -1775,10 +1775,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_emoji_picker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-emoji-picker */ "./node_modules/vue-emoji-picker/dist-module/main.js");
-/* harmony import */ var vue_emoji_picker__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_emoji_picker__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue_emoji_picker__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-emoji-picker */ "./node_modules/vue-emoji-picker/dist-module/main.js");
+/* harmony import */ var vue_emoji_picker__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_emoji_picker__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var vue_chat_scroll__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-chat-scroll */ "./node_modules/vue-chat-scroll/dist/vue-chat-scroll.js");
 /* harmony import */ var vue_chat_scroll__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_chat_scroll__WEBPACK_IMPORTED_MODULE_2__);
 //
@@ -1964,10 +1964,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_chat_scroll__WEBPACK_IMPORTED_MODULE_2___default.a);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_chat_scroll__WEBPACK_IMPORTED_MODULE_2___default.a);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ListenMessageComponent',
   data: function data() {
@@ -1992,7 +1994,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_chat_scroll__WEBPACK_IMPORTED
     };
   },
   components: {
-    EmojiPicker: vue_emoji_picker__WEBPACK_IMPORTED_MODULE_0___default.a
+    EmojiPicker: vue_emoji_picker__WEBPACK_IMPORTED_MODULE_1___default.a
   },
   props: ['userData'],
   mounted: function mounted() {

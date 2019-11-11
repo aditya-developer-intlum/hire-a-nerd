@@ -7,9 +7,9 @@
             <div class="_headingDiv">
                 <h2 class="_headingTxt">    
 
-              {{ $title }}</h2>               
+             All Services</h2>               
             </div>
-
+        
             <!-- End : Heading  -->
             <div class="row _infoBoxRow">
                 <!-- Begin: Col -->
@@ -69,16 +69,16 @@
             </div>
 
             <div class="row">
-            	
-            	<div class="col-md-2">
-            		   &nbsp;
-            	</div>
-            		<div class="col-md-8" style="padding: 48px 0px 0px 219px;">
-            		  <center>{{ $gigs->links() }}</center> 
-            	</div>
-            		<div class="col-md-2">
-            		 &nbsp;	
-            	</div>
+                
+                <div class="col-md-2">
+                       &nbsp;
+                </div>
+                    <div class="col-md-8" style="padding: 48px 0px 0px 219px;">
+                      <center>{{ $gigs->links() }}</center> 
+                </div>
+                    <div class="col-md-2">
+                     &nbsp; 
+                </div>
             </div>
      
         </div>
@@ -100,16 +100,12 @@
                 $(`i[data-service = ${ele}]`).removeClass('fas fa-heart fa-bounce').addClass('far fa-heart');
             }
         });
-         @if (Auth::check()){
 
-            $.each(@json($wish), function(index, val) {
+        $.each(@json($wish), function(index, val) {
 
-                $(`i[data-service = ${val.gig_id}]`).removeClass('far fa-heart').addClass('fas fa-heart');
+            $(`i[data-service = ${val.gig_id}]`).removeClass('far fa-heart').addClass('fas fa-heart');
 
-            });
-            
-         }
-         @endif
+        });
     });
 </script>
 @endsection

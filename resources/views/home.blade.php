@@ -26,9 +26,9 @@
                 <div class="row">
                     <div class="col-lg-9">
                         <div class="_bannerTxtDiv">
-                            <h2 class="_bHeading wow _fadeInLeft" data-wow-delay="0.3s">Have You Tried Hire a Nerd <span class="_themeBlue">Pro?</span></h2>
+                            <h2 class="_bHeading wow _fadeInLeft" data-wow-delay="0.3s">Have You Tried Hire a Nerd <!-- <span class="_themeBlue">Pro?</span> --></h2>
                       <!--       <p class="_bTag wow _fadeInLeft" data-wow-delay="0.5s">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed<br> do eiusmod tempor incid</p>   -->
-                            <a href="#" class="_commonBtn wow _fadeInLeft" data-wow-delay="0.7s">Try Now</a>
+                           <!--  <a href="" class="_commonBtn wow _fadeInLeft" data-wow-delay="0.7s">Try Now</a> -->
                         </div>
                     </div>
                 </div>
@@ -53,7 +53,7 @@
                             </div>
                         </div>
                         <div class="_postDivRight">
-                            <a href="#" class="btn _commonBtn">Post a Request</a>
+                            <a href="{{ route('post-request.create') }}" class="btn _commonBtn">Post a Request</a>
                         </div>
                     </div>
                 </div>
@@ -69,11 +69,11 @@
             <div class="_headerDiv">
                 <!-- Begin: Heading -->
                 <div class="_headingDiv">
-                    <h2 class="_headingTxt">Recently Viewed & More</h2>
-                    <p class="_headingTag">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidi</p>
+                    <h2 class="_headingTxt">Top Picks For You In SEO</h2>
+                    <!-- <p class="_headingTag">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidi</p> -->
                 </div>
                 <!-- End : Heading  -->
-                <a href="#" class="_commonBtn">View All</a>
+                <a href="{{ route('view.all') }}" class="_commonBtn">View All</a>
             </div>
             <!-- Begin:  Slider2  -->
             <div class="_sliderDiv2">
@@ -237,7 +237,7 @@
         <div class="container">
             <!-- Begin: Heading -->
             <div class="_headingDiv">
-                <h2 class="_headingTxt">Similar To Services You've Viewed</h2>               
+                <h2 class="_headingTxt">Top Picks For You In Creative Writing</h2>               
             </div>
             <!-- End : Heading  -->
             <div class="row _infoBoxRow">
@@ -328,7 +328,7 @@
         <div class="container">
             <!-- Begin: Heading -->
             <div class="_headingDiv">
-                <h2 class="_headingTxt">Editors' Picks</h2>               
+                <h2 class="_headingTxt">Top Picks For You In Brand Style Guides</h2>               
             </div>
             <!-- End : Heading  -->
             <div class="row _infoBoxRow">

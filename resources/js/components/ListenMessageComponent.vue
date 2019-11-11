@@ -72,7 +72,9 @@
 					
 						<div class="_msgTextBox">
                     <div v-if="item.files">
-                        <a :href="item.url" target="_blank"><img :src="item.files" alt="" width="70%"></a>
+                        <a :href="item.url" target="_blank">
+                            <img :src="item.files" alt="" width="70%">
+                        </a>
 
                     </div>
 
@@ -182,9 +184,10 @@
 </template>
 
 <script>
-import EmojiPicker from 'vue-emoji-picker';
 import Vue from 'vue'
+import EmojiPicker from 'vue-emoji-picker'
 import VueChatScroll from 'vue-chat-scroll'
+
 Vue.use(VueChatScroll)
 export default {
 

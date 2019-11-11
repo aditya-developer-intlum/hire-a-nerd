@@ -67,8 +67,18 @@ Route::group(["middleware" => ['auth']], function () {
 
 		Route::any('/chat',Chat::class);
 		Route::post('/chat',"Chat@message");
-
+		/*
+		|------------------------------------------------------------------------
+		| Home
+		|------------------------------------------------------------------------
+		 */
 		Route::get('/home', "DashboardController@index")->name('home');
+		/*
+		|------------------------------------------------------------------------
+		| Show All
+		|------------------------------------------------------------------------
+		 */
+		Route::get('/all', "DashboardController@show")->name('view.all');
 
 		Route::get("/account", "front\AccountController")->name("front.account");
 
@@ -84,8 +94,13 @@ Route::group(["middleware" => ['auth']], function () {
 		| Wishlist
 		|------------------------------------------------------------------------
 		 */
-
 		Route::resource('/wishlist',\front\WishListController::class);
+		/*
+		|------------------------------------------------------------------------
+		| Post Request
+		|------------------------------------------------------------------------
+		 */
+		Route::resource('post-request',\front\PostRequestController::class)->only(['create','store']);
 		/*
 		|------------------------------------------------------------------------
 		| Frontend Order Dashboard
