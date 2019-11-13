@@ -10,7 +10,9 @@
             <div class="row _dRow">
                 <div class="col-md-5 _dLeft">
                     <!-- Begin: Card -->
-                    <form  id="avatar_form" enctype="multipart/form-data" method="post" action="{{ url("api/user/avatar") }}">
+                    <form  id="avatar_form" enctype="multipart/form-data" method="post" action="{{ url("user/avatar") }}">
+                        @csrf
+                        
                      <div class="_dCard _p0">
                         <div class="row">
                             <div class="col-md-4">
@@ -21,28 +23,39 @@
                                   <img src="{!! url("public/storage/$image")!!}" alt="">
                                   <label for="avatar" class="_editPic"><i class="fas fa-camera"></i></label>
                                   <input type="file" name="avatar" style="display: none" id="avatar">
-                                  <input type="hidden" name="id" value="{{ Auth::id() }}">
-                                @error('avatar')
-                                    <span class="text-danger" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                 
+                               
                               </div>
                             </div>
 
                             <div class="col-md-8">
                                 <div class="_dUserProDesc">
                                     <h3 class="_dUHead user_name">{{ $user->name ?? "" }}</h3>
-                                    <p>What's your story in one line?</p>
+                                   <div class="_edit-op-cont"></div> 
+                                    
+                                <div class="_edit-op-cont">
+                                 <p class="_edit-options" id="short_dept_edit_button">
+        <img src="http://localhost/hire-a-nerd/public/storage/images/edit.png" alt="" onclick="return changeSortDes()">
+                                    </p>
+
+                                      <p id="short_dept">{{ $user->short_desc ?? "What's your story in one line?" }}</p>
+                                </div>
+                              
                                     <ul class="_DabtUl">
-                                        <li><span class="_iconLft"><i class="fas fa-map-marker-alt"></i></span>From : USA   </li>
+                                        <li><span class="_iconLft"><i class="fas fa-map-marker-alt"></i></span>From :  
+                                    {{ $user->location->country_name ?? 'USA' }}
+
+                                        </li>
                                         <li><span class="_iconLft"><i class="fas fa-user"></i></span>Member since : {{ Carbon\Carbon::parse($user->created_at)->format('d/m/Y')  }}</li>
+                                       
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
                     </form>
+
+                    
                     <!-- End : Card -->
                     <!-- Begin: Card -->
                     <div class="_dCard">
@@ -210,80 +223,105 @@
                             <button type="button" class="btn btn-success" id="skill_submit">Add</button>  
                         </div>
                         <div class="_dBorText">
-                            <ul class="_inlineList" id="skill_list">
+                            <ul class="" id="skill_list">
                           @unless(empty($user->skill))
                               @foreach($user->skill as $skill)
-                              	<li> {{ $skill->skill_name ?? ""}}, </li>
+                              	<li class="_edit-op-cont" id="skillLi{{ $skill->id }}"> 
+                                      <p class="_edit-options">
+   
+    <a onclick="deleteSkill('{{ $skill->id }}')">
+        <img src="{{ asset('public/storage/images/delete.png') }}" alt=""></a>
+                                    </p>
+                                    {{ $skill->skill_name ?? ""}} - {{ $skill->skill_level ?? ""}}
+                                </li>
+                             
+                                   
+                                   
+                               
                               @endforeach
                           @endunless
                             </ul>
                         </div>    
-                        <div class="_dCardHeader">
-                            <span class="_dHeading">Education</span> 
-                            <a href="javascript:;" id="university_add_button" class="btn _dBorBtn">Add Education <span class="_iconRight"><i class="fas fa-plus"></i></span></a>                            
-                        </div>  
-                        <div class="_editable-box" style="display:none" id="add_education_fields">
-                            <div class="row" style="padding-bottom: 11px;padding-top: 10px">
-                                <div class="col-md-10">
-                                    <input type="text"  class="form-control2" id="university_country_name" placeholder="Country of College/University">
-                                    <span class="text-danger" id="country_errro"></span>              		
-                                </div>
-                            </div>
-                            <div class="row" style="padding-bottom: 11px;">
-                                <div class="col-md-10">
-                                    <input type="text"  class="form-control2" id="university_name" placeholder="College/University">                     	       
-                                    <span class="text-danger" id="university_errro"></span>                  		
-                                </div>
-                            </div>
-                            <div class="row" style="padding-bottom: 11px;">
-                                <div class="col-md-3">	
-                                    <select class="degree-title" id="education_title">
-                                        <option value="0" class="hidden">Title</option>
-                                        <option value="associate">Associate</option>
-                                        <option value="certificate">Certificate</option>
-                                        <option value="ba">B.A.</option>
-                                        <option value="barch">BArch</option>
-                                        <option value="bm">BM</option>
-                                        <option value="bfa">BFA</option>
-                                        <option value="bsc">B.Sc.</option>
-                                        <option value="ma">M.A.</option>
-                                        <option value="mba">M.B.A.</option>
-                                        <option value="mfa">MFA</option>
-                                        <option value="msc">M.Sc.</option>
-                                        <option value="jd">J.D.</option>
-                                        <option value="md">M.D.</option>
-                                        <option value="phd">Ph.D</option>
-                                        <option value="llb">LLB</option>
-                                        <option value="llm">LLM</option>
-                                    </select>
-                                    <span class="text-danger" id="title_errro"></span> 
-                                </div>
-                                <div class="col-md-7">
-                                    <input type="text" class="form-control2" placeholder="Major" id="branch_id">
-                                    <span class="text-danger" id="brach_errro"></span> 
-                                </div>
-                            </div>
-                            <div class="row" style="padding-bottom: 11px;">
-                                <div class="col-md-10">
-                                    <select class="form-control2" id="education_year">
-                                        @for($i = date('Y'); $i>= 1960; $i--)
-                                            <option value="{{ $i }}">{{ $i }}</option>
-                                        @endfor
-                                    </select>
-                                    <span class="text-danger" id="edu_year_errro"></span> 
-                                </div>
-                            </div>
-                            <button type="button" class="btn btn-success" id="education_cancel">Cancel</button>
-                            <button type="button" class="btn btn-success" id="submit_education">Add</button>                        
-                        </div> 
-                        <div class="_dBorText">
-                            <ul id="user_education_list">
-                                @foreach($user->userEducation as $education)
-                                <li>{{ $education->country->name  ?? "" }} - {{ $education->university->name ?? "" }} <p>  {{ $education->title ?? "" }}  {{ $education->branch_id ?? "" }} {{ $education->userEducation ?? "" }}</li>
+    <div class="_dCardHeader">
+        <span class="_dHeading">Education</span> 
+            <a href="javascript:;" id="university_add_button" class="btn _dBorBtn">
+                Add Education 
+                <span class="_iconRight">
+                    <i class="fas fa-plus"></i>
+                </span>
+            </a>                            
+    </div>  
+    <div class="_editable-box" style="display:none" id="add_education_fields">
+        <div class="row" style="padding-bottom: 11px;padding-top: 10px">
+            <div class="col-md-10">
+                <input type="text"  class="form-control2" id="university_country_name" placeholder="Country of College/University">
+                <span class="text-danger" id="country_errro"></span>              		
+            </div>
+        </div>
+        <div class="row" style="padding-bottom: 11px;">
+            <div class="col-md-10">
+                <input type="text"  class="form-control2" id="university_name" placeholder="College/University">
+                    <span class="text-danger" id="university_errro"></span>                  		
+            </div>
+        </div>
+        <div class="row" style="padding-bottom: 11px;">
+            <div class="col-md-3">	
+                <select class="degree-title" id="education_title">
+                    <option value="0" class="hidden">Title</option>
+                    <option value="associate">Associate</option>
+                    <option value="certificate">Certificate</option>
+                    <option value="ba">B.A.</option>
+                    <option value="barch">BArch</option>
+                    <option value="bm">BM</option>
+                    <option value="bfa">BFA</option>
+                    <option value="bsc">B.Sc.</option>
+                    <option value="ma">M.A.</option>
+                    <option value="mba">M.B.A.</option>
+                    <option value="mfa">MFA</option>
+                    <option value="msc">M.Sc.</option>
+                    <option value="jd">J.D.</option>
+                    <option value="md">M.D.</option>
+                    <option value="phd">Ph.D</option>
+                    <option value="llb">LLB</option>
+                    <option value="llm">LLM</option>
+                </select>
+                    <span class="text-danger" id="title_errro"></span> 
+            </div>
+            <div class="col-md-7">
+                <input type="text" class="form-control2" placeholder="Major" id="branch_id">
+                    <span class="text-danger" id="brach_errro"></span> 
+            </div>
+        </div>
+        <div class="row" style="padding-bottom: 11px;">
+            <div class="col-md-10">
+                <select class="form-control2" id="education_year">
+                    @for($i = date('Y'); $i>= 1960; $i--)
+                        <option value="{{ $i }}">{{ $i }}</option>
+                    @endfor
+                </select>
+                <span class="text-danger" id="edu_year_errro"></span> 
+            </div>
+        </div>
+            <button type="button" class="btn btn-success" id="education_cancel">Cancel</button>
+            <button type="button" class="btn btn-success" id="submit_education">Add</button>                        
+    </div> 
+    <div class="_dBorText">
+        <ul id="user_education_list" >
+            @foreach($user->userEducation as $education)
+                <li class="_edit-op-cont" id="userEducationLi{{ $education->id }}">
+                     <p class="_edit-options">
+<a  onclick="deleteEducation('{{ $education->id }}')">
+        <img src="{{ asset('public/storage/images/delete.png') }}" alt="">
+</a>
+                    </p>
 
-                                @endforeach
-                            </ul>
-                        </div> 
+                    {{ $education->country->name  ?? "" }} - {{ $education->university->name ?? "" }} <p> 
+                    {{ $education->title ?? "" }}  {{ $education->branch_id ?? "" }} 
+                    {{ $education->userEducation ?? "" }}
+                </li>
+            @endforeach
+        </ul>
+    </div> 
                         <div class="_dCardHeader">
                             <span class="_dHeading">Certification</span> 
                             <a href="javascript:;" class="btn _dBorBtn" id="add_certication_button">Add Certification <span class="_iconRight"><i class="fas fa-plus"></i></span></a> 
@@ -742,7 +780,7 @@
             </div>
         </div>        
     </main>
-    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script type="text/javascript">
     	
 	$("#avatar").change(function(){
@@ -816,7 +854,6 @@
     		data: {"language_id": $("#add_language").val() ,"language_level": $("#language_level").val() ,"id": "{{ Auth::id() }}"},
     	})
     	.done(function(data) {
-            console.log(data);
     			$("#addLanguage").show()
 				$("#add_language_fields").hide();
 				$("#lang_list").append(` <li class="_edit-op-cont" id="langs${data.data.id}">
@@ -826,17 +863,17 @@
     </a>
     <a onclick='deleteLanguage("{{ $lang->id ?? '' }}")'><img src="{{ asset('public/storage/images/delete.png') }}" alt=""></a>
                                     </p>
-                                    {{ $lang->Language->name ?? "" }} - {{ ucfirst($lang->language_level ?? "") }}
+                            ${ data.data.lang.name } - ${ ucfirst(data.data.userLanguage.language_level) }
                                 </li>`);
                 $("#add_language").val('');
                 $("#language_level").val(0);
     	})
     	.fail(function(e) {
     		Swal.fire({
-							  type: 'error',
-							  title: 'Oops...',
-							  text: `language Not Found`,
-							});
+				type: 'error',
+				title: 'Oops...',
+				text: `language Not Found`,
+			});
     	});
     	
 
@@ -987,10 +1024,13 @@
 			skill_level: $("#skill_level").val(),},
 		})
 		.done(function(result) {
-			
-			$("#skill_list").append(`<li>${$("#add_skill").val()}</li>, `)
+			console.log(result);
+			$("#skill_list").append(`<li>${ucfirst(result.data.skill_name)} - ${ucfirst(result.data.skill_level)}</li> `)
 			$("#skill_button").show();
-			$("#add_skill_fields").hide();			
+			$("#add_skill_fields").hide();	
+            $("#skill_error").html('');	
+            $("#add_skill").val('')	;
+            $("#skill_level").val(0);
 		})
 		.fail(function(e) {
 			
@@ -1250,7 +1290,7 @@
     </a>
     <a href="#"><img src="{{ asset('public/storage/images/delete.png') }}" alt=""></a>
                                     </p>
-                                    ${ data.language.name } - ${ ucfirst(data.language_level) }
+                                    '${ data.language.name }' - ${ ucfirst(data.language_level) }
                                 </li>`);
         });
         
@@ -1260,6 +1300,48 @@
     {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
- 
+    function changeSortDes(){
+        $("#short_dept_edit_button").hide();
+        var html = $("#short_dept").text();
+        $("#short_dept").html(`<input type="text" onblur="changeSortDesSave()" class="form-control" name="" value="${html}" placeholder="" id="sortDesTextBox" maxlength="40">`);
+
+        $("#sortDesTextBox").focus();
+    }
+    function changeSortDesSave(html) {
+        $("#short_dept_edit_button").show();
+        $.post('{{ url('user/short-description') }}', {shortDesc: $("#sortDesTextBox").val(),_token:"{{ csrf_token() }}"}, function(data, textStatus, xhr) {
+         $("#short_dept").html(`${data.data}`);
+        });
+    }
+    function deleteSkill(skillId) {
+        $(`#skillLi${skillId}`).empty();
+        $.post('{{ url('user/user-skill/destroy') }}', {id: skillId,_token:'{{ csrf_token() }}'});
+    }
+    function deleteEducation(educationId) {
+        
+        $(`#userEducationLi${educationId}`).empty();
+        $.post('{{ url('user/user-education-destroy') }}', {id: educationId,_token:'{{ csrf_token() }}'});
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        @error('avatar')
+         Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: '{{ $message }}',
+        })
+        @enderror
   </script>
 @endsection

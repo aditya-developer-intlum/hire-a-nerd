@@ -22,7 +22,8 @@ class AccountController extends Controller
             'UserEducation.country',
             'UserEducation.university',
             'skill',
-            'linkedAccount'
+            'linkedAccount',
+            'location'
         ])
         ->whereId(Auth::id())
         ->first();

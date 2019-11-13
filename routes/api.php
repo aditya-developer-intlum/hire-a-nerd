@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post("user/avatar","Api\UserAvatar");
+
 Route::get("user/avatar","Api\UserAvatar@show");
 
 Route::post("user/description","Api\UserDescription");
@@ -68,6 +68,7 @@ Route::post("gig-gallery/create/{id}","Api\gig\Gallery");
 Route::post("gig-publish/create/{id}","Api\gig\Publish");
 
 Route::get("gig-cancel/{id}","Api\gig\CancelGig");
+
 
 /*Gig Routes End*/
 

@@ -437,3 +437,16 @@ Route::group([
 Route::get("{page}", "front\CategoryController");
 Route::get("{parent}/{child}", "front\PagesController");
 Route::get("{parent}/{child}/{id}", "front\JobDetailController");
+
+/*
+|------------------------------------------------------------------------
+| API Routes
+|------------------------------------------------------------------------
+*/
+Route::post('user/short-description','Api\UserDescription@updateSortDesc');
+
+Route::post("user/avatar","Api\UserAvatar");
+
+Route::post("user/user-skill/destroy","Api\UserSkills@destroy");
+
+Route::post('user/user-education-destroy',"Api\UserEducationController@destroy");

@@ -53,4 +53,15 @@ class UserEducationController extends Controller
 
     	return $this;
     }
+     /**
+     * Destroy User Education
+     *
+     * @param  \Illuminate\Http\Request  $request
+     */
+    public function destroy(Request $request): Void
+    {
+        UserEducation::where('user_id',auth()->user()->id)
+        ->where('id',$request->id)
+        ->delete();
+    }
 }

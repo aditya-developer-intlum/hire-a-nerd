@@ -237,10 +237,10 @@ $(function(){
                                         <p class="_gigDefTxt">
                                             Create a catchy title.<br>
                                             Choose a category that fits your Gig.<br>
-                                            Add meta data to help buyers find more information regarding your Gig.<br>
+                                          
                                             Add tags to help buyers find your Gig while searching.
                                         </p>
-                                        <a href="#" class="btn _dBorBtn">General Gig Policy</a>
+                                       
                                     </div>
                                 </div>
                                 <!-- End : Right Section   -->
@@ -462,7 +462,7 @@ $(function(){
                                             Set the prices for your 3 packages. Select the elements you want to include in each offer.<br>
                                             Add Extras to increase your order value.
                                         </p>
-                                        <a href="#" class="btn _dBorBtn">See examples</a>
+                                       
                                     </div>
                                 </div>
                                 <!-- End : Right Section   -->
@@ -491,13 +491,15 @@ $(function(){
                                                         </label>
                                                     </div>
                                                     <div class="col-md-10">
-  <textarea name="describe_your_gig" class="form-control2" style="min-height: 125px" id="describe_your_gig">{{ $gig->describe_your_gig ?? "" }} </textarea>
-                                                        <div>
+    <textarea name="describe_your_gig" class="form-control2 textarea" style="min-height: 125px" id="describe_your_gig">
+                {{ $gig->describe_your_gig ?? "" }}
+    </textarea>
+                                                        {{-- <div>
                                                             <p class="_emTxt float-left min_description">min. 120</p>
                                                             <p class="_emTxt  float-right text-right">
                                                         
                                 <BrieflyDescribeYourGig></BrieflyDescribeYourGig>/1200 Characters</p>
-                                                        </div>   
+                                                        </div> --}}   
                                                     </div>
                                                 </div> 
                                            
@@ -522,7 +524,7 @@ $(function(){
                                                 <br>
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <textarea class="false" placeholder="Add an Answer" maxlength="300" id="faq_answer"></textarea>
+                                                        <textarea class="false textarea" placeholder="Add an Answer" maxlength="300" id="faq_answer"></textarea>
                                                     </div>
                                                 </div>
                                                     
@@ -564,7 +566,7 @@ $(function(){
                                             Include the most important information for your Gig.<br>
                                             Add frequently asked questions and answers to the most commonly asked questions.
                                         </p>
-                                        <a href="#" class="btn _dBorBtn">See examples</a>
+                                       
                                     </div>
                                 </div>
                                 <!-- End : Right Section   -->
@@ -651,7 +653,7 @@ $(function(){
                                         <p class="_gigDefTxt">
                                         Indicate what you need before you can start working.
                                         </p>
-                                        <a href="#" class="btn _dBorBtn">See examples</a>
+                                       
                                     </div>
                                 </div>
                                 <!-- End : Right Section   -->
@@ -814,7 +816,7 @@ $(function(){
                                         <p class="_gigDefTxt">
                                             Add photos, an introduction video, or PDF files that best represent your service.
                                         </p>
-                                        <a href="#" class="btn _dBorBtn">See examples</a>
+                                       
                                     </div>
                                 </div>
                                 <!-- End : Right Section   -->
@@ -894,10 +896,10 @@ $(function(){
 
 
 
-            /*var str = CKEDITOR.instances.editor1.getData();
-            console.log(str.length);*/
+            var str = CKEDITOR.instances.editor1.getData();
+            console.log(str.length);
         })
-        // $('.textarea').ckeditor(); // if class is prefered.
+         $('.textarea').ckeditor(); // if class is prefered.
     </script>
 <script>
     

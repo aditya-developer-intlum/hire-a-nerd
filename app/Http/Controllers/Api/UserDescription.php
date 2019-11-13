@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\UserDetail;
 use App\Http\Traits\Invoke;
 use App\Employee;
+use App\User;
 
 class UserDescription extends Controller
 {
@@ -48,7 +49,6 @@ class UserDescription extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit(Request $request)
@@ -56,6 +56,18 @@ class UserDescription extends Controller
         return response()->json([
             "status"=>true,
             "data"=>UserDetail::select('description')->where("user_id",$request->id)->first()]);
+    }
+    /**
+     * update Sort Description
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function updateSortDesc(Request $request)
+    {
+        $user = User::where('id',auth()->user()->id)->update(['short_desc'=>$request->shortDesc]);
+        return response()->json([
+            "status"=>true,
+            "data"=> $request->shortDesc]);
     }
 
 }

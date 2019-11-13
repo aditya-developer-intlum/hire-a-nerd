@@ -38,11 +38,14 @@ class UserLanguageController extends Controller
      */
     private function store(Request $request)
     {
-    	return UserLanguage::create([
+    	$userLanguage = UserLanguage::create([
     		"language_id"=>$this->TextToId($request->language_id),
     		"language_level"=>$request->language_level,
     		"user_id"=>$request->id,
     	]);
+        $lang = Language::find($userLanguage->language_id);
+
+        return [ 'userLanguage' => $userLanguage, 'lang' => $lang];
     }
     /**
      * Show the specified resource.

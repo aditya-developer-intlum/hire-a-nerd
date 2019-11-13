@@ -147,9 +147,10 @@
     				.addClass('col-md-8');
     				$("#otherBox").remove();
     			}
-	    		$("#otherInput").keypress(function(event) {
+	    		$("#otherInput").on('keypress',function(event) {
 	    			var keyCode = event.keyCode;
-	    			if(keyCode>48 && keyCode<57){
+                
+	    			if(keyCode>47 && keyCode<58 && $("#otherInput").val()<=30){
 	    				return true;
 	    			}else{
 	    				return false;
