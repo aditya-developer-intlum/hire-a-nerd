@@ -22,6 +22,7 @@ class UserPersionalDetailController extends Controller
 		$request->validate([
 			"name"=>"required",
 			"email"=>"required|email|unique:users,email,$request->id,id",
+			"mobile_number" => "required|unique:mobile_number"
 
 		]);
 		return $this;

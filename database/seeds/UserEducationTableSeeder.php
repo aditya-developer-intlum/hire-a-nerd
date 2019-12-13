@@ -20,7 +20,7 @@ class UserEducationTableSeeder extends Seeder
             0 => 
             array (
                 'id' => 3,
-                'user_id' => 18,
+                'user_id' => 22,
                 'country_id' => 16,
                 'university_id' => 13,
                 'title' => 'certificate',
@@ -32,7 +32,7 @@ class UserEducationTableSeeder extends Seeder
             1 => 
             array (
                 'id' => 4,
-                'user_id' => 71023,
+                'user_id' => 22,
                 'country_id' => 4,
                 'university_id' => 1,
                 'title' => 'ba',

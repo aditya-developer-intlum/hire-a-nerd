@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
-
+use Auth;
 
 class Authenticate extends Middleware
 {
@@ -19,4 +19,5 @@ class Authenticate extends Middleware
             return route('login');
         }
     }
+
 }

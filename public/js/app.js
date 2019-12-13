@@ -78275,15 +78275,28 @@ if (token) {
 
 
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
-window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
-  authEndpoint: 'http://localhost/hire-a-nerd/broadcasting/auth',
-  broadcaster: 'pusher',
-  key: 'myKey',
-  wsHost: window.location.hostname,
-  wsPort: 6001,
-  disableStats: true,
-  enabledTransports: ['ws', 'wss']
-});
+
+if (window.location.hostname == "localhost") {
+  window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
+    authEndpoint: 'http://localhost/hire-a-nerd/broadcasting/auth',
+    broadcaster: 'pusher',
+    key: 'myKey',
+    wsHost: window.location.hostname,
+    wsPort: 6001,
+    disableStats: true,
+    enabledTransports: ['ws', 'wss']
+  });
+} else {
+  window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
+    authEndpoint: "http://".concat(window.location.hostname, "/broadcasting/auth"),
+    broadcaster: 'pusher',
+    key: 'myKey',
+    wsHost: window.location.hostname,
+    wsPort: 6001,
+    disableStats: true,
+    enabledTransports: ['ws', 'wss']
+  });
+}
 
 /***/ }),
 

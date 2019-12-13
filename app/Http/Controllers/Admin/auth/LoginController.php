@@ -42,7 +42,7 @@ class LoginController extends Controller
             return $this->sendLockoutResponse($request);
         }
 
-        $this->secure($request);
+        //$this->secure($request);
 
         if ($this->attemptLogin($request)) {
             return $this->sendLoginResponse($request);
@@ -72,7 +72,7 @@ class LoginController extends Controller
         return back()->withErrors(['email'=>'These credentials do not match our records.']);
        }
 
-       BlockedUser::whereVisitors($request->ip())->delete();
+       //BlockedUser::whereVisitors($request->ip())->delete();
       
     }
     public function logout(Request $request)

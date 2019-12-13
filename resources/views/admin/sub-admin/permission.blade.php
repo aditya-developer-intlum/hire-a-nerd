@@ -22,10 +22,10 @@
 															</div>
 															<div class="kt-wizard-v2__nav-label">
 																<div class="kt-wizard-v2__nav-label-title">
-																	Manage Gig
+																	Manage Service
 																</div>
 																<div class="kt-wizard-v2__nav-label-desc">
-																	Setup Permission For Manage Gig
+																	Setup Permission For Manage Service
 																</div>
 															</div>
 														</div>
@@ -128,13 +128,18 @@
 										<div class="kt-grid__item kt-grid__item--fluid kt-wizard-v2__wrapper">
 
 											<!--begin: Form Wizard Form-->
-	<form class="kt-form" id="kt_form" novalidate="novalidate" method="post" action="{{ route('admin.permission.allot') }}">
+	<form class="kt-form" 
+		id="kt_form" 
+		novalidate="novalidate" 
+		method="post" 
+		action="{{ route('admin.permission.allot') }}">
+		
 		@csrf
 
-												<!--begin: Form Wizard Step 1-->
-												<div class="kt-wizard-v2__content" data-ktwizard-type="step-content" data-ktwizard-state="current">
-													<div class="kt-heading kt-heading--md">Manage Permission</div>
-													<div class="kt-form__section kt-form__section--first">
+			<!--begin: Form Wizard Step 1-->
+			<div class="kt-wizard-v2__content" data-ktwizard-type="step-content" data-ktwizard-state="current">
+				<div class="kt-heading kt-heading--md">Manage Permission</div>
+					<div class="kt-form__section kt-form__section--first">
 			<input type="hidden" name="user_id" value="{{ $user->id }}">
 			<div class="kt-wizard-v2__form">
 				<div class="row">
@@ -158,25 +163,26 @@
 												<!--end: Form Wizard Step 1-->
 
 												<!--begin: Form Wizard Step 2-->
-												<div class="kt-wizard-v2__content" data-ktwizard-type="step-content">
-													<div class="kt-heading kt-heading--md">Manage Permission</div>
-													<div class="kt-form__section kt-form__section--first">
-			<div class="kt-wizard-v2__form">
-				<div class="row">
-					<div class="col-xl-6">
-			@foreach($permissions->whereIdentify('sub_admin')->get() as $permission)
-					<div class="form-group">
-						
-						<label class="kt-checkbox kt-checkbox--bold kt-checkbox--brand">
-							<input type="checkbox" value='{{ $permission->id }}' class='permissions' name='permission[]'>
-							 <strong>{{ $permission->title }}  </strong>
-								<span></span>
-						</label>
-					</div>
-				@endforeach	
+				<div class="kt-wizard-v2__content" data-ktwizard-type="step-content">
+						<div class="kt-heading kt-heading--md">Manage Permission</div>
+						<div class="kt-form__section kt-form__section--first">
+				
+				<div class="kt-wizard-v2__form">
+					<div class="row">
+						<div class="col-xl-6">
+				@foreach($permissions->whereIdentify('sub_admin')->get() as $permission)
+						<div class="form-group">
+							
+							<label class="kt-checkbox kt-checkbox--bold kt-checkbox--brand">
+								<input type="checkbox" value='{{ $permission->id }}' class='permissions' name='permission[]'>
+								 <strong>{{ $permission->title }}  </strong>
+									<span></span>
+							</label>
+						</div>
+					@endforeach	
+						</div>
 					</div>
 				</div>
-			</div>
 													</div>
 												</div>
 

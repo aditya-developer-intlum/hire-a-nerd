@@ -24,8 +24,8 @@ class PressAndNewsTableSeeder extends Seeder
                 'title' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit,',
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                 'is_active' => 0,
-                'created_at' => '2019-08-21 00:00:00',
-                'updated_at' => '2019-08-22 10:26:55',
+                'created_at' => '2019-08-20 14:30:00',
+                'updated_at' => '2019-08-22 00:56:55',
             ),
         ));
         

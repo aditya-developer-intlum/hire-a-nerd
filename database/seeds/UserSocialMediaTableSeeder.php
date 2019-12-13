@@ -20,7 +20,7 @@ class UserSocialMediaTableSeeder extends Seeder
             0 => 
             array (
                 'id' => 1,
-                'user_id' => 17,
+                'user_id' => 22,
                 'linked_account_id' => 7,
                 'nick_name' => NULL,
                 'name' => NULL,
@@ -32,7 +32,7 @@ class UserSocialMediaTableSeeder extends Seeder
             1 => 
             array (
                 'id' => 2,
-                'user_id' => 17,
+                'user_id' => 22,
                 'linked_account_id' => 8,
                 'nick_name' => NULL,
                 'name' => NULL,

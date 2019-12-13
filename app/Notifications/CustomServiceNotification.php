@@ -54,7 +54,7 @@ class CustomServiceNotification extends Notification
                     ->line("Category: {$this->menu}")
                     ->line("Sub Category: {$this->subMenu}")
                     ->line("Delivery Time: {$this->request->deliver_time} days")
-                    ->line("Budget: ${$this->request->budget}")
+                    ->line("Budget: {$this->request->budget}")
                     ->action('Attachment', url("public/storage/{$this->request->attachment}"))
                     ->line('Thank you for using our application!');
         }else{
@@ -66,11 +66,8 @@ class CustomServiceNotification extends Notification
                     ->line("Budget: ${$this->request->budget}")
                     ->action('Attachment', url("public/storage/{$this->request->attachment}"))
                     ->line('Thank you for using our application!');
-
         }
-        
     }
-
     /**
      * Get the array representation of the notification.
      *

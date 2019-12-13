@@ -35,7 +35,7 @@ class UserAvatar extends Controller
       	$request->validate([
       		'avatar' => ['required', 'image','dimensions:max_width=300,max_height=300']
       	],[
-          'avatar.image' => "Profile Picture max width 300px and max height 300px"
+          'avatar.dimensions' => "Profile Picture max width 300px and max height 300px"
         ]);
     	return $this;
     }

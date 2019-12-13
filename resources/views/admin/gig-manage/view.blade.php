@@ -23,7 +23,7 @@
 										 <i class="la la-file-text"></i>
 										</span>
 										<h3 class="kt-portlet__head-title">
-											Manage Gig
+											Manage Service
 										</h3>
 									</div>
 									
@@ -175,7 +175,7 @@
 							@case(3)
 								<span class="kt-badge kt-badge--dark kt-badge--dot"></span>
 								&nbsp;
-								<span class="kt-font-bold kt-font-dark">Suspend</span>
+								<span class="kt-font-bold kt-font-dark">Suspended</span>
 								<span class="dropdown">
 	                            <a href="#" class="btn btn-sm btn-clean btn-icon btn-icon-md" data-toggle="dropdown" aria-expanded="true">
 	                              <i class="la la-info-circle"></i>
@@ -184,7 +184,7 @@
 	                              <center>
 	                              	<div class="container">
 	                              	<span>
-	                              		Gig Suspended till <br>{{ date('d M Y',strtotime($gig->suspended_till)) }}
+	                              		Service Suspended till <br>{{ date('d M Y',strtotime($gig->suspended_till)) }}
 	                              	</span>
 	                              		
 	                              	</div>
@@ -209,7 +209,7 @@
 								
 
 	                            @can('accept',App\Models\Gig::class)
-	                                <a href="{{ route('admin.manage.gig.accept',[$gig->id]) }}" class="dropdown-item" ><i class="la la-check"></i> Accept</a>
+	                                <a href="{{ route('admin.manage.gig.accept',[$gig->id]) }}" class="dropdown-item" ><i class="la la-check"></i> Approve</a>
 	                            @endcan
 	                            @can('view',App\Models\Gig::class)
 	                                <a onclick="return window.open('{{ url(sprintf('%s/%s/%d',$gig->menu->slug,$gig->submenu->slug,$gig->id)) }}','_blank')" class="dropdown-item" ><i class="la la-expand"></i> View</a>
@@ -224,7 +224,7 @@
 	                                <a onclick='suspend("{{ $gig->id }}")' class="dropdown-item" ><i class="la la-leaf"></i> Suspend</a>
 	                            @endcan
 
-	                             <a href="{{ route('admin.manage.gig.sellerDetail',[$gig->id]) }}" class="dropdown-item" ><i class="la la-user"></i> Seller Detail</a>
+	                             <a href="{{ route('admin.manage.gig.sellerDetail',[$gig->id]) }}" class="dropdown-item" target="_blank"><i class="la la-user"></i> Seller Detail</a>
 	                            </div>
 	                            
 	                        </span>
@@ -363,9 +363,9 @@
   	  })
   	  .always(function(e) {
   	  	if(!e.errors){
-
+  	  		
 			Swal.fire({
-			  title: `Gig is suspended for ${$("#swal-input1").val()} days`,
+			  title: `Service is suspended till ${e.suspended_till} `,
 			  onClose: () => {
 			    window.location.reload();
 			  }
@@ -407,7 +407,7 @@
 				  	
 				    Swal.fire({
 				    	type: 'success',
-				    	title: 'Gig has been deleted.',
+				    	title: 'Service has been deleted.',
 				    	onClose: () => {
 			    			window.location.reload();
 			  			}

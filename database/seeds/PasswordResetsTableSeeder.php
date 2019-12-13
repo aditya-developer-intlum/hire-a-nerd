@@ -35,6 +35,30 @@ class PasswordResetsTableSeeder extends Seeder
                 'token' => '$2y$10$/HHQLNcL5JM5JkprdZ4AbubM4X/hWIFRTUW0PLXc6W/h422fJaWWy',
                 'created_at' => '2019-08-16 06:26:58',
             ),
+            3 => 
+            array (
+                'email' => 'admin@gmail.com',
+                'token' => '$2y$10$jNhkgtL9nEwdinHp2LVX5uFDMwVe4VUlM/AR/KT8Yuqnj1GHSny6u',
+                'created_at' => '2019-08-16 06:13:57',
+            ),
+            4 => 
+            array (
+                'email' => 'adityakumar.ak127@gmail.com',
+                'token' => '$2y$10$RGvchfuDdpzDRUUlcCydquA1bnzWBII8opoY9.difEdZ5mmOYmVDC',
+                'created_at' => '2019-08-16 06:25:47',
+            ),
+            5 => 
+            array (
+                'email' => 'funk.johathan@example.com',
+                'token' => '$2y$10$/HHQLNcL5JM5JkprdZ4AbubM4X/hWIFRTUW0PLXc6W/h422fJaWWy',
+                'created_at' => '2019-08-16 06:26:58',
+            ),
+            6 => 
+            array (
+                'email' => 'shreeja.snair@gmail.com',
+                'token' => '$2y$10$YFoXXKQXJ.FhuVpg09mGi.2icmVr6d6eRqXpuhhBxdYA/nAQh6BkS',
+                'created_at' => '2019-11-16 11:26:16',
+            ),
         ));
         
         

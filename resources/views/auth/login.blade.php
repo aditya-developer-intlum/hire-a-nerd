@@ -15,12 +15,12 @@
                         <div class="_bannerTxtDiv">
                             <h2 class="_bHeading wow _fadeInRight" data-wow-delay="0.3s">Find The Perfect Services<br> For Your Business</h2>
                             <p class="_bTag wow _fadeInRight" data-wow-delay="0.7s">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incid</p>
-                            <div class="_searchDiv _searchDiv2 wow _fadeInRight" data-wow-delay="1.0s">
+                            <!-- <div class="_searchDiv _searchDiv2 wow _fadeInRight" data-wow-delay="1.0s">
                                 <form action="">
                                     <input type="text" class="form-control" placeholder="Search">
                                     <button class="_subBtn btn">Search</button>
                                 </form>
-                            </div>
+                            </div> -->
                             <!-- Begin: Number list -->
                             <ul class="_numLists wow _fadeInRight" data-wow-delay="1.3s">
                                 <li class="_numList">

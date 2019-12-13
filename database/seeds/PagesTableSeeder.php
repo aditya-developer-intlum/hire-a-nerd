@@ -69,8 +69,8 @@ Not anything in these Terms and Conditions will be interpreted in order to disca
 
 <p>These Terms and Conditions written on HireANerd Technology Pvt Ltd will be administered by and interpreted in line with the law of USA and you hereby submit to the complete authority of the USA courts.</p>',
                 'is_active' => 1,
-                'created_at' => '2019-08-22 16:07:52',
-                'updated_at' => '2019-08-22 16:25:16',
+                'created_at' => '2019-08-22 06:37:52',
+                'updated_at' => '2019-08-22 06:55:16',
             ),
             1 => 
             array (
@@ -124,8 +124,18 @@ Not anything in these Terms and Conditions will be interpreted in order to disca
 
 <p>These Terms and Conditions written on HireANerd Technology Pvt Ltd will be administered by and interpreted in line with the law of USA and you hereby submit to the complete authority of the USA courts.</p>',
                 'is_active' => 1,
-                'created_at' => '2019-08-22 16:22:45',
-                'updated_at' => '2019-08-22 16:23:22',
+                'created_at' => '2019-08-22 06:52:45',
+                'updated_at' => '2019-08-22 06:53:22',
+            ),
+            2 => 
+            array (
+                'id' => 4,
+                'title' => 'hire  a nerd',
+                'slug' => 'hire-a-nerd',
+                'contents' => '<p>df</p>',
+                'is_active' => 1,
+                'created_at' => '2019-08-23 08:58:12',
+                'updated_at' => '2019-08-23 08:58:12',
             ),
         ));
         

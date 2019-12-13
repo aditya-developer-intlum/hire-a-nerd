@@ -94,8 +94,8 @@
                     <div class="_borderCardDiv wow fadeIn">
                         <figure class="_borderCardFig"><img src="{{ asset("public/storage/images/work-step-1.png") }}" alt="Marketing"></figure>
                         <div class="_borderCardBody">
-                            <p class="_borderCardTxt">1. Create A Gig</p>
-                            <p>Sign up for free, set up your Gig, and offer your work to our global audience.</p>
+                            <p class="_borderCardTxt">1. Create A Service</p>
+                            <p>Sign up for free, set up your Service, and offer your work to our global audience.</p>
                         </div>
                     </div>
                 </div>
@@ -131,7 +131,7 @@
     <section class="_blueBg _subsSection">
         <div class="container">
             <div class="_subsDiv">
-                <p>Sign up and create your first Gig today</p>
+                <p>Sign up and create your first Service today</p>
                 @if(Auth::check())
                     <a href="{{ route("gig.index") }}" class="btn _whiteBtn">Get Started</a>
                 @else

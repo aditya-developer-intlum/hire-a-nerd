@@ -186,6 +186,26 @@ Route::group(["middleware" => ['auth']], function () {
 			->name("vimeo.handel")->defaults('driver', 'vimeo');
 		/*
 		|------------------------------------------------------------------------
+		| Instagram
+		|------------------------------------------------------------------------
+		 */
+		Route::get('/instagram/login', 'social\Social')
+			->name("instagram.social.login")->defaults('driver', 'instagram');
+
+		Route::get('/instagram/callback', 'social\Social@handle')
+			->name("instagram.handel")->defaults('driver', 'instagram');
+		/*
+		|------------------------------------------------------------------------
+		| Twitter
+		|------------------------------------------------------------------------
+		 */
+		Route::get('/twitter/login', 'social\Social')
+			->name("twitter.social.login")->defaults('driver', 'twitter');
+
+		Route::get('/twitter/callback', 'social\Social@handle')
+			->name("twitter.handel")->defaults('driver', 'twitter');
+		/*
+		|------------------------------------------------------------------------
 		| Change User Mode
 		|------------------------------------------------------------------------
 		 */

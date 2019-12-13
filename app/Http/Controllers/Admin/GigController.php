@@ -183,11 +183,14 @@ class GigController extends Controller
             if($validator->fails()){
                 return response()->json(['errors'=>$validator->errors()]);
             }
+
             $gig->update([
                 'is_status' => 3,
                 'suspended_till' => date('Y-m-d',strtotime("+ {$request->number_of_days} days")),
                 'region' => $request->region
             ]);
+
+            return $gig;
         }else{
             abort(404);
         }

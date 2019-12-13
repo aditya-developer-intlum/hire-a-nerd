@@ -75,87 +75,10 @@ class MenuTableSeeder extends Seeder
             ),
             8 => 
             array (
-                'id' => 9,
-                'slug' => 'aditya',
-                'name' => 'Aditya',
-                'is_active' => 0,
-            ),
-            9 => 
-            array (
                 'id' => 15,
-                'slug' => 'video-audio',
-                'name' => 'Video & Audio',
+                'slug' => 'pro',
+                'name' => 'Pro',
                 'is_active' => 1,
-            ),
-            10 => 
-            array (
-                'id' => 16,
-                'slug' => 'hhhhhhhhhh',
-                'name' => 'Hhhhhhhhhh',
-                'is_active' => 0,
-            ),
-            11 => 
-            array (
-                'id' => 17,
-                'slug' => 'jjjjjjjjjj',
-                'name' => 'Jjjjjjjjjj',
-                'is_active' => 0,
-            ),
-            12 => 
-            array (
-                'id' => 18,
-                'slug' => 'fsdfs',
-                'name' => 'Fsdfs',
-                'is_active' => 0,
-            ),
-            13 => 
-            array (
-                'id' => 19,
-                'slug' => 'erwere',
-                'name' => 'Erwere',
-                'is_active' => 0,
-            ),
-            14 => 
-            array (
-                'id' => 20,
-                'slug' => 'rtertre',
-                'name' => 'Rtertre',
-                'is_active' => 0,
-            ),
-            15 => 
-            array (
-                'id' => 21,
-                'slug' => 'fgdfg',
-                'name' => 'Fgdfg',
-                'is_active' => 0,
-            ),
-            16 => 
-            array (
-                'id' => 22,
-                'slug' => 'fgdfgd',
-                'name' => 'Fgdfgd',
-                'is_active' => 0,
-            ),
-            17 => 
-            array (
-                'id' => 23,
-                'slug' => 'dsds',
-                'name' => 'Dsds',
-                'is_active' => 0,
-            ),
-            18 => 
-            array (
-                'id' => 30,
-                'slug' => 'menu-item',
-                'name' => 'Menu item',
-                'is_active' => 0,
-            ),
-            19 => 
-            array (
-                'id' => 35,
-                'slug' => 'test-test',
-                'name' => 'Test & test',
-                'is_active' => 0,
             ),
         ));
         

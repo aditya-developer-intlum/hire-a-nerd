@@ -1153,22 +1153,6 @@ class SubMenuTableSeeder extends Seeder
                 'slug' => 'other',
                 'is_active' => 1,
             ),
-            142 => 
-            array (
-                'id' => 146,
-                'menu_id' => '35',
-                'name' => 'abc',
-                'slug' => 'abc',
-                'is_active' => 0,
-            ),
-            143 => 
-            array (
-                'id' => 147,
-                'menu_id' => '35',
-                'name' => 'def',
-                'slug' => 'def',
-                'is_active' => 0,
-            ),
         ));
         
         

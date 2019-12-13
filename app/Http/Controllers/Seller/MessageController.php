@@ -16,11 +16,8 @@ class MessageController extends Controller
 
     public function index()
     {
-        $friends = ChatRelation::with('user.unreadMessage','user.userdetail')->whereSenderId(Auth::id())->get();
-        
-        //dd($friends->user);
-        
-
+        $friends = ChatRelation::with('user.unreadMessage','user.userdetail')
+        ->whereSenderId(Auth::id())->get();
     	return view('seller.message.index',['friends'=>$friends]);
     }
     public function sendMessage(Request $request)
@@ -64,7 +61,9 @@ class MessageController extends Controller
     }
     public function readMessage(Request $request)
     {
-        Chat::where('sender_id',$request->sender_id)->where('receiver_id',$request->receiver_id)->update(['is_seen'=>true]);
+        Chat::where('sender_id',$request->sender_id)
+        ->where('receiver_id',$request->receiver_id)
+        ->update(['is_seen'=>true]);
     }
     public function files(Request $request)
     {

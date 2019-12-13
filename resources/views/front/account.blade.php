@@ -161,6 +161,7 @@
                             <ul>
                                 <li>
                                    {{ !empty($facebook)?'':'+' }}<a href="{{ !empty($facebook)?'javascript:;':route("facebook.social.login") }}" class="{{ !empty($facebook)?'_highLighed':'' }}">Facebook </a>
+
                                 </li>
 
                                 <li>
@@ -188,6 +189,12 @@
 
                                 <li>
                                     <a href="{{ !empty($vimeo)?'javascript:;':route("vimeo.social.login") }}" class="{{ !empty($vimeo)?'_highLighed':'' }}"> {{ !empty($vimeo)?'':'+' }} Vimeo </a>
+                                </li>
+                                 <li>
+                                    <a href="{{ !empty($vimeo)?'javascript:;':route("twitter.social.login") }}" class="{{ !empty($vimeo)?'_highLighed':'' }}"> {{ !empty($vimeo)?'':'+' }} Twitter </a>
+                                </li>
+                                 <li>
+                                    <a href="{{ !empty($vimeo)?'javascript:;':route("instagram.social.login") }}" class="{{ !empty($vimeo)?'_highLighed':'' }}"> {{ !empty($vimeo)?'':'+' }} Instagram </a>
                                 </li>
   
                             </ul>
@@ -407,6 +414,13 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
+                                            <div class="col-md-4"><label class="_label" for="">Mobile Number :</label></div>
+                                            <div class="col-md-8">
+                                                <input type="text" maxlength="10" placeholder="Enter Mobile Number" class="form-control2" id="mobile_number">
+                                                <span class="text-danger" id="mobile_error"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
                                             <div class="col-md-4"><label class="_label" for="">Online Status :</label></div>
                                             <div class="col-md-8">
                                                 <select name="" id="online_status" class="form-control2">
@@ -415,7 +429,7 @@
                                                     <option value="2">Go Ideal</option>
                                                     <option value="3">Go hidden</option>
                                                 </select>
-                                                <p class="_emTxt">When online, your Gigs are visible under the Online search filter.</p>
+                                                <p class="_emTxt">When online, your Services are visible under the Online search filter.</p>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -436,9 +450,9 @@
                                             <div class="col-md-8">
                                                 <p class="_txtRed"><strong>What happens when you deactivate your account?</strong></p>
                                                 <ul class="_listStyle">
-                                                    <li>Your profile and Gigs won't be shown on Fiverr anymore. </li>
+                                                    <li>Your profile and Service won't be shown on Hire A Nerd anymore. </li>
                                                     <li>Active orders will be cancelled.</li> 
-                                                    <li>You won't be able to re-activate your Gigs.</li>
+                                                    <li>You won't be able to re-activate your Service.</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -489,17 +503,17 @@
                                             </div>
                                         </form>
                                     </div>
-                                    <div class="_dBorText">
-                                        <div class="_dCardHeader">
-                                            <div>
-                                                <span class="_dHeading _mB15">Phone Verification</span>
-                                                <p>Your phone is not verified with Hire a nerd <br>
-                                                   Click Verify Now to complete phone verification</p>
-                                            </div>
-                                            <a href="#" class="btn _btn2 _btnVerify">Verify Now</a>
-                                        </div>
-                                    </div>
-                                    <div class="_dBorText">
+                                   <!--  <div class="_dBorText">
+                                       <div class="_dCardHeader">
+                                           <div>
+                                               <span class="_dHeading _mB15">Phone Verification</span>
+                                               <p>Your phone is not verified with Hire a nerd <br>
+                                                  Click Verify Now to complete phone verification</p>
+                                           </div>
+                                           <a href="#" class="btn _btn2 _btnVerify">Verify Now</a>
+                                       </div>
+                                   </div> -->
+                                    <!-- <div class="_dBorText">
                                         <div class="_dCardHeader">
                                             <div>
                                                 <span class="_dHeading _mB15">Security Questions</span>
@@ -507,7 +521,7 @@
                                             </div>
                                             <a href="#" class="btn _btn2 _btnVerify">Set</a>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                             <!-- End : Card -->                        
@@ -598,7 +612,7 @@
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td>My Gigs</td>
+                                                                    <td>My Services</td>
                                                                     <td>
                                                                         <label class="_mCheckbox">
                                                                             <input type="checkbox">
@@ -652,46 +666,46 @@
                                             </div>
                                         </form>
                                     </div>  
-                                    <div class="_dCardHeader">                            
-                                        <span class="_dHeading">Real Time Notification</span> 
-                                    </div>  
-                                    <form action="" class="_dForm">
-                                            <div class="form-group row">
-                                                <div class="col-lg-8 col-md-12">
-                                                    <div class="table-responsive _dTable">
-                                                        <table class="table">                                                           
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td>Enable/disable real-time notifications</td>
-                                                                    <td>
-                                                                        <span class="_mSwitch ">
-                                                                            <label>
-                                                                                <input type="checkbox" checked>
-                                                                                <span></span>
-                                                                            </label>
-                                                                        </span>
-                                                                    </td>                                                                    
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>Enable/disable sound</td>                                                        
-                                                                    <td>
-                                                                        <span class="_mSwitch ">
-                                                                            <label>
-                                                                                <input type="checkbox">
-                                                                                <span></span>
-                                                                            </label>
-                                                                        </span>
-                                                                    </td>                                                                    
-                                                                </tr>                                                               
-                                                            </tbody>
-                                                        </table>                                               
-                                                    </div>
-                                                </div>
-                                            </div> 
-                                           <div class="form-group">
-                                                <a href="#" class="btn _btn2 _btnSuccess ">Save Changes</a>
-                                            </div>
-                                        </form>                                
+                                   <!--  <div class="_dCardHeader">                            
+                                       <span class="_dHeading">Real Time Notification</span> 
+                                   </div>   -->
+                                    <!-- <form action="" class="_dForm">
+                                                                            <div class="form-group row">
+                                                                                <div class="col-lg-8 col-md-12">
+                                                                                    <div class="table-responsive _dTable">
+                                                                                        <table class="table">                                                           
+                                                                                            <tbody>
+                                                                                                <tr>
+                                                                                                    <td>Enable/disable real-time notifications</td>
+                                                                                                    <td>
+                                                                                                        <span class="_mSwitch ">
+                                                                                                            <label>
+                                                                                                                <input type="checkbox" checked>
+                                                                                                                <span></span>
+                                                                                                            </label>
+                                                                                                        </span>
+                                                                                                    </td>                                                                    
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td>Enable/disable sound</td>                                                        
+                                                                                                    <td>
+                                                                                                        <span class="_mSwitch ">
+                                                                                                            <label>
+                                                                                                                <input type="checkbox">
+                                                                                                                <span></span>
+                                                                                                            </label>
+                                                                                                        </span>
+                                                                                                    </td>                                                                    
+                                                                                                </tr>                                                               
+                                                                                            </tbody>
+                                                                                        </table>                                               
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div> 
+                                                                           <div class="form-group">
+                                                                                <a href="#" class="btn _btn2 _btnSuccess ">Save Changes</a>
+                                                                            </div>
+                                                                        </form> -->                                
                                 </div>
                                
                             </div>
@@ -715,42 +729,71 @@
                                         <div class="form-group row">
                                             <div class="col-md-4"><label class="_label" for="">Company Name :</label></div>
                                             <div class="col-md-8">
-                                              <input type="text" placeholder="" class="form-control2" id="company_name">
+            <input type="text" placeholder=""
+                class="form-control2"
+                id="company_name"
+                value="{{ $user->userBillingAaddresses->company_name ?? '' }}"
+
+            >
+
                                               <span class="text-danger" id="company_name_error"></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-md-4"><label class="_label" for="">Full Name :</label></div>
                                             <div class="col-md-8">
-                                              <input type="email" placeholder="" class="form-control2" id="name">
+            <input type="email" placeholder="" 
+                class="form-control2" 
+                id="name"
+                value="{{ $user->userBillingAaddresses->full_name ?? '' }}" 
+            >
                                               <span class="text-danger" id="name_error"></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-md-4"><label class="_label" for="">Country :</label></div>
                                             <div class="col-md-5">
-                                              <input type="text" id="country" class="form-control2">
+            <input type="text" 
+                id="country" 
+                class="form-control2"
+                value="{{ $user->userBillingAaddresses->country_id ?? '' }}" 
+            >
                                                <span class="text-danger" id="country_error"></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-md-4"><label class="_label" for="">Address :</label></div>
                                             <div class="col-md-8">
-                                              <input type="text" placeholder="" class="form-control2" id="address">
+            <input type="text" 
+                placeholder="" 
+                class="form-control2" 
+                id="address"
+                value="{{ $user->userBillingAaddresses->address ?? '' }}" 
+            >
                                               <span class="text-danger" id="address_error"></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-md-4"><label class="_label" for="">City :</label></div>
                                             <div class="col-md-5">
-                                              <input type="text" placeholder="" class="form-control2" id="city">
+            <input type="text" 
+                placeholder="" 
+                class="form-control2" 
+                id="city"
+                value="{{ $user->userBillingAaddresses->city_id ?? '' }}" 
+            >
                                               <span class="text-danger" id="city_error"></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-md-4"><label class="_label" for="">Zip Code :</label></div>
                                             <div class="col-md-5">
-                                              <input type="text" id="zip_code" placeholder="" class="form-control2">
+            <input type="text" 
+                id="zip_code" 
+                placeholder="" 
+                class="form-control2"
+                value="{{ $user->userBillingAaddresses->zip_code ?? '' }}" 
+            >
                                               <span class="text-danger" id="zip_code_error"></span>
                                             </div>
                                         </div>
@@ -758,7 +801,7 @@
                                             <div class="col-md-4"><label class="_label" for="">Invoice : </label></div>
                                             <div class="col-md-5">
                                                 <label  class="_mCheckbox _mB0">
-                                                    <input type="checkbox" checked value="1" id="invoice_email"> Send me invoice via email
+            <input type="checkbox" {{ $user->userBillingAaddresses->is_invoice ?'checked':'' }} value="1" id="invoice_email"> Send me invoice via email
                                                     <span></span>
                                                 </label>
                                             </div>
@@ -856,9 +899,9 @@
     	.done(function(data) {
     			$("#addLanguage").show()
 				$("#add_language_fields").hide();
-				$("#lang_list").append(` <li class="_edit-op-cont" id="langs${data.data.id}">
+				$("#lang_list").append(` <li class="_edit-op-cont" id="langs{{ $lang->id ?? '' }}">
                                      <p class="_edit-options">
-    <a onclick='editLanguage("${data.data.language_id}","{{ $lang->language_level ?? '' }}","{{ $lang->id ?? '' }}")' >
+    <a onclick='editLanguage("${ data.data.lang.name }","{{ $lang->language_level ?? '' }}","{{ $lang->id ?? '' }}")' >
         <img src="{{ asset('public/storage/images/edit.png') }}" alt="">
     </a>
     <a onclick='deleteLanguage("{{ $lang->id ?? '' }}")'><img src="{{ asset('public/storage/images/delete.png') }}" alt=""></a>
@@ -963,7 +1006,12 @@
 				url: '{{ url("api/user/my-account") }}',
 				type: 'POST',
 				dataType: 'json',
-				data: {name: $("#full_name").val(),email: $("#email").val(),online_status:$("#online_status").val(),id:"{{ Auth::id() }}"},
+				data: {
+                    name: $("#full_name").val(),
+                    email: $("#email").val(),
+                    mobile_number: $("#mobile_number").val(),
+                    online_status:$("#online_status").val(),
+                    id:"{{ Auth::id() }}"},
 			})
 			.done(function() {
 
@@ -1252,15 +1300,21 @@
     } );
 
     function editLanguage(language,level,id){
+            
         $(`#langs`).val(id);
         $("#addLanguage").hide();
         $("#edit_language_fields").show('slow');
         $("#edit_language").val(language);
-        $("#edit_language_level").val(level);
+        if(level == 'native_or_bilingual'){
+            $("#edit_language_level").val('Native/Bilingual');
+        }else{
+            $("#edit_language_level").val(ucfirst(level));    
+        }
+        
         $("#language_id").val(id);
     }
     function deleteLanguage(id) {
-        
+      
         $(`#langs${id}`).remove();
         $.post('{{ url('api/user/language/destroy') }}', {id: id});
     }
@@ -1290,7 +1344,7 @@
     </a>
     <a href="#"><img src="{{ asset('public/storage/images/delete.png') }}" alt=""></a>
                                     </p>
-                                    '${ data.language.name }' - ${ ucfirst(data.language_level) }
+                                    ${ data.language.name } - ${ ucfirst(data.language_level) }
                                 </li>`);
         });
         
@@ -1323,17 +1377,14 @@
         $.post('{{ url('user/user-education-destroy') }}', {id: educationId,_token:'{{ csrf_token() }}'});
     }
 
-
-
-
-
-
-
-
-
-
-
-
+    $("#mobile_number").keypress(function(event) {
+            
+            if(event.keyCode >= 48 && event.keyCode <= 57){
+                return true;
+            }else{
+                return false;
+            }
+    });
 
 
         @error('avatar')

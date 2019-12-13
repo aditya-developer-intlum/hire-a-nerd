@@ -180,7 +180,7 @@ $(function(){
                                       {{--   <form action="" class="_dForm"> --}}
                                             <div class="_dBorText">
                                                 <div class="form-group row">
-                                                    <div class="col-md-4"><label class="" for="" id="gig_title_label">Gig Title</label></div>
+<div class="col-md-4"><label class="" for="" id="gig_title_label">Service Title</label></div>
                                                     <div class="col-md-8">
                          <textarea class="form-control2" placeholder="I’m Realy good At" id="gig_title_input">{{ $gig->gig_title ?? "" }}</textarea>
 
@@ -233,14 +233,14 @@ $(function(){
                                         <figure>
                                             <img src="{{ url("public/storage/images/gig-img.png") }}" alt="">
                                         </figure>
-                                        <p class="_gigDefHead">Start Defining Your Gig</p>
+                                        <p class="_gigDefHead">Start Defining Your Service</p>
                                         <p class="_gigDefTxt">
                                             Create a catchy title.<br>
-                                            Choose a category that fits your Gig.<br>
-                                            Add meta data to help buyers find more information regarding your Gig.<br>
-                                            Add tags to help buyers find your Gig while searching.
+                                            Choose a category that fits your Service.<br>
+                                            Add meta data to help buyers find more information regarding your Service.<br>
+                                            Add tags to help buyers find your Service while searching.
                                         </p>
-                                        <a href="#" class="btn _dBorBtn">General Gig Policy</a>
+                                        <a href="#" class="btn _dBorBtn">General Service Policy</a>
                                     </div>
                                 </div>
                                 <!-- End : Right Section   -->
@@ -494,7 +494,7 @@ $(function(){
                                                 <div class="form-group row">
                                                     <div class="col-md-2">
                                                         <label class="" for="" id="describe_your_gig_label">
-                                                        Describe Your Gig :
+                                                        Describe Your Service :
                                                         </label>
                                                     </div>
                                                     <div class="col-md-10">
@@ -568,7 +568,7 @@ $(function(){
                                         </figure>
                                         <p class="_gigDefHead">Write Your Description & FAQ</p>
                                         <p class="_gigDefTxt">
-                                            Include the most important information for your Gig.<br>
+                                            Include the most important information for your Service.<br>
                                             Add frequently asked questions and answers to the most commonly asked questions.
                                         </p>
                                         <a href="#" class="btn _dBorBtn">See examples</a>
@@ -688,8 +688,8 @@ $(function(){
         <div class="form-group row">
             <div class="col-md-4">
                 <label class="" >
-                    <p class="_lText">Gig Photos</p>
-                    <p>Upload photos that describe or are related to your Gig.</p>
+                    <p class="_lText">Service Photos</p>
+                    <p>Upload photos that describe or are related to your Service.</p>
                 </label>
             </div>
 
@@ -740,8 +740,8 @@ $(function(){
                                                     <div class="form-group row">
                                                         <div class="col-md-4">
                                                             <label class="" >
-                                                                <p class="_lText">Gig Video</p>
-                                                                <p>Add a relevant, high quality video that best showcases your Gig.</p>
+                                                                <p class="_lText">Service Video</p>
+                                                                <p>Add a relevant, high quality video that best showcases your Service.</p>
                                                             </label>
                                                         </div>
                                                         <div class="col-md-8">
@@ -766,7 +766,7 @@ $(function(){
                                                     <div class="form-group row">
                                                         <div class="col-md-4">
                                                             <label class="" >
-                                                                <p class="_lText">Gig PDFs</p>
+                                                                <p class="_lText">Service PDFs</p>
                                                                 <p>We only recommend adding a PDF file if it further clarifies the service you will be providing</p>
                                                             </label>
                                                         </div>
@@ -843,8 +843,8 @@ $(function(){
                                                     <img src="{{ url("public/storage/images/publish-img.png") }}" alt="">
                                                 </figure>
                                                 <p class="_boldGreenTxt">Almost There...</p>
-                                                <p>Let's publish your Gig and get  some buyers rolling in.</p>
-                             <a href="javascript:;" class="btn _btn2 _btnSuccess " id="publish_gig">Publish Gig</a>
+                                                <p>Let's publish your Service and get  some buyers rolling in.</p>
+                             <a href="javascript:;" class="btn _btn2 _btnSuccess " id="publish_gig">Publish Service</a>
                                             </div>
                                         </div>
                                     </div>

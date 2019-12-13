@@ -24,8 +24,8 @@ class FaqTableSeeder extends Seeder
                 'title' => 'How can Earn Money ?',
                 'description' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod <strong>tempor </strong>incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet,<strong> consectetu</strong>r adipiscing elit, sed do eiusmod tempor incididunt.</p>',
                 'is_active' => 1,
-                'created_at' => '2019-08-22 10:26:00',
-                'updated_at' => '2019-08-22 16:56:41',
+                'created_at' => '2019-08-22 00:56:00',
+                'updated_at' => '2019-08-23 09:02:56',
             ),
             1 => 
             array (
@@ -34,8 +34,8 @@ class FaqTableSeeder extends Seeder
                 'title' => 'How Can I Purchase Gig ?',
                 'description' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>',
                 'is_active' => 1,
-                'created_at' => '2019-08-22 16:44:08',
-                'updated_at' => '2019-08-22 16:44:08',
+                'created_at' => '2019-08-22 07:14:08',
+                'updated_at' => '2019-08-22 07:14:08',
             ),
             2 => 
             array (
@@ -44,8 +44,8 @@ class FaqTableSeeder extends Seeder
                 'title' => 'Elit, sed do eiusmod tempor incididunt ut labore dolore magna aliqua enim ad minim?',
                 'description' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>',
                 'is_active' => 1,
-                'created_at' => '2019-08-22 16:44:46',
-                'updated_at' => '2019-08-22 16:44:46',
+                'created_at' => '2019-08-22 07:14:46',
+                'updated_at' => '2019-08-22 07:14:46',
             ),
         ));
         

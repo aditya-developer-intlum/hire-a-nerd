@@ -27,11 +27,11 @@
                 <div class="_jTopSec__lft col-lg-8" id="navbar" style="z-index: 9">
                     <div class="_dTabNav" >
                         <ul class="nav nav-tabs">                           
-                            <li><a href="#dAcc" class="active">Overview</a></li>
-                            <li><a href="#packages" >Packages</a></li>
-                            <li><a href="#description" >Description</a></li>
-                            <li><a href="#reviews" >Reviews</a></li>
-                            <li><a href="#dBill" >FAQ</a></li>
+                            <li><a onclick="scroller('dAcc')" class="active">Overview</a></li>
+                            <li><a onclick="scroller('packages')" >Packages</a></li>
+                            <li><a onclick="scroller('description')" >Description</a></li>
+                            <li><a onclick="scroller('dBill')" >FAQ</a></li>
+                            <li><a onclick="scroller('reviews')" >Reviews</a></li>
                         </ul>
                     </div>
                 </div>
@@ -406,6 +406,20 @@ function myFunction() {
     $(this).closest('a').addClass('active');
 });
 
+    $(document).on('click', 'a[href^="#"]', function (event) {
+        event.preventDefault();
+        return false;
+    });
 
+    function scroller(id) {
+      
+      $('html, body').animate(
+      {
+        scrollTop: $(`#${id}`).offset().top-50,
+      },
+        900,
+        'linear'
+      )
+    }
 </script>
 @endsection

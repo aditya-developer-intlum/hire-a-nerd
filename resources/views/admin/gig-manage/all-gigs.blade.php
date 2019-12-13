@@ -50,7 +50,7 @@
 	                              <center>
 	                              	<div class="container">
 	                              	<span>
-	                              		Gig Suspended till <br>{{ date('d M Y',strtotime($gig->suspended_till)) }}
+	                              		Service Suspended till <br>{{ date('d M Y',strtotime($gig->suspended_till)) }}
 	                              	</span>
 	                              		
 	                              	</div>

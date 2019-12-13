@@ -180,7 +180,7 @@ $(function(){
                                       {{--   <form action="" class="_dForm"> --}}
                                             <div class="_dBorText">
                                                 <div class="form-group row">
-                                                    <div class="col-md-4"><label class="" for="" id="gig_title_label">Gig Title</label></div>
+<div class="col-md-4"><label class="" for="" id="gig_title_label">Service Title</label></div>
                                                     <div class="col-md-8">
                          <textarea class="form-control2" placeholder="I’m Realy good At" id="gig_title_input">{{ $gig->gig_title ?? "" }}</textarea>
 
@@ -233,12 +233,12 @@ $(function(){
                                         <figure>
                                             <img src="{{ url("public/storage/images/gig-img.png") }}" alt="">
                                         </figure>
-                                        <p class="_gigDefHead">Start Defining Your Gig</p>
+                                        <p class="_gigDefHead">Start Defining Your Service</p>
                                         <p class="_gigDefTxt">
                                             Create a catchy title.<br>
-                                            Choose a category that fits your Gig.<br>
+                                            Choose a category that fits your Service.<br>
                                           
-                                            Add tags to help buyers find your Gig while searching.
+                                            Add tags to help buyers find your Service while searching.
                                         </p>
                                        
                                     </div>
@@ -250,19 +250,18 @@ $(function(){
 
                         <!-- Begin:  Pricing -->
 
-                        <div id="gPricing" class="tab-pane fade">
-                            <div class="row">
-                                <!-- Begin : Left Section   -->
-                                <div class="col-lg-8 col-md-12">
-                                    <!-- Begin: Card -->
-                                    <div class="_dCard">
-                                        <div class="_dCardHeader _borderBtm">
-                                            <span class="_dHeading" >Pricing</span>  
-
-                                            <!-- <label class="switch">
-                                                                                                                      <input type="checkbox" checked>
-                                                                                                                      <span class="slider round"></span>
-                                                                                                                    </label>  -->                                
+<div id="gPricing" class="tab-pane fade">
+    <div class="row">
+   <!-- Begin : Left Section   -->
+        <div class="col-lg-8 col-md-12">
+   <!-- Begin: Card -->
+        <div class="_dCard">
+    <div class="_dCardHeader _borderBtm">
+        <span class="_dHeading" >Pricing</span>  
+          <!-- <label class="switch">
+    <input type="checkbox" checked>
+    <span class="slider round"></span>
+            </label>  -->                                
                                         </div> 
 
 
@@ -487,7 +486,7 @@ $(function(){
                                                 <div class="form-group row">
                                                     <div class="col-md-2">
                                                         <label class="" for="" id="describe_your_gig_label"> 
-                                                        Describe Your Gig :
+                                                        Describe Your Service :
                                                         </label>
                                                     </div>
                                                     <div class="col-md-10">
@@ -563,7 +562,7 @@ $(function(){
                                         </figure>
                                         <p class="_gigDefHead">Write Your Description & FAQ</p>
                                         <p class="_gigDefTxt">
-                                            Include the most important information for your Gig.<br>
+                                            Include the most important information for your Service.<br>
                                             Add frequently asked questions and answers to the most commonly asked questions.
                                         </p>
                                        
@@ -670,7 +669,7 @@ $(function(){
                                      <!-- Begin: Card -->
                                     <div class="_dCard">
                                         <div class="_dCardHeader _borderBtm">
-                                            <span class="_dHeading">Build Your Gig Gallery</span>                                   
+                                            <span class="_dHeading">Build Your Service Gallery</span>                                   
                                         </div>                        
      <div class="_dsBody">
     <form action="{{ url("api/gig-gallery/create/".Auth::id()) }}" 
@@ -682,8 +681,8 @@ $(function(){
         <div class="form-group row">
             <div class="col-md-4">
                 <label class="" >
-                    <p class="_lText">Gig Photos</p>
-                    <p>Upload photos that describe or are related to your Gig.</p>
+                    <p class="_lText">Service Photos</p>
+                    <p>Upload photos that describe or are related to your Service.</p>
                 </label>
             </div>
 
@@ -691,13 +690,13 @@ $(function(){
                                                             <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group _custom__uploadField _cF2">                              
-    <input type="file" id="_agntFile-1" class="inputfile" name="gig_photo_one">
+    <input type="file" id="service_image_one" class="inputfile" name="gig_photo_one">
 
-                                            <label for="_agntFile-1">
+                                            <label for="service_image_one">
                                                                             <span id="_agntFile1_label">                                                                                                                                              
                     <img src="{{ url("public/storage/images/img-icon.png") }}" alt="" class="_attIcon" id="show_first_image">
                                                                                 Drag a Photo or <br>
-                                                                                <a href="javascript:;">Browse</a>
+                                                                                <a >Browse</a>
                                                                             </span>
                                                                         </label>                                                                              
                                                                     </div>
@@ -709,7 +708,7 @@ $(function(){
                                                                             <span id="_agntFile2_label">                                                                                                                                              
                                                                                 <img src="{{ url("public/storage/images/img-icon.png") }}" alt="" class="_attIcon">
                                                                                 Drag a Photo or <br>
-                                                                                <a href="#">Browse</a>
+                                                                                <a >Browse</a>
                                                                             </span>
                                                                         </label>                                                                              
                                                                     </div>
@@ -721,7 +720,7 @@ $(function(){
                                                                             <span id="_agntFile3_label">                                                                                                                                              
                                                                                 <img src="{{ url("public/storage/images/img-icon.png") }}" alt="" class="_attIcon">
                                                                                 Drag a Photo or <br>
-                                                                                <a href="#">Browse</a>
+                                                                                <a >Browse</a>
                                                                             </span>
                                                                         </label>                                                                              
                                                                     </div>
@@ -734,8 +733,8 @@ $(function(){
                                                     <div class="form-group row">
                                                         <div class="col-md-4">
                                                             <label class="" >
-                                                                <p class="_lText">Gig Video</p>
-                                                                <p>Add a relevant, high quality video that best showcases your Gig.</p>
+                                                                <p class="_lText">Service Video</p>
+                                                                <p>Add a relevant, high quality video that best showcases your Service.</p>
                                                             </label>
                                                         </div>
                                                         <div class="col-md-8">
@@ -747,7 +746,7 @@ $(function(){
                                                                             <span>                                                                                                                                              
                                                                                 <img src="{{ url("public/storage/images/video-icon.png") }}" alt="" class="_attIcon">
                                                                                 Drag a Video or <br>
-                                                                                <a href="#">Browse</a>
+                                                                                <a >Browse</a>
                                                                             </span>
                                                                         </label>                                                                              
                                                                     </div>
@@ -760,7 +759,7 @@ $(function(){
                                                     <div class="form-group row">
                                                         <div class="col-md-4">
                                                             <label class="" >
-                                                                <p class="_lText">Gig PDFs</p>
+                                                                <p class="_lText">Service PDFs</p>
                                                                 <p>We only recommend adding a PDF file if it further clarifies the service you will be providing</p>
                                                             </label>
                                                         </div>
@@ -773,7 +772,7 @@ $(function(){
                                                                             <span>                                                                                                                                              
                                                                                 <img src="{{ url("public/storage/images/pdf-icon.png") }}" alt="" class="_attIcon">
                                                                                 Drag a Photo or <br>
-                                                                                <a href="#">Browse</a>
+                                                                                <a >Browse</a>
                                                                             </span>
                                                                         </label>                                                                              
                                                                     </div>
@@ -785,7 +784,7 @@ $(function(){
                                                                             <span>                                                                                                                                              
                                                                                 <img src="{{ url("public/storage/images/pdf-icon.png") }}" alt="" class="_attIcon">
                                                                                 Drag a Photo or <br>
-                                                                                <a href="#">Browse</a>
+                                                                                <a >Browse</a>
                                                                             </span>
                                                                         </label>                                                                              
                                                                     </div>
@@ -837,8 +836,8 @@ $(function(){
                                                     <img src="{{ url("public/storage/images/publish-img.png") }}" alt="">
                                                 </figure>
                                                 <p class="_boldGreenTxt">Almost There...</p>
-                                                <p>Let's publish your Gig and get  some buyers rolling in.</p>
-                             <a href="javascript:;" class="btn _btn2 _btnSuccess " id="publish_gig">Publish Gig</a>
+                                                <p>Let's publish your Service and get  some buyers rolling in.</p>
+                             <a href="javascript:;" class="btn _btn2 _btnSuccess " id="publish_gig">Publish Service</a>
                                             </div>
                                         </div>
                                     </div>

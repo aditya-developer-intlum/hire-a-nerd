@@ -384,12 +384,12 @@ $("#gallery_form").submit(function(event){
 		 return false;
 	}).fail(function(e){
 
-		$("INPUT[name=gig_photo_one]").notify(e.responseJSON.errors.gig_photo_one);
-		$("INPUT[name=gig_photo_two]").notify(e.responseJSON.errors.gig_photo_two);
-		$("INPUT[name=gig_photo_three]").notify(e.responseJSON.errors.gig_photo_three);
-		$("INPUT[name=gig_video]").notify(e.responseJSON.errors.gig_video);
-		$("INPUT[name=gig_pdf_one]").notify(e.responseJSON.errors.gig_pdf_one);
-		$("INPUT[name=gig_pdf_two]").notify(e.responseJSON.errors.gig_pdf_two);
+		$("INPUT[name=gig_photo_one]").notify(e.responseJSON.errors.gig_photo_one[0]);
+		$("INPUT[name=gig_photo_two]").notify(e.responseJSON.errors.gig_photo_two[0]);
+		$("INPUT[name=gig_photo_three]").notify(e.responseJSON.errors.gig_photo_three[0]);
+		$("INPUT[name=gig_video]").notify(e.responseJSON.errors.gig_video[0]);
+		$("INPUT[name=gig_pdf_one]").notify(e.responseJSON.errors.gig_pdf_one[0]);
+		$("INPUT[name=gig_pdf_two]").notify(e.responseJSON.errors.gig_pdf_two[0]);
 
 	});
 });

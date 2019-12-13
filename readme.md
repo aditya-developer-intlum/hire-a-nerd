@@ -70,3 +70,5 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+admin_earnings,blocked_users,cancel_orders,chats,chat_files,chat_relations,commisions,countries,	earnings,email_histories,email_lists,faq,gigs,gig_faqs,gig_prices,gig_scopes,languages,linked_accounts,	marketplaces,menu,migrations,notifications,orders,pages,password_resets,	permissions,post_requests,press_and_news,qualifications,ratings,scopes,scope_lists,skills,	social_media_links,sub_menu,suspends,testimonials,transactions,universities,users,	user_billing_addresses,user_certifications,	user_detail,	user_education,user_languages,user_locations,user_notifications,user_permissions,user_skills,user_social_media,	wallets,websockets_statistics_entries,wish_lists

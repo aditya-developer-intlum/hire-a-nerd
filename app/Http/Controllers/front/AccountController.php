@@ -9,6 +9,8 @@ use Auth;
 use App\Models\University;
 use App\Models\Country;
 use App\Models\UserSocialMedia;
+use App\Order;
+use App\Models\Gig;
 
 class AccountController extends Controller
 {
@@ -23,7 +25,8 @@ class AccountController extends Controller
             'UserEducation.university',
             'skill',
             'linkedAccount',
-            'location'
+            'location',
+            'userBillingAaddresses'
         ])
         ->whereId(Auth::id())
         ->first();
@@ -93,10 +96,20 @@ class AccountController extends Controller
     public function deactiveUser(Request $request)
     {
 
-        User::whereId($request->id)
+        Order::where('seller_id',auth()->user()->id)
+        ->where('is_accepted',true)
+        ->where('is_delivered',false)
+        ->update(['is_cancelled'=> true]);
+
+        Gig::where('user_id',auth()->user()->id)->update(['is_status'=> 2]);
+
+        User::whereId(auth()->user()->id)
         ->update([
-            "deative_reasion" => $request->deactive_reason
+            "deative_reasion" => $request->deactive_reason,
+            "status" => 0
         ]);
+
+        Auth::logout();
 
         return response()->json(['success'=>true]);
     }

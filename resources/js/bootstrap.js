@@ -46,13 +46,26 @@ if (token) {
 import Echo from 'laravel-echo'
 
 window.Pusher = require('pusher-js');
+if(window.location.hostname == "localhost"){
 
-window.Echo = new Echo({
-    authEndpoint: 'http://localhost/hire-a-nerd/broadcasting/auth',
-    broadcaster: 'pusher',
-    key: 'myKey',
-    wsHost: window.location.hostname,
-    wsPort: 6001,
-    disableStats: true,
-    enabledTransports: ['ws', 'wss']
-});
+    window.Echo = new Echo({
+        authEndpoint: 'http://localhost/hire-a-nerd/broadcasting/auth',
+        broadcaster: 'pusher',
+        key: 'myKey',
+        wsHost: window.location.hostname,
+        wsPort: 6001,
+        disableStats: true,
+        enabledTransports: ['ws', 'wss']
+    });
+}else{
+
+    window.Echo = new Echo({
+        authEndpoint: `http://${window.location.hostname}/broadcasting/auth`,
+        broadcaster: 'pusher',
+        key: 'myKey',
+        wsHost: window.location.hostname,
+        wsPort: 6001,
+        disableStats: true,
+        enabledTransports: ['ws', 'wss']
+    });
+}
