@@ -21,18 +21,20 @@
                                             <div class="col-md-4"><label class="_label" style="height:70%" for="">Describe the service you're looking to purchase - please be as detailed as possible: </label></div>
                                             <div class="col-md-8">
                                           
-                                          <textarea name="description" class="form-control2" cols="30" rows="10" placeholder="I'm looking for..." maxlength="2500">{{ old('description') }}</textarea>
+    <textarea name="description" class="form-control2" cols="30" rows="10" placeholder="I'm looking for..." maxlength="2500">{{ old('description') }}</textarea>
+
                                           <span class="text-danger" >
 											 @error('description')
 											 	{{ $message }}
 											 @enderror
                                           </span><br>
-                                          <button class="btn btn-primary" type="button" onclick="document.getElementById('attachFile').click()"><i class="fa fa-paperclip" aria-hidden="true"></i> Attach File</button>
+                                          <button class="btn btn-primary" type="button" onclick="document.getElementById('attachFile').click()"><i class="fa fa-paperclip" aria-hidden="true"></i> Attach File</button> <span>Upto 2MB</span>
                                           
                                           <input type="file" name="attachfile" style="display: none" id="attachFile"> 
 
 
-                                          <span class="text-danger" >
+                                          <span class="text-danger">
+                                            <br> 
 											 @error('attachfile')
 											 	{{ $message }}
 											 @enderror
@@ -159,7 +161,7 @@
     		}).change();
     		$("#budget").keypress(function(event) {
 	    			var keyCode = event.keyCode;
-	    			if(keyCode>48 && keyCode<57){
+	    			if(keyCode>47 && keyCode<57){
 	    				return true;
 	    			}else{
 	    				return false;

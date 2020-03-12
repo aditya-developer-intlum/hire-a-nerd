@@ -25,7 +25,7 @@ class CheckPostRequest extends FormRequest
     {
         return [
             'description' => ['required','max:2500'],
-            'attachfile' => ['nullable','mimes:jpg,jpeg,gif,png,pdf,xls,xlsx,docx,doc,zip'],
+            'attachfile' => ['nullable','mimes:jpg,jpeg,gif,png,pdf,xls,xlsx,docx,doc,zip','max:2048'],
             'category' => ['required','numeric'],
             'subcategory' => ['required','numeric'],
             'serviceDeliverTime' => ['required'],
@@ -35,7 +35,8 @@ class CheckPostRequest extends FormRequest
     public function messages()
     {
         return [
-            'attachfile.mimes' => "Invalide File type"
+            'attachfile.mimes' => "Invalide File type",
+            'attachfile.max' => "File may not be greater than 2 MB."
         ];
     }
 }

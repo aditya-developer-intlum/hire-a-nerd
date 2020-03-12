@@ -6,14 +6,14 @@
         <div class="container">
             <!-- Begin: Heading -->
             <div class="_headingDiv text-center">
-                <h2 class="_headingTxt">{{ $title }}</h2>
-                <p class="_headingTag">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidi</p>
+                <h2 class="_headingTxt">{{ $title->name ?? '' }}</h2>
+                <p class="_headingTag">{{ $title->description ?? '' }}</p>
             </div>
             <!-- End : Heading  --> 
             <div class="row">
                 <div class="col-md-3">
                     <section class="_category-list-div">
-                    <h4>{{ $title }}</h4>
+                    <h4>{{ $title->name ?? '' }}</h4>
                     <ul class="_category-list">
                     @foreach($sidebar as $subMenu)
 	                    @foreach($subMenu->subMenu as $sub)

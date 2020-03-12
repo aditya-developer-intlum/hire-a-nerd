@@ -82,7 +82,7 @@
 																		</g>
 																	</svg> </span>
 																<span class="kt-widget__desc">
-															All Gigs
+															All Services
 																</span>
 															</span>
 														</a>

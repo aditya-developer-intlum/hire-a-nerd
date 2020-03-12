@@ -9,7 +9,7 @@
                 <div class="logo"><a class="navbar-brand" href="{{ url('/') }}"><img src="{{ asset("public/storage/images/logo.png") }}" alt=""></a></div>
                 <ul  class="_hdrInfo _inlineList">
                     <li><a href="#">How it Works</a></li>                    
-                    <li><a href="#">Hire a Nerd Pro</a></li>
+                   
                     <li><a href="{{ route("become.seller") }}">Become a Seller</a></li>
                 </ul>
             </div>
@@ -17,9 +17,9 @@
             <!-- Begin : Div --->
             <div class="_topHeader-right">
                 <div class="_searchDiv">
-                    <form action="">
-                        <input type="text" class="form-control" placeholder="Search">
-                        <button class="_subBtn btn">Search</button>
+                    <form action="{{ route('global.search') }}">
+                        <input type="text" name="search" class="form-control" placeholder="Search" value="{{ request()->search }}">
+                        <button type="submit" class="_subBtn btn">Search</button>
                     </form>
                 </div>
               @if(!Auth::check())  
@@ -59,139 +59,26 @@
                 
                     <div class="collapse navbar-collapse" id="navbarsExample05">
                         <ul class="navbar-nav">
+                            
+                              @foreach(Nerd::category() as $category)                        
+
                             <li class="current-menu-item menu-item-has-children">
-                                <a href="{{ url("graphic-design") }}">Graphics & Design</a>
+                                <a href="{{ url($category->slug) }}"> {{ $category->name }} </a>
                                 <span class="clickD"></span>
                                 <ul class="sub-menu">
-                            @foreach(Nerd::subMenu("graphic-design") as $subMenu)
+                       
+                            @empty(!$category->submenu)
 
-                                @foreach($subMenu->subMenu as $sub)
-
-                                    <li><a href="{{ url($subMenu->slug."/".$sub->slug) }}">{{ $sub->name }}</a></li>
-
+                                @foreach($category->submenu as $subcategory)
+                                    <li><a href="{{ url($category->slug.'/'.$subcategory->slug) }}">{{ $subcategory->name }}</a></li>
                                 @endforeach
-                                
-
-                            @endforeach
-                                  
+                            
+                            @endempty      
                                 </ul>
                             </li>
-                            <li class="menu-item-has-children">
-                                <a href="{{ url("digital-market") }}">Digital Marketing</a>
 
-                                 <span class="clickD"></span>
-                                <ul class="sub-menu">
-                            @foreach(Nerd::subMenu("digital-market") as $subMenu)
+                        @endforeach
 
-                                @foreach($subMenu->subMenu as $sub)
-
-                                    <li><a href="{{ url($subMenu->slug."/".$sub->slug) }}">{{ $sub->name }}</a></li>
-
-                                @endforeach
-                                
-
-                            @endforeach
-                                  
-                                </ul>
-                                
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="{{ url("writing-translation") }}">Writing & Translation</a>
-                                  <span class="clickD"></span>
-                                <ul class="sub-menu">
-                            @foreach(Nerd::subMenu("writing-translation") as $subMenu)
-
-                                @foreach($subMenu->subMenu as $sub)
-
-                                    <li><a href="{{ url($subMenu->slug."/".$sub->slug) }}">{{ $sub->name }}</a></li>
-
-                                @endforeach
-                                
-
-                            @endforeach
-                                  
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="{{ url("video-animation") }}">Video & Animation </a>
-                                 <ul class="sub-menu">
-                            @foreach(Nerd::subMenu("video-animation") as $subMenu)
-
-                                @foreach($subMenu->subMenu as $sub)
-
-                                    <li><a href="{{ url($subMenu->slug."/".$sub->slug) }}">{{ $sub->name }}</a></li>
-
-                                @endforeach
-                                
-
-                            @endforeach
-                                  
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="{{ url("music-audio") }}">Music & Audio  </a>
-                                 <ul class="sub-menu">
-                            @foreach(Nerd::subMenu("music-audio") as $subMenu)
-
-                                @foreach($subMenu->subMenu as $sub)
-
-                                    <li><a href="{{ url($subMenu->slug."/".$sub->slug) }}">{{ $sub->name }}</a></li>
-
-                                @endforeach
-                                
-
-                            @endforeach
-                                  
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="{{ url("programming-tech") }}">Programming & Tech</a>
-                                 <ul class="sub-menu">
-                            @foreach(Nerd::subMenu("programming-tech") as $subMenu)
-
-                                @foreach($subMenu->subMenu as $sub)
-
-                                    <li><a href="{{ url($subMenu->slug."/".$sub->slug) }}">{{ $sub->name }}</a></li>
-
-                                @endforeach
-                                
-
-                            @endforeach
-                                  
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="{{ url("business") }}">Business </a>
-                                 <ul class="sub-menu">
-                            @foreach(Nerd::subMenu("business") as $subMenu)
-
-                                @foreach($subMenu->subMenu as $sub)
-
-                                    <li><a href="{{ url($subMenu->slug."/".$sub->slug) }}">{{ $sub->name }}</a></li>
-
-                                @endforeach
-                                
-
-                            @endforeach
-                                  
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children">  
-                                <a href="{{ url("lifestyle") }}">Lifestyle</a>
-                                 <ul class="sub-menu">
-                            @foreach(Nerd::subMenu("lifestyle") as $subMenu)
-
-                                @foreach($subMenu->subMenu as $sub)
-
-                                    <li><a href="{{ url($subMenu->slug."/".$sub->slug) }}">{{ $sub->name }}</a></li>
-
-                                @endforeach
-                                
-
-                            @endforeach
-                                  
-                                </ul>
-                            </li>                                                         
                         </ul>
                     </div>
             </nav>

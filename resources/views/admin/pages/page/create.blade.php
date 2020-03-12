@@ -26,6 +26,22 @@
 	<div class="kt-portlet__body">
 		<div class="form-group row">
 			<div class="col-lg-12">
+				<label for='first_name'>Meta Title:</label>
+				<input type="text" class="form-control" placeholder="Enter seo title" 
+				name="meta_title" value="{{ old('title') }}" autocomplete="off"
+				 maxlength="191">
+				@error('title')
+					<span class="text-danger">{{ $message }}</span>
+				@enderror
+			</div>
+			<div class="col-lg-12">
+				<label for='first_name'>Meta Description:</label>
+				<textarea class="form-control" name="meta_description" cols="30" rows="5" placeholder="Enter seo description"></textarea>
+				
+			</div>
+		</div>
+		<div class="form-group row">
+			<div class="col-lg-12">
 				<label for='first_name'>Title:</label>
 				<input type="text" class="form-control" placeholder="Enter title" 
 				name="title" value="{{ old('title') }}" autocomplete="off"

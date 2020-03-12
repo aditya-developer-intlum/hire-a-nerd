@@ -8,6 +8,8 @@ use App\Models\Gig;
 use App\Order;
 use Session;
 use Auth;
+use App\Notifications\SuspendServiceNotification;
+use Log;
 class GigController extends Controller
 {
     private $gigs;
@@ -189,11 +191,26 @@ class GigController extends Controller
                 'suspended_till' => date('Y-m-d',strtotime("+ {$request->number_of_days} days")),
                 'region' => $request->region
             ]);
+                $this->suspendNotification($request,$gig);
 
             return $gig;
         }else{
             abort(404);
         }
+        
+    }
+
+    public function suspendNotification(Request $request,Gig $gig)
+    {
+        
+        try {
+            $gig->user->notify(new SuspendServiceNotification($request));    
+        } catch (Exception $e) {
+
+            Log::error($e->getMessage());
+        }
+
+        return $this;
         
     }
     /**

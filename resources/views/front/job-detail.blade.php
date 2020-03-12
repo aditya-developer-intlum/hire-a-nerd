@@ -73,7 +73,7 @@
                                 <!-- Begin -->
                                 <div class="_breadcumDiv">
                                     <ul>
-                                        <li><a href="#">{{ $title }}</a>/ </li>   
+                                        <li><a href="#">{{ $title->name }}</a>/ </li>   
                                         <li><a href="#">{{ $subTitle }}</a></li>
                                     </ul>
                                 </div>

@@ -8,8 +8,10 @@ use App\Models\SubMenu;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 
-class Gig extends Model {
+class Gig extends Model implements Searchable {
 
 	use SoftDeletes;
 
@@ -37,4 +39,11 @@ class Gig extends Model {
 	public function gigFaqs() {
 		return $this->hasMany('App\GigFaq');
 	}
+	public function getSearchResult(): SearchResult
+    {
+        return new SearchResult(
+            $this,
+            $this->gig_title
+        );
+    }
 }

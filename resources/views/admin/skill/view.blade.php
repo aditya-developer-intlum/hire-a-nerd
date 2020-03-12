@@ -101,10 +101,14 @@
 							</div>
 							<div class="row">
 								<div class="col-sm-12 col-md-5" >
+									@if ($skill->firstItem())
+									
+									
 									<div class="dataTables_info" id="kt_table_1_info" role="status" aria-live="polite">Showing 
-										{{($skill->currentpage()-1)*$skill->perpage()+1}} to {{$skill->currentpage()*$skill->perpage()}}
+										{{ $skill->firstItem() }} to {{$skill->lastItem() }}
     of  {{$skill->total()}} entries
 									</div>
+									@endif
 								</div>
 								<div class="col-sm-12 col-md-7 dataTables_pager" >
 									<div class="dataTables_length" id="kt_table_1_length">

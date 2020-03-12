@@ -29,7 +29,7 @@ class Nerd
 	}
 	public static function pageTitleFromSlug($slug)
 	{
-		return Menu::where("slug","=",$slug)->firstOrFail()->name;
+		return Menu::where("slug","=",$slug)->firstOrFail();
 	}
 	public static function pageSubTitleFromSlug($slug)
 	{

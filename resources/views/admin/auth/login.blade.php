@@ -107,7 +107,7 @@ License: You must have a valid license purchased only from themeforest(the above
           <div class="kt-grid__item kt-grid__item--fluid kt-login__wrapper">
             <div class="kt-login__container">
               <div class="kt-login__logo">
-                <a href="#">
+                <a href="{{ url('') }}">
                   <img src="{{ asset('public/storage/images/logo.png') }}">
                 </a>
               </div>

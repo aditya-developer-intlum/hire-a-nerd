@@ -13,8 +13,8 @@
                 <div class="row">
                     <div class="col-lg-8 ml-auto">
                         <div class="_bannerTxtDiv">
-                            <h2 class="_bHeading wow _fadeInRight" data-wow-delay="0.3s">Find The Perfect Services<br> For Your Business</h2>
-                            <p class="_bTag wow _fadeInRight" data-wow-delay="0.7s">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incid</p>
+                            <h2 class="_bHeading wow _fadeInRight" data-wow-delay="0.3s">{!! $home->first_header ?? '' !!}</h2>
+                            <p class="_bTag wow _fadeInRight" data-wow-delay="0.7s">{!! $home->first_subheader ?? '' !!}</p>
                             <!-- <div class="_searchDiv _searchDiv2 wow _fadeInRight" data-wow-delay="1.0s">
                                 <form action="">
                                     <input type="text" class="form-control" placeholder="Search">
@@ -24,16 +24,16 @@
                             <!-- Begin: Number list -->
                             <ul class="_numLists wow _fadeInRight" data-wow-delay="1.3s">
                                 <li class="_numList">
-                                    <p class="_numCount">$50,5844</p>
-                                    <span class="_numText">Affiliated Earnings</span>
+                                    <p class="_numCount">{{ $home->first_professional ?? '' }}</p>
+                                    <span class="_numText">Professionals</span>
                                 </li>
                                 <li class="_numList">
-                                    <p class="_numCount">$68,5897</p>
+                                    <p class="_numCount">{{ $home->first_seller_earning ?? '' }}</p>
                                     <span class="_numText">Seller Earnings</span>
                                 </li>
                                 <li class="_numList">
-                                    <p class="_numCount">1,232</p>
-                                    <span class="_numText">Freelancers</span>
+                                    <p class="_numCount">{{ $home->first_affiliate_earning ?? '' }}</p>
+                                    <span class="_numText">Affiliate Earnings</span>
                                 </li>
                             </ul>
                             <!-- End: Number list -->
@@ -83,8 +83,8 @@
             <div class="_headerDiv">
                 <!-- Begin: Heading -->
                 <div class="_headingDiv">
-                    <h2 class="_headingTxt">Explore The Marketplace</h2>
-                    <p class="_headingTag">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidi</p>
+                    <h2 class="_headingTxt">{{ $home->third_title ?? '' }}</h2>
+                    <p class="_headingTag">{{ $home->third_subtitle ?? '' }}</p>
                 </div>
                 <!-- End : Heading  -->
                 <a href="#" class="_commonBtn">View All</a>
@@ -171,8 +171,8 @@
                             <img src="{{ asset("public/storage/images/card-bg-img-1.png") }}" alt="">
                         </figure>
                         <div class="_textCard2__content">
-                            <p class="_textCard2__heading">Buy Service for my Business</p>
-                            <p>Consectetur adipisicing elit sed dotem eiusmod tempor incune utnaem labore etdolore maigna aliqua enim poskina ilukita ylokem lokateise ination voluptate velit esse cillum.</p>
+                            <p class="_textCard2__heading">{{$home->fourth_title_card_one ?? ''}}</p>
+                            <p>{{ $home->fourth_description_card_one ?? '' }}</p>
                             <a href="javascript:;" data-toggle="modal" data-target="#signupModal" class="btn _btn2">Join Now</a>
                         </div>
                     </div>
@@ -185,8 +185,8 @@
                             <img src="{{ asset("public/storage/images/card-bg-img-2.png") }}" alt="">
                         </figure>
                         <div class="_textCard2__content">
-                            <p class="_textCard2__heading">Make Money Selling Services</p>
-                            <p>Consectetur adipisicing elit sed dotem eiusmod tempor incune utnaem labore etdolore maigna aliqua enim poskina ilukita ylokem lokateise ination voluptate velit esse cillum.</p>
+                            <p class="_textCard2__heading">{{ $home->fourth_title_card_two ?? '' }}</p>
+                            <p>{{ $home->fourth_description_card_two ?? '' }}</p>
                             <a href="javascript:;" data-toggle="modal" data-target="#signupModal" class="btn _btn2">Join Now</a>
                         </div>
                     </div>
@@ -202,8 +202,8 @@
         <div class="container ">
             <!-- Begin: Heading -->
             <div class="_headingDiv text-center">
-                <h2 class="_headingTxt">Popular Professional Services</h2>
-                <p class="_headingTag">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidi</p>
+                <h2 class="_headingTxt">{{ $home->fifth_title ?? '' }}</h2>
+                <p class="_headingTag">{{ $home->fifth_sub_title ?? '' }}</p>
             </div>
             <!-- End : Heading  -->  
             <div class="_galDiv">
@@ -302,22 +302,22 @@
                 <div class="col-md-8 ml-auto">
                     <!-- Begin: Heading -->
                     <div class="_headingDiv">
-                        <h2 class="_headingTxt">Get Work Done Faster On Hire a Nerd,<br> With Confidence</h2>                
+                        <h2 class="_headingTxt">{!! $home->sixth_header ?? '' !!}</h2>                
                     </div>
                     <!-- End : Heading  -->
                     
                     <ul class="_infoList">
                         <li class="wow fadeIn">
-                            <p class="_infoListHead">Payment Protection, Guaranteed</p> 
-                            <p class="_infoListTxt">Payment is released to the freelancer once you’re pleased and approve the work you get.</p>       
+                            <p class="_infoListHead">{!! $home->sixth_first_title ?? '' !!}</p> 
+                            <p class="_infoListTxt">{!! $home->sixth_first_subtitle ?? '' !!}</p>       
                         </li>
                         <li class="wow fadeIn">
-                            <p class="_infoListHead">Know The Price Upfront</p> 
-                            <p class="_infoListTxt">Find any service within minutes and know exactly what you’ll pay. No hourly rates, just a fixed price.</p>       
+                            <p class="_infoListHead">{!! $home->sixth_second_title ?? '' !!}</p> 
+                            <p class="_infoListTxt">{!! $home->sixth_second_subtitle ?? '' !!}</p>       
                         </li>
                         <li class="wow fadeIn">
-                            <p class="_infoListHead">Payment Protection, Guaranteed</p> 
-                            <p class="_infoListTxt">Findlancer is here for you, anything from answering any questions to resolving any issues, at any time.</p>       
+                            <p class="_infoListHead">{{ $home->sixth_third_title ?? '' }}</p> 
+                            <p class="_infoListTxt">{{ $home->sixth_third_subtitle }}</p>       
                         </li>
                     </ul>                     
                     
@@ -332,8 +332,8 @@
         <div class="container">            
             <!-- Begin: Heading -->
             <div class="_headingDiv">
-                <h2 class="_headingTxt">Weekly Best Sellers</h2>
-                <p class="_headingTag">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidi</p>
+                <h2 class="_headingTxt">{{ $home->seven_title ?? '' }}</h2>
+                <p class="_headingTag">{{ $home->seven_sub_title ?? '' }}</p>
             </div>
             <!-- End : Heading  -->                
             

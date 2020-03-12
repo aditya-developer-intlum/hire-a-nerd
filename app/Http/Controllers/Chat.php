@@ -13,8 +13,8 @@ class Chat extends Controller
     }
     
     public function message(Request $request)
-    {
-    	
+    {	
     	return event(new MessageEvent($request->all()));
     }
+
 }

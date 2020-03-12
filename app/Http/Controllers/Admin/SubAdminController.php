@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Session;
 use Auth;
+use App\Notifications\SubadminRegistrationNotification;
+use Log;
 class SubAdminController extends Controller
 {
    private $user;
@@ -66,11 +68,26 @@ class SubAdminController extends Controller
                 'type' => 2,
                 'status' => 1
             ]);
+            $this->registrationNotification($request,$user);
             return back()->with('success','Sub Admin Added');    
         }else{
             abort(404);
         }
         
+    }
+    /**
+     * Send Notification to Sub admin Login Credential
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function registrationNotification(Request $request,User $user)
+    {
+        try {
+            $user->notify(new SubadminRegistrationNotification($request));
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+        }
     }
 
     /**
@@ -131,9 +148,10 @@ class SubAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Request $request,User $user)
     {
         if($request->user()->permissions()->whereSlug('can_delete_sub_admin')->exists()){
+           
             $user->delete();
         }else{
             abort(404);

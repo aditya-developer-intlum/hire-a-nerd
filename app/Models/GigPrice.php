@@ -4,8 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\GigScope;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 
-class GigPrice extends Model
+class GigPrice extends Model implements Searchable 
 {
     public $timestamps = false;
 
@@ -34,5 +36,12 @@ class GigPrice extends Model
     { 
         $this->gigScope()->delete();
         return parent::delete();
+    }
+    public function getSearchResult(): SearchResult
+    {
+        return new SearchResult(
+            $this,
+            $this->gig_title
+        );
     }
 }

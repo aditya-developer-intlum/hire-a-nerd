@@ -84,7 +84,17 @@
 								</div>
 								<div class="kt-portlet__body">
 									<div class="row">
-										<div class="col-md-2 offset-md-10">
+										<div class="col-md-2 offset-md-8">
+											<form id="user_status_filter" >
+												<select name="status" id="status" class="form-control">
+													<option value="">Select Filter</option>
+													<option value="0" {{ request()->status == '0'?'selected':'' }}>Deactive</option>
+													<option value="1" {{ request()->status == 1?'selected':'' }}>Active</option>
+													<option value="2" {{ request()->status == 2?'selected':'' }}>Suspended</option>
+												</select>
+											</form>
+										</div>
+										<div class="col-md-2">
 											<form action="{{ route('admin.user.index') }}">
 												
 											
@@ -220,7 +230,7 @@
 							</div>
 							<div class="row">
 								<div class="col-sm-12 col-md-5" >
-									<div class="dataTables_info" id="kt_table_1_info" role="status" aria-live="polite">Showing {{($user->currentpage()-1)*$user->perpage()+1}} to {{$user->currentpage()*$user->perpage()}}
+									<div class="dataTables_info" id="kt_table_1_info" role="status" aria-live="polite">Showing {{ $user->firstItem() }} to {{$user->lastItem()}}
     of  {{$user->total()}} entries
 									</div>
 								</div>
@@ -296,8 +306,7 @@ function suspendUser(id,name) {
 	  title: `Suspend &nbsp; <strong>${name}</strong>`,
 	   html:
     `<input id="swal-input1" class="swal2-input"  type="text"  placeholder="Enter Days" required>
-    <textarea  id="region_of_suspension" class="swal2-input" rows="10" placeholder='
-    Enter Suspend Region' style='height:200px'></textarea>`,
+    <textarea  id="region_of_suspension" class="swal2-input" rows="10" placeholder='Enter reason for suspension' style='height:200px'></textarea>`,
 	  inputAttributes: {
 	    autocapitalize: 'off'
 	  },
@@ -366,6 +375,12 @@ function suspendUser(id,name) {
 		});
 	}
 		
+$(document).on("change","#status",function(e){
+	e.preventDefault();
+	$("#user_status_filter").submit();
+})
+
+
 	</script>
 @endpush	
 

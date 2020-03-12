@@ -139,7 +139,7 @@
                                 <form action="" class="_userForm" id="forgetPassword">
                                     @csrf    
                                     <div class="form-group">
-                                        <input type="email" placeholder="Email Id" class="form-control" name="email" placeholder="Enter Email Id" autocomplete="off">
+                                        <input type="email" placeholder="Email Address" class="form-control" name="email" placeholder="Enter Email Id" autocomplete="off">
                                          <span class="text-danger" role="alert" id="emailreset">
                                         <strong></strong>
                                         </span>
@@ -199,7 +199,7 @@
                                 <form action="" class="_userForm" id="login">
                                     @csrf    
                                     <div class="form-group">
-                                        <input type="email" placeholder="Email Id" class="form-control" name="email">
+                                        <input type="email" placeholder="Email Address" class="form-control" name="email">
                                          <span class="text-danger" role="alert" id="email">
                                         <strong></strong>
                                         </span>
@@ -292,7 +292,7 @@
                                         <span class="_icon"><img src="{{ asset("public/storage/images/no-handcore-icon.png") }}" alt=""></span>
                                         <div>
                                             <span class="_listHeading">No Hardcore Advertising</span>
-                                            <span class="_listText">Your services get actively promoted buy thousand of affiliates</span>
+                                            <span class="_listText">Your services get actively promoted by thousand of affiliates</span>
                                         </div>
                                     </li>
                                     <!-- End : li -->
@@ -317,7 +317,7 @@
 
                                     </div>
                                     <div class="form-group">
-                                        <input type="email" placeholder="EMAIL ID" class="form-control" name="email" autocomplete="off">
+                                        <input type="email" placeholder="EMAIL ADDRESS" class="form-control" name="email" autocomplete="off">
                                         <span class="text-danger" role="alert" id="semail">
                                         <strong></strong>
                                         </span>
@@ -331,7 +331,7 @@
                                                                                                                             
                                     </div>
                                      <div class="form-group">
-                                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation"  autocomplete="new-password" placeholder="Confirm Password">
+                                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation"  autocomplete="new-password" placeholder="CONFIRM PASSWORD">
 
                                         <span class="text-danger" role="alert" id="confirm_password">
                                         <strong></strong>

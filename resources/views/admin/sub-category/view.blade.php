@@ -63,16 +63,19 @@
         	Serial No.
         </th>
          <th class="sorting" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" aria-label="Country: activate to sort column ascending">
-        	Category
+        	@sortablelink('menu.name','Menu')
         </th>
         <th class="sorting" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" aria-label="Country: activate to sort column ascending">
-        	Name
+        	@sortablelink('name')
         </th>
         <th class="sorting" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" aria-label="Country: activate to sort column ascending">
-        	Slug
+        	@sortablelink('slug')
         </th>
          <th class="sorting" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" aria-label="Country: activate to sort column ascending">
-        	Status
+        	@sortablelink('sort_id','Sort Id')
+        </th>
+         <th class="sorting" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" aria-label="Country: activate to sort column ascending">
+        	@sortablelink('is_active','Status')
         </th>
     @canany(['update','delete'],App\Models\SubMenu::class)
         <th class="sorting" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" aria-label="Country: activate to sort column ascending" width="10%">
@@ -89,6 +92,7 @@
 				<td>{{ $_subCategory->menu->name ?? ''}}</td>
 				<td>{{ $_subCategory->name ?? ''}}</td>
 				<td>{{ $_subCategory->slug ?? ''}}</td>
+				<td>{{ $_subCategory->sort_id ?? ''}}</td>
 				<td>
 					<a href="{{ route('admin.sub-category.status',[$_subCategory->id,$_subCategory->is_active]) }}" class="kt-badge  kt-badge--{{ $_subCategory->is_active == 1 ? 'success':'danger' }} kt-badge--inline kt-badge--pill">
 										{{ $_subCategory->is_active == 1 ? 'Active':'Deactive' }}
@@ -121,7 +125,8 @@
 							<div class="row">
 								<div class="col-sm-12 col-md-5" >
 									<div class="dataTables_info" id="kt_table_1_info" role="status" aria-live="polite">Showing 
-										{{($subCategory->currentpage()-1)*$subCategory->perpage()+1}} to {{$subCategory->currentpage()*$subCategory->perpage()}}
+		{{ ($subCategory->firstItem()) }} to {{ $subCategory->lastItem() }}
+
     of  {{$subCategory->total()}} entries
 									</div>
 								</div>
@@ -138,7 +143,7 @@
 										</label>
 									</div>
 									<div class="dataTables_paginate paging_simple_numbers" id="kt_table_1_paginate">
-									{{ $subCategory->links() }}
+									{{ $subCategory->appends($_GET)->links() }}
 										
 									</div>
 						</div></div></div>
@@ -154,7 +159,7 @@
 	<script>
 		const url = '{{ url('admin') }}';
 
-		function setSubCategory(title,value,button,url,method,message,category = "") {
+		function setSubCategory(title,value,button,url,method,message,category = "",sorting="") {
 			Swal.fire({
 				  title: `${title}`,
 				  html:
@@ -166,6 +171,7 @@
 		@endforeach
 	</select>
 	<input id="swal-input1" class="swal2-input"  type="text"  placeholder="Enter Sub Category" value='${value}'>
+	<input id="sortId" class="swal2-input"  type="text"  placeholder="Sorting Number" value='${sorting}'>
     `,
 				  showCancelButton: true,
 				  confirmButtonText: `${button}`,
@@ -178,6 +184,7 @@
 				   	data: {
 				   		name: $("#swal-input1").val(),
 				   		category: $("#category").val(),
+				   		sorting: $("#sortId").val(),
 				   		_token:'{{ csrf_token() }}'},
 				   })
 				   .done(function(e) {
@@ -230,7 +237,8 @@
 				`${url}/sub-category/${id}`,
 				'PUT',
 				'Sub Category is updated',
-				`${data.menu_id}`
+				`${data.menu_id}`,
+				`${data.sort_id}`
 				);
 			});
 		}

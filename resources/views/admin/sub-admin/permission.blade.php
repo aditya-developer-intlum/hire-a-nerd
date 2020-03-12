@@ -147,7 +147,7 @@
 			@foreach($permissions->whereIdentify('manage_gig')->get() as $permission)
 					<div class="form-group">
 						
-						<label class="kt-checkbox kt-checkbox--bold kt-checkbox--brand">
+						<label class="kt-checkbox kt-checkbox--bold kt-checkbox--brand" data-toggle="tooltip" title="{{ $permission->description ?? '' }}">
 							<input type="checkbox" value='{{ $permission->id }}' class='permissions' name='permission[]'>
 							 <strong>{{ $permission->title }}  </strong>
 								<span></span>
@@ -173,7 +173,7 @@
 				@foreach($permissions->whereIdentify('sub_admin')->get() as $permission)
 						<div class="form-group">
 							
-							<label class="kt-checkbox kt-checkbox--bold kt-checkbox--brand">
+							<label class="kt-checkbox kt-checkbox--bold kt-checkbox--brand" data-toggle="tooltip" title="{{ $permission->description ?? '' }}">
 								<input type="checkbox" value='{{ $permission->id }}' class='permissions' name='permission[]'>
 								 <strong>{{ $permission->title }}  </strong>
 									<span></span>
@@ -198,7 +198,7 @@
 			@foreach($permissions->whereIdentify('user')->get() as $permission)
 					<div class="form-group">
 						
-						<label class="kt-checkbox kt-checkbox--bold kt-checkbox--brand">
+						<label class="kt-checkbox kt-checkbox--bold kt-checkbox--brand" data-toggle="tooltip" title="{{ $permission->description ?? '' }}">
 							<input type="checkbox" value='{{ $permission->id }}' class='permissions' name='permission[]'>
 							 <strong>{{ $permission->title }}  </strong>
 								<span></span>
@@ -223,7 +223,7 @@
 			@foreach($permissions->whereIdentify('skill')->get() as $permission)
 					<div class="form-group">
 						
-						<label class="kt-checkbox kt-checkbox--bold kt-checkbox--brand">
+						<label class="kt-checkbox kt-checkbox--bold kt-checkbox--brand" data-toggle="tooltip" title="{{ $permission->description ?? '' }}">
 							<input type="checkbox" value='{{ $permission->id }}' class='permissions' name='permission[]'>
 							 <strong>{{ $permission->title }}  </strong>
 								<span></span>
@@ -248,7 +248,7 @@
 			@foreach($permissions->whereIdentify('qualification')->get() as $permission)
 					<div class="form-group">
 						
-						<label class="kt-checkbox kt-checkbox--bold kt-checkbox--brand">
+						<label class="kt-checkbox kt-checkbox--bold kt-checkbox--brand" data-toggle="tooltip" title="{{ $permission->description ?? '' }}">
 							<input type="checkbox" value='{{ $permission->id }}' class='permissions' name='permission[]'>
 							 <strong>{{ $permission->title }}  </strong>
 								<span></span>
@@ -270,7 +270,7 @@
 			@foreach($permissions->whereIdentify('category')->get() as $permission)
 					<div class="form-group">
 						
-						<label class="kt-checkbox kt-checkbox--bold kt-checkbox--brand">
+						<label class="kt-checkbox kt-checkbox--bold kt-checkbox--brand" data-toggle="tooltip" title="{{ $permission->description ?? '' }}">
 							<input type="checkbox" value='{{ $permission->id }}' class='permissions' name='permission[]'>
 							 <strong>{{ $permission->title }}  </strong>
 								<span></span>
@@ -295,7 +295,7 @@
 			@foreach($permissions->whereIdentify('sub_category')->get() as $permission)
 					<div class="form-group">
 						
-						<label class="kt-checkbox kt-checkbox--bold kt-checkbox--brand">
+						<label class="kt-checkbox kt-checkbox--bold kt-checkbox--brand" data-toggle="tooltip" title="{{ $permission->description ?? '' }}">
 							<input type="checkbox" value='{{ $permission->id }}' class='permissions' name='permission[]'>
 							 <strong>{{ $permission->title }}  </strong>
 								<span></span>

@@ -49,8 +49,8 @@ class DatabaseSeeder extends Seeder {
         $this->call(WalletsTableSeeder::class);
         $this->call(WebsocketsStatisticsEntriesTableSeeder::class);
         $this->call(GigsTableSeeder::class);
-        $this->call(GigFaqsTableSeeder::class);
         $this->call(GigPricesTableSeeder::class);
+        $this->call(GigFaqsTableSeeder::class);
         $this->call(GigScopesTableSeeder::class);
         $this->call(UserPermissionsTableSeeder::class);
         $this->call(UserSkillsTableSeeder::class);

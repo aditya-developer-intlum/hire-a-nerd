@@ -18,7 +18,7 @@
 										<i class="la la-graduation-cap"></i>
 										</span>
 										<h3 class="kt-portlet__head-title">
-											Qualification
+											Qualifications
 										</h3>
 									</div>
 									<div class="kt-portlet__head-toolbar">
@@ -110,8 +110,8 @@
 							<div class="row">
 								<div class="col-sm-12 col-md-5" >
 									<div class="dataTables_info" id="kt_table_1_info" role="status" aria-live="polite">Showing 
-										{{($qualification->currentpage()-1)*$qualification->perpage()+1}} to {{$qualification->currentpage()*$qualification->perpage()}}
-    of  {{$qualification->total()}} entries
+										{{$qualification->firstItem()}} to {{$qualification->lastItem()}}
+    of  {{$qualification->total()}} entries 
 									</div>
 								</div>
 								<div class="col-sm-12 col-md-7 dataTables_pager" >
@@ -119,7 +119,7 @@
 										<label>
 											<select name="kt_table_1_length" aria-controls="kt_table_1" class="custom-select custom-select-sm form-control form-control-sm" id="pagination_size"> 
 												
-												<option value="10" {{ Session::get('qualification_table_size')==10?'selected':'' }}>10</option>
+												<option value="2" {{ Session::get('qualification_table_size')==10?'selected':'' }}>10</option>
 												<option value="25" {{ Session::get('qualification_table_size')==25?'selected':'' }}>25</option>
 												<option value="50" {{ Session::get('qualification_table_size')==50?'selected':'' }}>50</option>
 												<option value="100" {{ Session::get('qualification_table_size')==100?'selected':'' }}>100</option>

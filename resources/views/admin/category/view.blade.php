@@ -63,13 +63,13 @@
         	Serial No.
         </th>
         <th class="sorting" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" aria-label="Country: activate to sort column ascending">
-        	Name
+        	@sortablelink('name')
         </th>
         <th class="sorting" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" aria-label="Country: activate to sort column ascending">
-        	Slug
+        	@sortablelink('slug')
         </th>
          <th class="sorting" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" aria-label="Country: activate to sort column ascending">
-        	Status
+        	@sortablelink('is_active','Status')
         </th>
     @canany(['update','delete'],App\Models\Menu::class)
         <th class="sorting" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" aria-label="Country: activate to sort column ascending" width="10%">
@@ -117,7 +117,7 @@
 							<div class="row">
 								<div class="col-sm-12 col-md-5" >
 									<div class="dataTables_info" id="kt_table_1_info" role="status" aria-live="polite">Showing 
-										{{($category->currentpage()-1)*$category->perpage()+1}} to {{$category->currentpage()*$category->perpage()}}
+										{{ $category->firstItem() }} to {{ $category->lastItem() }}
     of  {{$category->total()}} entries
 									</div>
 								</div>
@@ -148,15 +148,13 @@
 	<script>
 		const url = '{{ url('admin') }}';
 
-		function setCategory(title,value,button,url,method,message) {
+		function setCategory(title,value,button,url,method,message,description="") {
+
 			Swal.fire({
 				  title: `${title}`,
-				  input: 'text',
-				  inputValue: `${value}`,
-				  inputAttributes: {
-				    autocapitalize: 'off',
-				    placeholder:'Enter Category'
-				  },
+				  html:
+					    `<input id="swal-input1" class="swal2-input" placeholder="Enter Category Name" value="${value}">
+					    <input id="swal-input2" class="swal2-input" placeholder="Enter Description" value="${description}">`,
 				  showCancelButton: true,
 				  confirmButtonText: `${button}`,
 				  showLoaderOnConfirm: true,
@@ -165,7 +163,7 @@
 				   	url: `${url}`,
 				   	type: `${method}`,
 				   	dataType: 'json',
-				   	data: {name: login,'_token':'{{ csrf_token() }}'},
+				   	data: {name: $("#swal-input1").val(),description:$("#swal-input2").val(),'_token':'{{ csrf_token() }}'},
 				   })
 				   .done(function(e) {
 					   	Swal.fire({
@@ -214,7 +212,8 @@
 				'Update',
 				`${url}/category/${id}`,
 				'PUT',
-				'Category is updated'
+				'Category is updated',
+				`${data.description}`,
 				);
 			});
 		}

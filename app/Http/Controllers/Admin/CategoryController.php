@@ -50,7 +50,8 @@ class CategoryController extends Controller {
 			$this->check($request);
 			return Menu::create([
 					'name' => $request->name,
-					'slug' => Str::slug($request->name, '-')
+					'slug' => Str::slug($request->name, '-'),
+					'description' => $request->description,
 				]);
 		} else {
 			abort(404);
@@ -91,10 +92,11 @@ class CategoryController extends Controller {
 	 */
 	public function update(Request $request, Menu $category) {
 		if (Auth::user()->can('update', Menu::class )) {
-			$this->check($request);
+			$this->check($request,$category);
 			$category->update([
 					'name' => $request->name,
-					'slug' => Str::slug($request->name, '-')
+					'slug' => Str::slug($request->name, '-'),
+					'description' => $request->description,
 				]);
 			return $category;
 		} else {
@@ -123,10 +125,18 @@ class CategoryController extends Controller {
 	 * @param  \Illuminate\Http\Request  $request
 	 * @return $this
 	 */
-	private function check(Request $request) {
-		$request->validate([
-				'name' => 'required|unique:menu'
+	private function check(Request $request,$menu="") {
+
+		if(!empty($menu)){
+           $request->validate([
+				'name' => "required|unique:menu,name,$menu->id"
 			]);
+        }else{
+            $request->validate([
+				'name' => "required|unique:menu,name"
+			]);
+        }
+		
 		return $this;
 	}
 	private function setTableSize(Request $request) {
@@ -143,7 +153,7 @@ class CategoryController extends Controller {
 	}
 	private function loadData(Request $request) {
 		if (empty(Session::get('search_category'))) {
-			$this->category = Menu::orderBy('id', 'DESC')
+			$this->category = Menu::sortable()->orderBy('id', 'DESC')
 			     ->paginate(Session::get('category_table_size')??10);
 		}
 		return $this;
@@ -151,7 +161,7 @@ class CategoryController extends Controller {
 	private function search(Request $request) {
 		if (!empty(Session::get('search_category'))) {
 			$search         = Session::get('search_category');
-			$this->category = Menu::orderBy('id', 'DESC')
+			$this->category = Menu::sortable()->orderBy('id', 'DESC')
 			     ->where('name', 'like', '%'.$search.'%')
 			     ->paginate(Session::get('category_table_size')??10);
 		}

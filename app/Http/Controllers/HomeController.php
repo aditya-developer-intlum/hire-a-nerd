@@ -7,7 +7,7 @@ use App\Models\Gig;
 use App\Models\Testimonial;
 use App\Models\Marketplace;
 use App\User;
-
+use App\CmsHome;
 
 class HomeController extends Controller
 {
@@ -33,7 +33,8 @@ class HomeController extends Controller
         $testimonial = Testimonial::all();
 
         $marketplace = Marketplace::all();
-        return view('auth.login',compact("gigs","weekly","testimonial","marketplace"));
+        $home = CmsHome::first();
+        return view('auth.login',compact("gigs","weekly","testimonial","marketplace","home"));
     }
 
     public function mode(User $user)

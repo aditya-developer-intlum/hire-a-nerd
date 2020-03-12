@@ -11,6 +11,7 @@ class CategoryController extends Controller
     {
     	$sidebar = Nerd::subMenu($page);
     	$title = Nerd::pageTitleFromSlug($page);
+       
     	if ($sidebar->count()==0) {
     		
     		abort(404);

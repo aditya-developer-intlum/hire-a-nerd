@@ -16,6 +16,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Session;
 use Validator;
+use App\Notifications\UserRegistrationNotification;
+use App\Notifications\UserSuspensionNotification;
+use Log;
 
 class UserController extends Controller {
 	use SendsPasswordResetEmails;
@@ -67,6 +70,7 @@ class UserController extends Controller {
 					'email'         => $request->email,
 					'mobile_number' => $request->mobile_number,
 					'password'      => bcrypt($request->password),
+					'status' 		=> 1,
 				]);
 			UserBillingAddress::create([
 					'user_id'    => $user->id,
@@ -80,13 +84,28 @@ class UserController extends Controller {
 						'avatar'  => $request->avatar->store('uploads/user/avatar', 'public')
 					]);
 			}
-
+			$this->userRegistrationNotification($request,$user);
 			return back()->with('success', 'User Added');
 		} else {
 			abort(404);
 		}
 	}
-
+	/**
+	 * Send Email to registered user with login link
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @param  \App\User  $user
+	 * @return $this
+	 */
+	private function userRegistrationNotification(Request $request,User $user){
+		
+		try {
+			$user->notify(new UserRegistrationNotification($request));	
+		} catch (Exception $e) {
+			Log::error($e->getMessage());
+		}
+		return $this;
+	}
 	/**
 	 * Display the specified resource.
 	 *
@@ -223,6 +242,7 @@ class UserController extends Controller {
 		}
 	}
 	public function suspend(Request $request, User $user) {
+
 		if (Auth::user()->can('suspend', User::class )) {
 			$validator = Validator::make($request->all(), [
 					'number_of_days' => 'required|numeric',
@@ -234,7 +254,15 @@ class UserController extends Controller {
 			}
 
 			$user->update(['status' => 2]);
-			return Suspend::create([
+
+			$this->userSuspensionNotification($request,$user);
+
+			return Suspend::updateOrCreate(
+				[
+					'user_id'        => $user->id,
+					'status'         => 0,
+				],
+				[
 					'user_id'        => $user->id,
 					'suspend_days'   => $request->number_of_days,
 					'suspend_region' => $request->region
@@ -242,6 +270,22 @@ class UserController extends Controller {
 		} else {
 			abort(404);
 		}
+	}
+	/**
+	 * Send Email to Suspended user 
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @param  \App\User  $user
+	 * @return $this
+	 */
+	private function userSuspensionNotification(Request $request,User $user)
+	{
+		try {
+			$user->notify(new UserSuspensionNotification($request));
+		} catch (Exception $e) {
+			Log::error($e->getMessage());
+		}
+		return $this;
 	}
 	private function find(Request $request) {
 		if ($request->has('search')) {
@@ -260,39 +304,75 @@ class UserController extends Controller {
 	}
 	private function loadData(Request $request) {
 		if (empty(Session::get('search_user'))) {
-			$this->user = User::with('userDetail',
-				'userLang',
-				'userCertification',
-				'userEducation',
-				'skill',
-				'userBillingAaddresses'
-			)
-			->orderBy('id', 'desc')
-			->where('type', 0)->paginate(Session::get('user_table_size')??10);
+			if ($request->has("status") && $request->status !="") {
+					$this->user = User::with('userDetail',
+						'userLang',
+						'userCertification',
+						'userEducation',
+						'skill',
+						'userBillingAaddresses'
+					)
+					->orderBy('id', 'desc')
+					->where('status',$request->status)
+					->where('type', 0)->paginate(Session::get('user_table_size')??10);		
+			}else{
+					$this->user = User::with('userDetail',
+						'userLang',
+						'userCertification',
+						'userEducation',
+						'skill',
+						'userBillingAaddresses'
+					)
+					->orderBy('id', 'desc')
+					->where('type', 0)->paginate(Session::get('user_table_size')??10);
+			}
 		}
 		return $this;
 	}
 	private function search(Request $request) {
 		if (!empty(Session::get('search_user'))) {
 
-			$search     = Session::get('search_user');
-			$this->user = User::with('userDetail',
-				'userLang',
-				'userCertification',
-				'userEducation',
-				'skill',
-				'userBillingAaddresses'
-			)
-			->orderBy('id', 'desc')
-			->where('name', 'like', '%'.$search.'%')
-			->orWhere('email', 'like', '%'.$search.'%')
-			->orWhere('mobile_number', 'like', '%'.$search.'%')
-			->orWhereHas('userBillingAaddresses', function ($q) use ($search) {
+			if ($request->has("status") && $request->status !="") {
 
-					$q->where('country_id', 'like', '%'.$search.'%');
+				$search     = Session::get('search_user');
+				$this->user = User::with('userDetail',
+					'userLang',
+					'userCertification',
+					'userEducation',
+					'skill',
+					'userBillingAaddresses'
+				)
+				->orderBy('id', 'desc')
+				->where('status',$request->status)
+				->where('name', 'like', '%'.$search.'%')
+				->orWhere('email', 'like', '%'.$search.'%')
+				->orWhere('mobile_number', 'like', '%'.$search.'%')
+				->orWhereHas('userBillingAaddresses', function ($q) use ($search) {
 
-				})
-				->where('type', 0)	->paginate(Session::get('user_table_size')??10);
+						$q->where('country_id', 'like', '%'.$search.'%');
+
+					})
+					->where('type', 0)	->paginate(Session::get('user_table_size')??10);
+			}else{
+				$search     = Session::get('search_user');
+				$this->user = User::with('userDetail',
+					'userLang',
+					'userCertification',
+					'userEducation',
+					'skill',
+					'userBillingAaddresses'
+				)
+				->orderBy('id', 'desc')
+				->where('name', 'like', '%'.$search.'%')
+				->orWhere('email', 'like', '%'.$search.'%')
+				->orWhere('mobile_number', 'like', '%'.$search.'%')
+				->orWhereHas('userBillingAaddresses', function ($q) use ($search) {
+
+						$q->where('country_id', 'like', '%'.$search.'%');
+
+					})
+					->where('type', 0)	->paginate(Session::get('user_table_size')??10);
+			}
 		}
 		return $this;
 	}

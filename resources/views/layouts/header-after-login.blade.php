@@ -8,22 +8,23 @@
                     <!-- logo -->
                     <div class="logo"><a class="navbar-brand" href="{{ url('/') }}"><img src="{{ url("public/storage/images/logo.png") }}" alt=""></a></div>
                     <ul  class="_hdrInfo _inlineList">                                            
-                        <li><a href="{{ url('/') }}">Hire a Nerd Pro</a></li>
+                       {{--  <li><a href="{{ url('/') }}">Hire a Nerd Pro</a></li> --}}
                         <li><a href="{{ route("become.seller") }}">Become a Seller</a></li>
                         <li><a href="{{ route('seller.message.index') }}">Messages</a></li>
                         <li><a href="{{ route('wishlist.index') }}">Saved</a></li>
-                        <li><a href="{{ route('orders.index') }}">Orders</a></li>                        
+                        <li><a href="{{ route('orders.index') }}">Orders</a></li>   
+                        <li><a href="{{ route('post.request.active') }}">Manage Requests</a></li>                      
                     </ul>
                 </div>
                 <!-- End : Div --->
                 <!-- Begin : Div --->
                 <div class="_topHeader-right">
                     <div class="_searchDiv">
-                        <form action="">
-                            <input type="text" class="form-control" placeholder="Find Service">
-                            <button class="_subBtn btn">Search</button>
-                        </form>
-                    </div>
+                    <form action="{{ route('global.search') }}">
+                        <input type="text" name="search" class="form-control" placeholder="Search" value="{{ request()->search }}">
+                        <button type="submit" class="_subBtn btn">Search</button>
+                    </form>
+                </div>
                       <ul class="_hdrUserLink _inlineList">
                         <li style='cursor:pointer' id='switch_dashboard'>
                              <div class="">

@@ -11,8 +11,10 @@ use App\Models\UserSkill;
 use Auth;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 
-class User extends Authenticatable {
+class User extends Authenticatable implements Searchable{
 	use Notifiable;
 
 	/**
@@ -153,4 +155,12 @@ class User extends Authenticatable {
 	{
 		return $this->hasOne('App\UserLocation');
 	}
+	public function getSearchResult(): SearchResult
+    {
+        return new SearchResult(
+            $this,
+            $this->name,
+            "usertable"
+        );
+    }
 }

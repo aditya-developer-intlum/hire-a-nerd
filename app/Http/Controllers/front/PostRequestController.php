@@ -68,6 +68,8 @@ class PostRequestController extends Controller
         $this->postRequest->deliver_time = $request->serviceDeliverTime;
         $this->postRequest->deliver_time_other = $request->serviceDeliverTimeOther;
         $this->postRequest->budget = $request->budget;
+        $this->postRequest->user_id = auth()->user()->id;
+        $this->postRequest->status = 3;
         if($request->has('attachfile')){
             $this->postRequest->attachment = $request->attachfile->store('uploads/custome-service','public');    
         }

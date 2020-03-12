@@ -23,7 +23,7 @@
 										 <i class="la la-file-text"></i>
 										</span>
 										<h3 class="kt-portlet__head-title">
-											Manage Service
+											 Services
 										</h3>
 									</div>
 									
@@ -63,7 +63,8 @@
 		<div id="kt_table_1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
 			<div class="row">
 				<div class="col-sm-12">
-					<table class="table table-striped- table-bordered table-hover table-checkable  no-footer dtr-inline" id="kt_table_1" role="grid" aria-describedby="kt_table_1_info" style="width: 1471px;">
+		
+			<table class="table table-striped- table-bordered table-hover table-checkable dataTable no-footer dtr-inline" id="kt_table_1" role="grid" aria-describedby="kt_table_1_info" style="width: 1471px;">
 										<thead>
 	<tr role="row">
 		 <th class="sorting" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" aria-label="Country: activate to sort column ascending" >
@@ -224,7 +225,7 @@
 	                                <a onclick='suspend("{{ $gig->id }}")' class="dropdown-item" ><i class="la la-leaf"></i> Suspend</a>
 	                            @endcan
 
-	                             <a href="{{ route('admin.manage.gig.sellerDetail',[$gig->id]) }}" class="dropdown-item" target="_blank"><i class="la la-user"></i> Seller Detail</a>
+	                             <a href="{{ route('admin.manage.gig.sellerDetail',[$gig->id]) }}" class="dropdown-item" ><i class="la la-user"></i> Seller Detail</a>
 	                            </div>
 	                            
 	                        </span>
@@ -244,7 +245,7 @@
 							<div class="row">
 								<div class="col-sm-12 col-md-5" >
 									<div class="dataTables_info" id="kt_table_1_info" role="status" aria-live="polite">Showing 
-										{{($gigs->currentpage()-1)*$gigs->perpage()+1}} to {{$gigs->currentpage()*$gigs->perpage()}}
+										{{ $gigs->firstItem()}} to {{$gigs->lastItem()}}
     of  {{$gigs->total()}} entries 
 									</div>
 								</div>
@@ -336,11 +337,10 @@
 	}
 	function suspend(id) {
 		Swal.fire({
-	  	title: `Suspend Gig`,
+	  	title: `Suspend Service`,
 	   	html:
-	    `<input id="swal-input1" class="swal2-input"  type="text"  placeholder="Enter Suspend Days" autocomplete='off' required>
-	    <textarea  id="region_of_suspension" class="swal2-input" rows="10" placeholder='
-	    Enter Suspend Region' style='height:200px'></textarea>`,
+	    `<input id="swal-input1" class="swal2-input"  type="text"   placeholder="Enter number of days" autocomplete='off' required >
+	    <textarea  id="region_of_suspension" class="swal2-input" rows="10" placeholder='Enter reason for suspension' style='height:200px'></textarea>`,
 		inputAttributes: {
 		    autocapitalize: 'off'
 		},
@@ -361,7 +361,7 @@
   	  		number_of_days: $("#swal-input1").val(),
     		region: $("#region_of_suspension").val()}
   	  })
-  	  .always(function(e) {
+  	  .always((e) =>{
   	  	if(!e.errors){
   	  		
 			Swal.fire({
@@ -433,6 +433,15 @@ $("#status_action").change(function(e){
 			});
 
 })
+
+$(document).on('keypress','#swal-input1',function (e) {
+  
+    if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+        
+               return false;
+    }
+  
+});
 
 	</script>
 @endpush	

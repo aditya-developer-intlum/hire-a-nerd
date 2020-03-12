@@ -165,7 +165,7 @@
 							<div class="row">
 								<div class="col-sm-12 col-md-5" >
 									<div class="dataTables_info" id="kt_table_1_info" role="status" aria-live="polite">Showing 
-										{{($orders->currentpage()-1)*$orders->perpage()+1}} to {{$orders->currentpage()*$orders->perpage()}}
+										{{$orders->firstItem()}} to {{$orders->lastItem()}}
     of  {{$orders->total()}} entries 
 									</div>
 								</div>

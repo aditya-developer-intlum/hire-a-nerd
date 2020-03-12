@@ -374,7 +374,7 @@
                                 <img src="{{ asset($img) }}" alt="">
                               </div>
                               <div class="kt-widget4__info">
-                                <a href="#" class="kt-widget4__username">
+                                <a href="{{ url("admin/user/{$user->id}") }}" class="kt-widget4__username">
                                   {{ $user->name }}
                                 </a>
                                 <!-- <p class="kt-widget4__text">

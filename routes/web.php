@@ -16,6 +16,7 @@
 | Welcome page
 |------------------------------------------------------------------------
  */
+
 Route::get('/', "HomeController@index")->middleware('guest');
 
 Route::get('login', function () {return redirect("/");});
@@ -26,6 +27,12 @@ Route::get('login', function () {return redirect("/");});
 |------------------------------------------------------------------------
  */
 Auth::routes();
+/*
+|------------------------------------------------------------------------
+| Global Search
+|------------------------------------------------------------------------
+ */
+Route::get('search',"GlobalSearchController@search")->name('global.search');
 /*
 |------------------------------------------------------------------------
 | Social Login
@@ -71,8 +78,15 @@ Route::group(["middleware" => ['auth']], function () {
 		|------------------------------------------------------------------------
 		| Home
 		|------------------------------------------------------------------------
-		 */
+		*/
 		Route::get('/home', "DashboardController@index")->name('home');
+		/*
+		|------------------------------------------------------------------------
+		| Post A Request
+		|------------------------------------------------------------------------
+		*/
+		Route::get('post-request/active','PostRequestController@active')->name('post.request.active');
+		Route::post('post-request/status','PostRequestController@action')->name('post.request.status');
 		/*
 		|------------------------------------------------------------------------
 		| Show All
@@ -307,6 +321,9 @@ Route::group([
 		| Login and Logout
 		|------------------------------------------------------------------------
 		 */
+		Route::get('/',function(){
+			return redirect()->route('admin.login');
+		});
 		Route::get('login', 'auth\LoginController@showLoginForm')->name('login');
 		Route::post('login', 'auth\LoginController@login')->name('login.check');
 		Route::post('logout', 'auth\LoginController@logout')->name('logout');
@@ -322,7 +339,13 @@ Route::group([
 				|------------------------------------------------------------------------
 				 */
 				Route::get('dashboard', 'DashboardController@index')->name('dashboard');
-
+				/*
+				|------------------------------------------------------------------------
+				| Manage Request
+				|------------------------------------------------------------------------
+				 */
+				Route::get('manage-requests',"PostRequestController@index")->name('manage.request');
+				Route::post('manage-requests',"PostRequestController@action")->name('manage.request.action');
 				/*
 				|------------------------------------------------------------------------
 				| Sub Admin
@@ -447,9 +470,28 @@ Route::group([
 						Route::get('page/{page}/status', 'PageController@status')->name('page.status');
 						/*
 					|------------------------------------------------------------------------
+					| Page Route End
+					|------------------------------------------------------------------------
+					*/
+				});
+				Route::group([
+						'prefix' => 'cms',
+						'as'     => 'cms.'
+					], function () {
+						/*
+						|------------------------------------------------------------------------
+						| Press And News
+						|------------------------------------------------------------------------
+						 */
+						Route::get('home','CMS\HomePageController@index')->name('home');
+						Route::post('home','CMS\HomePageController@store')->name('home.update');
+						
+						/*
+					|------------------------------------------------------------------------
 					| Admin Routes End
 					|------------------------------------------------------------------------
-					 */});
+					*/
+				});
 			});
 
 	});

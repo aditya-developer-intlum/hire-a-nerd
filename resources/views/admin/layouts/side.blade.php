@@ -49,15 +49,24 @@
                       </svg></span><span class="kt-menu__link-text">Dashboard</span></a></li>
                 
               @can('viewAny',App\Models\Gig::class)
-                <li class="kt-menu__item {{ request()->routeIs('admin.manage*') ? 'kt-menu__item--active' : ''  }}" aria-haspopup="true">
+                <li class="kt-menu__item {{ request()->routeIs('admin.manage.gig*') ? 'kt-menu__item--active' : ''  }}" aria-haspopup="true">
                       <a href="{{ route('admin.manage.gig.index') }}" class="kt-menu__link ">
                         <span class="kt-menu__link-icon">
                           <i class="la la-file-text"></i>
                         </span>
-                        <span class="kt-menu__link-text">Manage Service</span>
+                        <span class="kt-menu__link-text">Services</span>
                       </a>
                 </li>
               @endcan
+              <li class="kt-menu__item {{ request()->routeIs('admin.manage.request') ? 'kt-menu__item--active' : ''  }}" aria-haspopup="true">
+                      <a href="{{ route('admin.manage.request') }}" class="kt-menu__link ">
+                        <span class="kt-menu__link-icon">
+                          <i class="la la-file-text"></i>
+                        </span>
+                        <span class="kt-menu__link-text">Manage Request</span>
+                      </a>
+                </li>
+
 
               <li class="kt-menu__item {{ request()->routeIs('admin.orders*') ? 'kt-menu__item--active' : ''  }}" aria-haspopup="true">
                       <a href="{{ route('admin.orders') }}" class="kt-menu__link ">
@@ -93,7 +102,7 @@
                   <li class="kt-menu__item {{ request()->routeIs('admin.qualification*') ? 'kt-menu__item--active' : ''  }}" aria-haspopup="true">
                   <a href="{{ route('admin.qualification.index') }}" class="kt-menu__link "><span class="kt-menu__link-icon">
                     <i class="la la-graduation-cap"></i>
-                    </span><span class="kt-menu__link-text">Qualification</span></a>
+                    </span><span class="kt-menu__link-text">Qualifications</span></a>
                   </li>
               @endcan
               @can('viewAny',App\Models\Menu::class)
@@ -158,6 +167,27 @@
                     </ul>
                   </div>
                 </li>
+                  <li class="kt-menu__item kt-menu__item--submenu {{ request()->routeIs('admin.cms*') ? 'kt-menu__item--open' : ''  }}" aria-haspopup="true" data-ktmenu-submenu-toggle="hover"><a href="javascript:;" class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-icon">
+
+              <i class="la la-pagelines"></i>
+                </span><span class="kt-menu__link-text">CMS</span><i class="kt-menu__ver-arrow la la-angle-right">
+                </i></a>
+
+                  <div class="kt-menu__submenu " kt-hidden-height="240" {{ request()->routeIs('admin.cms*') ? : 'style="display: none; overflow: hidden;"'  }}><span class="kt-menu__arrow"></span>
+                    <ul class="kt-menu__subnav">
+         
+
+                  <li class="kt-menu__item {{ request()->routeIs('admin.cms.home*') ? 'kt-menu__item--active' : ''  }}" aria-haspopup="true">
+                  <a href="{{ route('admin.cms.home') }}" class="kt-menu__link "><span class="kt-menu__link-icon">
+                  
+                    </span><span class="kt-menu__link-text">Home Page</span></a>
+                  </li>
+
+                    </ul>
+                  </div>
+                </li>
+                
+
                     
                     </ul>
                   </div>

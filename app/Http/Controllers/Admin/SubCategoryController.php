@@ -57,7 +57,8 @@ class SubCategoryController extends Controller
             return SubMenu::create([
                 'menu_id' => $request->category,
                 'name' => $request->name,
-                'slug' => Str::slug($request->name, '-')
+                'slug' => Str::slug($request->name, '-'),
+                'sort_id' => $request->sorting
             ]);
         }else{
             abort(404);
@@ -107,7 +108,8 @@ class SubCategoryController extends Controller
             $this->check($request,$subCategory);
             $subCategory->update([
                 'name'=> $request->name,
-                'slug' => Str::slug($request->name, '-')
+                'slug' => Str::slug($request->name, '-'),
+                'sort_id' => $request->sorting
             ]);
             return $subCategory;
         }else{
@@ -141,14 +143,18 @@ class SubCategoryController extends Controller
     private function check(Request $request,$subCategory = "")
     {
         if(!empty($subCategory)){
-            $id = $subCategory->id;
+
+            $request->validate([
+                'name'=> "required|unique:sub_menu,name,$subCategory->id",
+                'category' =>'required',
+            ]);
         }else{
-            $id = "";
+            $request->validate([
+                'name'=> "required|unique:sub_menu,name",
+                'category' =>'required',
+            ]);
         }
-        $request->validate([
-            'name'=> "required|unique:sub_menu,name,$id",
-            'category' =>'required',
-        ]);
+       
         return $this;
     }
     private function setTableSize(Request $request)
@@ -168,7 +174,7 @@ class SubCategoryController extends Controller
     private function loadData(Request $request)
     {
         if(empty(Session::get('search_sub_category'))){
-            $this->subCategory = SubMenu::with('menu')->orderBy('id','DESC')
+            $this->subCategory = SubMenu::sortable()->with('menu')->orderBy('id','DESC')
             ->paginate(Session::get('sub_category_table_size') ?? 10);
         }
         return $this;
@@ -177,7 +183,7 @@ class SubCategoryController extends Controller
     {
         if(!empty(Session::get('search_sub_category'))){
              $search = Session::get('search_sub_category');
-            $this->subCategory = SubMenu::with('menu')->orderBy('id','DESC')
+            $this->subCategory = SubMenu::sortable()->with('menu')->orderBy('id','DESC')
             ->where('name','like','%'.$search.'%')
             ->orWhereHas('menu', function($q) use($search){
 

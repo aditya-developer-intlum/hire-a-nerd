@@ -1029,6 +1029,81 @@ Digital Marketing, Legal, Educational, Current affairs, Health and fitness, Pers
             'updated_at' => '2019-11-19 07:59:36',
             'deleted_at' => NULL,
         ),
+        24 => 
+            array (
+                'id' => 10,
+                'user_id' => 17,
+                'gig_title' => 'I will develop website using yii, yii2, codeigniter, laravel, php',
+                'category' => 6,
+                'sub_category' => 104,
+                'tags' => 'Ci,Laravel',
+                'describe_your_gig' => '<p>High Delivery Completion</p>
+
+<p>lembits delivered at least 95% of their orders.</p>
+
+<p>Helpful?</p>
+
+<p>Yes</p>
+
+<p>No</p>
+
+<p>Great Communicator</p>
+
+<p>100% of recent customers said they had had excellent communication with lembits.</p>
+
+<p>Helpful?</p>
+
+<p>Yes</p>
+
+<p>No</p>
+
+<p>Meets Expectations</p>
+
+<p>Customers liked working with this seller and ordered their service again.</p>
+
+<p>Helpful?</p>
+
+<p>Yes</p>
+
+<p>No</p>
+
+<p><br />
+<br />
+I am also an expert in payment integration like&nbsp;<strong>PayPal, Stripe, ChargeBee, 2Checkout, Paytm, PayUmoney, Braintree</strong>, etc.<br />
+<br />
+Great experience:<br />
+1. Yii,<br />
+2. Yii2<br />
+3. Codeigniter<br />
+4. Laravel<br />
+5. AngularJs<br />
+6. Any php framework<br />
+7. MySql<br />
+8. APIs for mobile application</p>',
+                'requirement' => 'WordPress, Yii, Yii2, Codeigniter, Laravel, Shopify, BigCommerce, PSD to HTML to WordPress, and any kind of Php Frameworks.
+✪ Logo Design, Mockup Design( UI/UX ), Application Design, Banner Design, Flyer Design, Vector Design, Email Template Design, Social Media Marketing Banner and all design related things.',
+                'answer_type' => NULL,
+                'is_mandatory' => 0,
+                'gig_photo_one' => 'uploads/gig-photo/isTvvxG47gKUITwOXTlc7ulxNRoPxOTVn6qrKJwe.webp',
+                'gig_photo_two' => NULL,
+                'gig_photo_three' => NULL,
+                'gig_video' => NULL,
+                'gig_pdf_one' => NULL,
+                'gig_pdf_two' => NULL,
+                'is_status' => 2,
+                'region' => NULL,
+                'suspended_till' => NULL,
+                'status' => 1,
+                'widget_one' => 1,
+                'widget_two' => 1,
+                'widget_three' => 1,
+                'widget_four' => 1,
+                'widget_five' => 1,
+                'clicks' => NULL,
+                'created_at' => '2019-09-13 15:57:04',
+                'updated_at' => '2019-11-08 12:33:42',
+                'deleted_at' => NULL,
+            ),
     ));
         
         
