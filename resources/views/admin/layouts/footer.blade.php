@@ -906,6 +906,7 @@
 
     <!--begin::Page Scripts(used by this page) -->
     <script src="{{ asset('public/storage/admin/assets/js/demo1/pages/custom/apps/chat/chat.js') }}" type="text/javascript"></script>
+   {{--  <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script> --}}
 
 
 <script>

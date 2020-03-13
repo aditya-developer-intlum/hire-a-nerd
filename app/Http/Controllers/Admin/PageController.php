@@ -142,6 +142,8 @@ class PageController extends Controller
         $this->page->title = $request->title;
         $this->page->slug = Str::slug($request->title,'-');
         $this->page->contents = $request->contents;
+        $this->page->meta_title = $request->meta_title;
+        $this->page->meta_description = $request->meta_description;
 
         return $this;
     }

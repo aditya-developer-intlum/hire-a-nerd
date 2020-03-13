@@ -25,7 +25,8 @@
         "socialiteproviders/vimeo": "^3.0",
         "spatie/laravel-newsletter": "^4.7",
         "spatie/laravel-searchable": "^1.5",
-        "unisharp/laravel-ckeditor": "^4.7"
+        "unisharp/laravel-ckeditor": "^4.7",
+        "yajra/laravel-datatables-oracle": "^9.9"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

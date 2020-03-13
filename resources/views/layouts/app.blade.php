@@ -5,10 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+@stack('seo')
     <title>Hire A Nerd @yield("title")</title>
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset("public/storage/images/favicon.png") }}">
     <!--  CSS -->
-    
 
     @include("layouts.header-links")
 </head>

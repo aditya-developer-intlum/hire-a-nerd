@@ -7,7 +7,7 @@
     <main class="main_body">
     <!-- Begin : Banner --->
     <section class="_banner">
-        <img src="{{ asset("public/storage/images/banner-img-1.jpg") }}" alt="" class="img-fluid _bannerImg">  
+        <img src="{{ asset("public/storage/$home->banner_image") }}" alt="" class="img-fluid _bannerImg">  
         <div class="_bannerContent">
             <div class="container">
                 <div class="row">
@@ -296,7 +296,7 @@
     <!-- End:  Populor  Service section  -->
 
     <!-- Begin: Why us section  -->
-    <section class="_whyUs _commonPadding">
+    <section class="_whyUs _commonPadding" style="background:url('{{ asset("public/storage/{$home->section_image}") }}')  #f3f4f7 no-repeat left">
         <div class="container ">
             <div class="row">
                 <div class="col-md-8 ml-auto">

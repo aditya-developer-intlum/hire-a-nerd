@@ -42,7 +42,7 @@
 					</select>
 													
 					</div>
-				
+
 			</div>
 			<div class="col-md-2">
 				<form action="{{ route('admin.manage.gig.index') }}">										
@@ -58,7 +58,7 @@
 			</div>	
 
 		</div>
-
+	
 									<!--begin: Datatable -->
 		<div id="kt_table_1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
 			<div class="row">
@@ -275,9 +275,6 @@
 @push('scripts')
 	<script>
 		const url = '{{ url('admin') }}';
-
-
-
 	function setEarning(userId,category,subCategory,node,price) {
 		
 		var data = { 
@@ -286,7 +283,6 @@
 			menu:category,
 			submenu:subCategory
 		};
-
 		$.post('{{ route('admin.commision.search') }}',data, function(data, textStatus, xhr) {
 			
 			$(node).parent().find('div').html(`<center>
@@ -306,7 +302,6 @@
 		});
 		
 	}
-
 	function block(id) {
 		Swal.fire({
 			title: 'Are you sure?',
@@ -316,9 +311,7 @@
 			cancelButtonColor: '#d33',
 			confirmButtonText: 'Yes, Block it!'
 		}).then((result) => {
-
 			if (result.value) {
-
 				$.ajax({
 					url: `${url}/manage/gig/${id}/block`,
 					type: 'get',
@@ -332,7 +325,6 @@
 				   	} 
 				});		  
 			}
-
 		});
 	}
 	function suspend(id) {
@@ -349,7 +341,6 @@
 		showLoaderOnConfirm: true,
 		cancelButtonColor: '#d33',
 		preConfirm: (login) => {
-
   	  $.ajax({
   	  	headers: {
         'X-CSRF-Token': '{{ csrf_token() }}'
@@ -371,7 +362,6 @@
 			  }
 			});
   	  	}else{
-
   	  		Swal.fire({
 			  html: `${e.errors.number_of_days?e.errors.number_of_days:''}<br>${e.errors.region?e.errors.region:''}`,
 			  onClose: () => {
@@ -379,13 +369,10 @@
 			  }
 			});
   	  	}
-
   	  });
   }
 });
-
 	}
-
 	function deleteGig(id) {
 		Swal.fire({
 			  title: 'Are you sure?',
@@ -397,7 +384,6 @@
 			  confirmButtonText: 'Yes, delete it!'
 				}).then((result) => {
 				  if (result.value) {
-
 				  	$.ajax({
 				  		url: `{{ url('admin/manage/gig/') }}/${id}/delete`,
 				  		type: 'DELETE',
@@ -411,29 +397,21 @@
 				    	onClose: () => {
 			    			window.location.reload();
 			  			}
-
 				    });
 				  }
 		});
 	}
-
-
 $("#pagination_size").change(function(){
-
 			$.get('{{route('admin.manage.gig.index')}}',{display:this.value}, function(data) {
 				window.location.reload();
 			});
-
 		});
 $("#status_action").change(function(e){
-
 	e.preventDefault();
 		$.get('{{route('admin.manage.gig.index')}}',{status_action:this.value}, function(data) {
 				window.location.reload();
 			});
-
 })
-
 $(document).on('keypress','#swal-input1',function (e) {
   
     if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
@@ -442,7 +420,6 @@ $(document).on('keypress','#swal-input1',function (e) {
     }
   
 });
-
 	</script>
 @endpush	
 

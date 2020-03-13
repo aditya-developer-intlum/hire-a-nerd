@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section("content")
+
 <main class="main_body _dBody _innerpage-2">
         <div class="container">
             <!-- Begin: Heading -->
@@ -25,3 +26,8 @@
         </div>        
     </main>
 @endsection
+
+@push('seo')
+  <meta name="title" content="{{ $page->meta_title }}">
+  <meta name="description" content="{{ $page->meta_description }}">
+@endpush

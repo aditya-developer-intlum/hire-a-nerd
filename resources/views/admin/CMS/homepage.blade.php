@@ -29,6 +29,17 @@
 		</div>
 	</div>
 	<div class="form-group row">
+		<div class="col-lg-12">
+			<label for='first_name'>Banner Image:</label>
+			<input type="file" class="form-control" name="banner_image"  autocomplete="off"
+			 maxlength="125">
+			@error('banner_image')
+				<span class="text-danger">{{ $message }}</span>
+			@enderror
+		</div>
+		
+	</div>
+	<div class="form-group row">
 		<div class="col-lg-6">
 			<label for='first_name'>Header:</label>
 			<input type="text" class="form-control" placeholder="" 
@@ -188,6 +199,17 @@
 		</div>
 	</div>
 	<div class="form-group row">
+		<div class="col-lg-12">
+			<label for='first_name'>Upload Image:</label>
+			<input type="file" class="form-control" name="section_image"  autocomplete="off"
+			 maxlength="125">
+			@error('section_image')
+				<span class="text-danger">{{ $message }}</span>
+			@enderror
+		</div>
+	</div>
+	<div class="form-group row">
+
 		<div class="col-lg-12">
 			<label for='text'>Header:</label>
 			<input name="sixth_header" class="form-control" 

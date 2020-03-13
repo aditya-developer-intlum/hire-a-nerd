@@ -23,6 +23,7 @@
 	<form class="kt-form kt-form--label-right" autocomplete="off" 
 		method="post" action="{{ route('admin.pages.page.store') }}" enctype="multipart/form-data">
 	@csrf
+
 	<div class="kt-portlet__body">
 		<div class="form-group row">
 			<div class="col-lg-12">
@@ -42,8 +43,8 @@
 		</div>
 		<div class="form-group row">
 			<div class="col-lg-12">
-				<label for='first_name'>Title:</label>
-				<input type="text" class="form-control" placeholder="Enter title" 
+				<label for='first_name'>Page Title:</label>
+				<input type="text" class="form-control" placeholder="Enter page title" 
 				name="title" value="{{ old('title') }}" autocomplete="off"
 				 maxlength="191">
 				@error('title')
@@ -53,7 +54,7 @@
 		</div>
 		<div class="form-group row">
 			<div class="col-lg-12">
-				<label for='description'>Description:</label>
+				<label for='description'>Page Description:</label>
 				<textarea name="contents" class="form-control" id="description">{{ old('description') }}</textarea>
 				@error('description')
 					<span class="text-danger">{{ $message }}</span>

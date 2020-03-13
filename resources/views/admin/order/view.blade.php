@@ -27,6 +27,7 @@
 					<div class="input-group">
 				<div id="reportrange" class="form-control">
     <i class="fa fa-calendar"></i>&nbsp;
+   
     <span></span> <i class="fa fa-caret-down"></i>
 
 </div>
@@ -68,7 +69,7 @@
 		<div id="kt_table_1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
 			<div class="row">
 				<div class="col-sm-12">
-					<table class="table table-striped- table-bordered table-hover table-checkable  no-footer dtr-inline" id="kt_table_1" role="grid" aria-describedby="kt_table_1_info" style="width: 1471px;">
+				<table class="table table-striped- table-bordered table-hover table-checkable dataTable no-footer dtr-inline" id="kt_table_1" role="grid" aria-describedby="kt_table_1_info" style="width: 1471px;">
 										<thead>
 	<tr role="row">
         <th class="sorting" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" aria-label="Country: activate to sort column ascending">

@@ -21,6 +21,7 @@ class GigController extends Controller
      */
     public function index(Request $request)
     {
+
         if($request->user()->can('viewAny',Gig::class)){
             $this->setPagination($request)
             ->setSearch($request)
@@ -35,9 +36,12 @@ class GigController extends Controller
     }
     private function view()
     {
+
         $search = Session::get('search_gigs');
+
         $pagination = Session::get('gigs_table_size');
         if(empty($search)){
+
                 $status = Session::get('status_action');
                 if(!empty($status)){
                        $status = $status==10?0:Session::get('status_action');
@@ -55,6 +59,7 @@ class GigController extends Controller
                     ->paginate($pagination ?? 10);    
                 }
         }
+   
         return $this;
     }
     private function search(Request $request)
@@ -62,6 +67,7 @@ class GigController extends Controller
         $search = Session::get('search_gigs');
         $pagination = Session::get('gigs_table_size');
         $status = Session::get('status_action');
+        
         if(!empty($search)){
 
             $this->gigs = Gig::with('user','menu','submenu','gigprice')
