@@ -83,7 +83,7 @@
                     @foreach ($gigs as $gig)
 
                     @php 
-                         $avatar = $gig->user->userDetail->avatar;
+                         $avatar = $gig && $gig->user &&  $gig->user->userDetail ? $gig->user->userDetail->avatar : '';
                     @endphp
                     <!-- item begin-->
                     <div class="item ">

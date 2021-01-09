@@ -76,13 +76,13 @@
         	Order Id
         </th>
 		 <th class="sorting" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" aria-label="Country: activate to sort column ascending" >
-        	Category
+        	@sortablelink('gig.gig_title','Category')
         </th>
         <th class="sorting" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" aria-label="Country: activate to sort column ascending" >
-        	Sub Category
+        	@sortablelink('gig.sub_category','Sub Category')
         </th>
         <th class="sorting" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" aria-label="Country: activate to sort column ascending" >
-        	Title
+        	@sortablelink('gig.gig_title','Title')
         </th>
         <th class="sorting" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" aria-label="Country: activate to sort column ascending">
         	Seller

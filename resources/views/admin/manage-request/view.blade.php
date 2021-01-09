@@ -58,25 +58,25 @@
 		 <th class="sorting" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" aria-label="" >
         	S No.
         </th>
-        <th class="sorting" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" aria-label="">
-        	Category
+        <th>
+        	@sortablelink('category.name','Category')
         </th>
         <th class="sorting" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" >
-        	Sub Category
+        	@sortablelink('subCategory.name','Sub Category')
         </th>
         <th class="sorting" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" >
-        	Description
+        	@sortablelink('description')
         </th>
          <th class="sorting" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" >
-        	Deliver In
+        	@sortablelink('deliver_time','Deliver In')
         </th>
          <th class="sorting" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" >
-        	Budget
+        	@sortablelink('budget')
         </th>
         <th class="sorting" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" >
         	Attachment
         </th>
-        <th>Status</th>
+        <th>@sortablelink('status')</th>
    
         <th class="sorting" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" aria-label="" width="20%">
         	Action

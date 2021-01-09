@@ -3,9 +3,20 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
 
 class PostRequest extends Model
 {
+	use Sortable;
+	public $sortable = [
+		'category_id',
+		'sub_category_id',
+		'description',
+		'deliver_time',
+		'budget',
+		'status'
+	];
+
 	public function scopeUser($query)
 	{
 		return $query->where('user_id',auth()->user()->id);

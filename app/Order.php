@@ -3,8 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
 
 class Order extends Model {
+
+	use Sortable;
+
+	public $sortable = ['gig_id'];
+
 	public function transaction() {
 		return $this->hasOne('App\Transaction');
 	}

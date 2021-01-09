@@ -22,7 +22,7 @@ class UserPersionalDetailController extends Controller
 		$request->validate([
 			"name"=>"required",
 			"email"=>"required|email|unique:users,email,$request->id,id",
-			"mobile_number" => "required|unique:mobile_number"
+			"mobile_number" => "required|unique:users,mobile_number"
 
 		]);
 		return $this;
@@ -38,9 +38,10 @@ class UserPersionalDetailController extends Controller
 	{
 		User::where("id",$request->id)
 		->update([
-			"name"=>$request->name,
-			"email"=>$request->email,
-			"online_status"=>$request->online_status
+			"name"=> $request->name,
+			"email"=> $request->email,
+			"mobile_number" => $request->mobile_number,
+			"online_status"=> $request->online_status
 		]);
 
 		return $this;

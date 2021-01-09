@@ -12,9 +12,9 @@ class PostRequestController extends Controller
     public function index(Request $request)
     {
         if ($request->has('status') && !empty($request->status)) {
-            $postrequest = PostRequest::where('status',$request->status)->latest()->paginate(15);
+            $postrequest = PostRequest::sortable()->where('status',$request->status)->latest()->paginate(15);
         }else{
-            $postrequest = PostRequest::latest()->paginate(15);
+            $postrequest = PostRequest::sortable()->latest()->paginate(15);
         }
    		return view('admin.manage-request.view',['skill'=> Skill::paginate(20),'postrequests' => $postrequest]);
     }

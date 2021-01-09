@@ -354,6 +354,15 @@ Route::group([
 				Route::resource('sub-admin', SubAdminController::class );
 				/*
 				|------------------------------------------------------------------------
+				| Help & Support
+				|------------------------------------------------------------------------
+				 */
+				Route::resources([
+					'help-category' => HelpCategoryController::class,
+					'help' => HelpController::class
+				]);
+				/*
+				|------------------------------------------------------------------------
 				| User
 				|------------------------------------------------------------------------
 				 */
@@ -476,15 +485,23 @@ Route::group([
 				});
 				Route::group([
 						'prefix' => 'cms',
-						'as'     => 'cms.'
+						'as'     => 'cms.',
+						'namespace' => 'CMS'
 					], function () {
 						/*
 						|------------------------------------------------------------------------
 						| Press And News
 						|------------------------------------------------------------------------
 						 */
-						Route::get('home','CMS\HomePageController@index')->name('home');
-						Route::post('home','CMS\HomePageController@store')->name('home.update');
+						Route::get('home','HomePageController@index')->name('home');
+						Route::post('home','HomePageController@store')->name('home.update');
+						/*
+						|------------------------------------------------------------------------
+						| Sign up form text change
+						|------------------------------------------------------------------------
+						 */
+						Route::get('signup','SignupController@edit')->name('sign.edit');
+						Route::post('signup','SignupController@update')->name('sign.update');
 						
 						/*
 					|------------------------------------------------------------------------

@@ -62,7 +62,7 @@
 													<div class="row">
 														<div class="col-lg-6">
 															<button type="submit" class="btn btn-primary">Save</button>
-															<button type="reset" class="btn btn-secondary">Cancel</button>
+															<button type="reset" class="btn btn-secondary">Reset</button>
 														</div>
 														<div class="col-lg-6 kt-align-right">
 															<a  href='{{ route('admin.pages.faq.index') }}' class="btn btn-danger">Back</a>

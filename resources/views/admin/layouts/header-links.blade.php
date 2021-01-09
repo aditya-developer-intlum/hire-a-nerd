@@ -76,6 +76,9 @@ License: You must have a valid license purchased only from themeforest(the above
     <link href="{{ asset('public/storage/admin/assets/vendors/custom/vendors/flaticon2/flaticon.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('public/storage/admin/assets/vendors/general/@fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css" />
 
+    
+    <link href="{{ asset('public/storage/admin/assets/vendors/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />
+
     <!--end:: Global Optional Vendors -->
 
     <!--begin::Global Theme Styles(used by all pages) -->
@@ -93,8 +96,10 @@ License: You must have a valid license purchased only from themeforest(the above
     <link rel="shortcut icon" href="{{ asset('public/storage/images/favicon.png') }}" />
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
+{{--     <link href="{{ asset('public/storage/admin/assets/vendors/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" /> --}}
 
- {{--    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"> --}}
+  {{--   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"> --}}
+
 
 
   </head>

@@ -38,7 +38,7 @@
 									</div>
 								</div>
 								<div class="kt-portlet__body">
-									<div class="row">
+									{{-- <div class="row">
 										<div class="col-md-2 offset-md-10">
 											<form action="{{ route('admin.qualification.index') }}">
 												
@@ -53,10 +53,11 @@
 											</form>
 										</div>	
 
-									</div>
+									</div> --}}
 
 									<!--begin: Datatable -->
-									<div id="kt_table_1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12"><table class="table table-striped- table-bordered table-hover table-checkable dataTable no-footer dtr-inline" id="kt_table_1" role="grid" aria-describedby="kt_table_1_info" style="width: 1471px;">
+									<div id="kt_table_1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12">
+	<table class="table table-striped- table-bordered table-hover table-checkable dataTable no-footer dtr-inline" id="qualification" role="grid" aria-describedby="kt_table_1_info" style="width: 1471px;">
 										<thead>
 	<tr role="row">
 		 <th class="sorting" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" aria-label="Country: activate to sort column ascending" width="20%">
@@ -79,7 +80,7 @@
 	
 		@foreach($qualification as $index => $_qualification)
 			<tr>
-				<td>{{ $index + $qualification->firstItem() }}</td>
+				<td>{{ ++$index }}</td>
 				<td>{{ $_qualification->name }}</td>
 				<td>
 					<a href='{{ url("admin/qualification/$_qualification->id/status/$_qualification->status") }}' class="kt-badge  kt-badge--{{ $_qualification->status==1?'success':'danger' }} kt-badge--inline kt-badge--pill">
@@ -107,7 +108,7 @@
 									</table>
 								</div>
 							</div>
-							<div class="row">
+							{{-- <div class="row">
 								<div class="col-sm-12 col-md-5" >
 									<div class="dataTables_info" id="kt_table_1_info" role="status" aria-live="polite">Showing 
 										{{$qualification->firstItem()}} to {{$qualification->lastItem()}}
@@ -130,7 +131,7 @@
 									{{ $qualification->links() }}
 										
 									</div>
-						</div></div></div>
+						</div></div> --}}</div>
 
 									<!--end: Datatable -->
 								</div>
@@ -245,13 +246,10 @@
 			});
 		}
 
-$("#pagination_size").change(function(){
 
-			$.get('{{route('admin.skill.index')}}',{display:this.value}, function(data) {
-				window.location.reload();
-			});
-
-		});
+$(document).ready(function() {
+    	$('#qualification').DataTable();
+	});
 
 	</script>
 @endpush	

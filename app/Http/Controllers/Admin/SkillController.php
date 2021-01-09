@@ -20,10 +20,8 @@ class SkillController extends Controller
     public function index(Request $request)
     {
         if(Auth::user()->can('viewAny',Skill::class)){
-            $this->setTableSize($request)
-            ->find($request)
-            ->loadData($request)
-            ->search($request);
+           
+            $this->skill = Skill::latest('id')->get();
 
             return view('admin.skill.view',['skill'=>$this->skill]);
         }else{
@@ -127,36 +125,5 @@ class SkillController extends Controller
         ]);
         return $this;
     }
-    private function setTableSize(Request $request)
-    {
-        if($request->has('display')){
-            Session::put('skill_table_size',$request->display);
-        }
-        return $this;
-    }
-    private function find(Request $request)
-    {
-        if($request->has('search')){
-            Session::put('search_skill',$request->search);    
-        }
-        return $this;
-    }
-    private function loadData(Request $request)
-    {
-        if(empty(Session::get('search_skill'))){
-            $this->skill = Skill::orderBy('id','DESC')
-            ->paginate(Session::get('skill_table_size') ?? 10);
-        }
-        return $this;
-    }
-    private function search(Request $request)
-    {
-        if(!empty(Session::get('search_skill'))){
-             $search = Session::get('search_skill');
-            $this->skill = Skill::orderBy('id','DESC')
-            ->where('name','like','%'.$search.'%')
-            ->paginate(Session::get('skill_table_size') ?? 10);
-        }
-        return $this;
-    }
+    
 }

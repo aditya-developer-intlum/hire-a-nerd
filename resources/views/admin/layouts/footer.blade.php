@@ -834,6 +834,7 @@
 
     <!--begin:: Global Mandatory Vendors -->
     <script src="{{ asset('public/storage/admin/assets/vendors/general/jquery/dist/jquery.js') }}" type="text/javascript"></script>
+      <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('public/storage/admin/assets/vendors/general/popper.js/dist/umd/popper.js') }}" type="text/javascript"></script>
     <script src="{{ asset('public/storage/admin/assets/vendors/general/bootstrap/dist/js/bootstrap.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('public/storage/admin/assets/vendors/general/js-cookie/src/js.cookie.js') }}" type="text/javascript"></script>
@@ -906,8 +907,15 @@
 
     <!--begin::Page Scripts(used by this page) -->
     <script src="{{ asset('public/storage/admin/assets/js/demo1/pages/custom/apps/chat/chat.js') }}" type="text/javascript"></script>
-   {{--  <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script> --}}
+    
+   {{--  <script src="{{ asset('public/storage/admin/assets/js/demo1/pages/crud/datatables/data-sources/ajax-server-side.js') }}" type="text/javascript"></script>
+   --}}
+  <script src="{{ asset('public/storage/admin/assets/vendors/custom/datatables/datatables.bundle.js') }}" type="text/javascript"></script>
 
+    <!--end::Page Vendors -->
+
+    <!--begin::Page Scripts(used by this page) -->
+  
 
 <script>
   $.ajaxSetup({

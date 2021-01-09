@@ -182,13 +182,25 @@
                   
                     </span><span class="kt-menu__link-text">Home Page</span></a>
                   </li>
+                  <li class="kt-menu__item {{ request()->routeIs('admin.cms.sign*') ? 'kt-menu__item--active' : ''  }}" aria-haspopup="true">
+                  <a href="{{ route('admin.cms.sign.edit') }}" class="kt-menu__link "><span class="kt-menu__link-icon">
+                  
+                    </span><span class="kt-menu__link-text">Sign up Text</span></a>
+                  </li>
 
                     </ul>
                   </div>
                 </li>
-                
-
-                    
+                <li class="kt-menu__item {{ request()->routeIs('admin.help-category*') ? 'kt-menu__item--active' : ''  }}" aria-haspopup="true">
+                  <a href="{{ route('admin.help-category.index') }}" class="kt-menu__link "><span class="kt-menu__link-icon">
+                    <i class="la la-list-alt"></i>
+                    </span><span class="kt-menu__link-text">Help Category</span></a>
+                </li>
+                <li class="kt-menu__item {{ request()->routeIs('admin.help*') ? 'kt-menu__item--active' : ''  }}" aria-haspopup="true">
+                  <a href="{{ route('admin.help.index') }}" class="kt-menu__link "><span class="kt-menu__link-icon">
+                    <i class="la la-list-alt"></i>
+                    </span><span class="kt-menu__link-text">Help & Support</span></a>
+                </li>
                     </ul>
                   </div>
                 </li>

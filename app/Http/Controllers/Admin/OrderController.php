@@ -47,23 +47,23 @@ class OrderController extends Controller
 
     		switch (Session::get('filter')) {
     			case 'pending':
-    				$this->orders = Order::with('gig','user')->whereIsCompletedAndIsAccepted(false,false)->paginate($this->pagination ?? 10);	
+    				$this->orders = Order::sortable()->with('gig','user')->whereIsCompletedAndIsAccepted(false,false)->paginate($this->pagination ?? 10);	
     				Session::put('filter','pending');
 
     				break;
     			case 'progress':
-    				$this->orders = Order::with('gig','user')->whereIsCompletedAndIsAccepted(false,true)->paginate($this->pagination ?? 10);
+    				$this->orders = Order::sortable()->with('gig','user')->whereIsCompletedAndIsAccepted(false,true)->paginate($this->pagination ?? 10);
     				Session::put('filter','progress');
 
     				break;
     			case 'completed':
-    				$this->orders = Order::with('gig','user')->whereIsCompletedAndIsAccepted(true,true)->paginate($this->pagination ?? 10);
+    				$this->orders = Order::sortable()->with('gig','user')->whereIsCompletedAndIsAccepted(true,true)->paginate($this->pagination ?? 10);
     				Session::put('filter','completed');
 
     				break;
     			
     			default:
-    				$this->orders = Order::with('gig','user')->whereIsCompletedAndIsAccepted(true,true)->paginate($this->pagination ?? 10);
+    				$this->orders = Order::sortable()->with('gig','user')->whereIsCompletedAndIsAccepted(true,true)->paginate($this->pagination ?? 10);
     				Session::put('filter','completed');
     				break;
     		}
@@ -76,7 +76,7 @@ class OrderController extends Controller
     	if(Session::has('order_search')){
     		$search = Session::get('order_search');
 
-    		$this->orders = Order::with('gig','user')
+    		$this->orders = Order::sortable()->with('gig','user')
     		->orWhere('id',$search)
     		->orWhere(function($q) use ($search){
     			$q->orWhereHas('gig',function($query) use ($search){
@@ -96,7 +96,7 @@ class OrderController extends Controller
     	if(Session::has('order_search_date')){
     		$date = Session::get('order_search_date');
 
-    		$this->orders = Order::with('gig','user')
+    		$this->orders = Order::sortable()->with('gig','user')
     		->whereBetween('created_at',
     			array_map(
     				function($date){
@@ -111,7 +111,7 @@ class OrderController extends Controller
     private function get(Request $request)
     {
     	if(!Session::has('filter') && !Session::has('order_search') && !Session::has('order_search_date')){
-    		$this->orders = Order::with('gig','user')->paginate($this->pagination ?? 10);
+    		$this->orders = Order::sortable()->with('gig','user')->paginate($this->pagination ?? 10);
     	}
     	return $this;
     }

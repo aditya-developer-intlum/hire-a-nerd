@@ -21,11 +21,9 @@ class SubCategoryController extends Controller
     public function index(Request $request)
     {
         if($request->user()->can('viewAny',SubMenu::class)){
-            $this->setTableSize($request)
-            ->find($request)
-            ->loadData($request)
-            ->search($request);
+            
             $category = Menu::all();
+            $this->subCategory = SubMenu::latest('id')->get();
             return view('admin.sub-category.view',['subCategory'=>$this->subCategory,'category'=>$category]);    
         }else{
             abort(404);
@@ -155,43 +153,6 @@ class SubCategoryController extends Controller
             ]);
         }
        
-        return $this;
-    }
-    private function setTableSize(Request $request)
-    {
-        if($request->has('display')){
-            Session::put('sub_category_table_size',$request->display);
-        }
-        return $this;
-    }
-    private function find(Request $request)
-    {
-        if($request->has('search')){
-            Session::put('search_sub_category',$request->search);    
-        }
-        return $this;
-    }
-    private function loadData(Request $request)
-    {
-        if(empty(Session::get('search_sub_category'))){
-            $this->subCategory = SubMenu::sortable()->with('menu')->orderBy('id','DESC')
-            ->paginate(Session::get('sub_category_table_size') ?? 10);
-        }
-        return $this;
-    }
-    private function search(Request $request)
-    {
-        if(!empty(Session::get('search_sub_category'))){
-             $search = Session::get('search_sub_category');
-            $this->subCategory = SubMenu::sortable()->with('menu')->orderBy('id','DESC')
-            ->where('name','like','%'.$search.'%')
-            ->orWhereHas('menu', function($q) use($search){
-
-                 $q->where('name', 'like','%'.$search.'%');
-
-            })
-            ->paginate(Session::get('sub_category_table_size') ?? 10);
-        }
         return $this;
     }
     public function status(SubMenu $subCategory,$status)

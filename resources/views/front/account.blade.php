@@ -801,7 +801,7 @@
                                             <div class="col-md-4"><label class="_label" for="">Invoice : </label></div>
                                             <div class="col-md-5">
                                                 <label  class="_mCheckbox _mB0">
-            <input type="checkbox" {{ $user->userBillingAaddresses->is_invoice ?'checked':'' }} value="1" id="invoice_email"> Send me invoice via email
+            <input type="checkbox" {{ $user && $user->userBillingAaddresses && $user->userBillingAaddresses->is_invoice ?'checked':'' }} value="1" id="invoice_email"> Send me invoice via email
                                                     <span></span>
                                                 </label>
                                             </div>

@@ -21,12 +21,9 @@ class SubAdminController extends Controller
     public function index(Request $request)
     {
         if($request->user()->permissions()->whereSlug('can_viewAny_sub_admin')->exists()){
-            $this->setTableSize($request)
-            ->find($request)
-            ->loadData($request)
-            ->search($request);
-
+            
             $permissions = Permission::all();
+            $this->user = User::latest('id')->where('type',2)->get();
             
             return view('admin.sub-admin.view',['user'=> $this->user,'permissions'=> $permissions]);    
         } else {
@@ -180,50 +177,7 @@ class SubAdminController extends Controller
         ]);
         return $this;
     }
-  
-    private function find(Request $request)
-    {
-        if($request->has('search')){
-            Session::put('search_sub_admin',$request->search);    
-        }
-        return $this;
-    }
-    public function remove()
-    {
-        Session::forget('search_user');
-    }
-    private function setTableSize(Request $request)
-    {
-        if($request->has('display')){
-            Session::put('sub_admin_table_size',$request->display);
-        }
-        return $this;
-    }
-    private function loadData(Request $request)
-    {
-        if(empty(Session::get('search_sub_admin'))){
-            $this->user = User::orderBy('id','desc')
-            ->where('type',2)->paginate(Session::get('sub_admin_table_size') ?? 10);
-        }
-        return $this;
-    }
-    private function search(Request $request)
-    {
-        if(!empty(Session::get('search_sub_admin'))){
-
-            $search = Session::get('search_sub_admin');
-                $this->user = User::orderBy('id','desc')
-            ->where('type',2)
-            ->Where(function($query) use ($search){
-                
-                $query->orWhere('name','like','%'.$search.'%')
-                ->orWhere('email','like','%'.$search.'%')
-                ->orWhere('mobile_number','like','%'.$search.'%');
-            })
-           ->paginate(Session::get('sub_admin_table_size') ?? 10);
-        }
-        return $this;
-    }
+     
     public function status(User $user,$status)
     {
         

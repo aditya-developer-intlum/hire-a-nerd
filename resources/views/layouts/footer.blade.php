@@ -4,7 +4,10 @@
         display: none;
     }
 </style>
-
+@php
+    
+$signup = App\CmsSignup::first();
+@endphp
 <!--- Begin:  Footer --->
 <footer>
     <!-- Begin: Client Section  -->
@@ -54,7 +57,7 @@
                         <li><a href="#">Discussions</a></li>
                         <li><a href="#">Products</a></li>
                         <li><a href="#">Collections</a></li>
-                        <li><a href="#">Help Center</a></li>                            
+                        <li><a href="#">Help & Support</a></li>                            
                     </ul>
                 </div>
                 <!-- Col end    -->
@@ -255,8 +258,8 @@
                                     <li class="_featureList"> 
                                         <span class="_icon">5%</span>
                                         <div>
-                                            <span class="_listHeading">Super Low Fees</span>
-                                            <span class="_listText">Lowest fee on any freelance market place(5%)</span>
+                                            <span class="_listHeading">{{ $signup->title1 }}</span>
+                                            <span class="_listText">{{ $signup->desc1 }}</span>
                                         </div>
                                     </li>
                                     <!-- End : li -->
@@ -264,8 +267,8 @@
                                         <li class="_featureList"> 
                                         <span class="_icon">17%</span>
                                         <div>
-                                            <span class="_listHeading">Affiliate Commission On Entire Market</span>
-                                            <span class="_listText">Collect 17.5% of whatever you promote</span>
+                                              <span class="_listHeading">{{ $signup->title2 }}</span>
+                                            <span class="_listText">{{ $signup->desc2 }}</span>
                                         </div>
                                     </li>
                                     <!-- End : li -->
@@ -273,8 +276,8 @@
                                         <li class="_featureList"> 
                                         <span class="_icon">95%</span>
                                         <div>
-                                            <span class="_listHeading">Make Extra From Your Traffic</span>
-                                            <span class="_listText">Keep 95% of sales from people you send to your store and get 17.5% of anything else they buy</span>
+                                             <span class="_listHeading">{{ $signup->title3 }}</span>
+                                            <span class="_listText">{{ $signup->desc3 }}</span>
                                         </div>
                                     </li>
                                     <!-- End : li -->
@@ -282,8 +285,8 @@
                                     <li class="_featureList"> 
                                         <span class="_icon"><img src="{{ asset("public/storage/images/sell-icon.png") }}" alt=""></span>
                                         <div>
-                                            <span class="_listHeading">Increase Sales</span>
-                                            <span class="_listText">Create coupons, specials, and custom affiliate deals to increase sales</span>
+                                            <span class="_listHeading">{{ $signup->title4 }}</span>
+                                            <span class="_listText">{{ $signup->desc4 }}</span>
                                         </div>
                                     </li>
                                     <!-- End : li -->
@@ -291,8 +294,8 @@
                                     <li class="_featureList"> 
                                         <span class="_icon"><img src="{{ asset("public/storage/images/no-handcore-icon.png") }}" alt=""></span>
                                         <div>
-                                            <span class="_listHeading">No Hardcore Advertising</span>
-                                            <span class="_listText">Your services get actively promoted by thousand of affiliates</span>
+                                             <span class="_listHeading">{{ $signup->title5 }}</span>
+                                            <span class="_listText">{{ $signup->desc5 }}</span>
                                         </div>
                                     </li>
                                     <!-- End : li -->

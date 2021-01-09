@@ -314,7 +314,7 @@ class UserController extends Controller {
 					)
 					->orderBy('id', 'desc')
 					->where('status',$request->status)
-					->where('type', 0)->paginate(Session::get('user_table_size')??10);		
+					->where('type', 0)->get();		
 			}else{
 					$this->user = User::with('userDetail',
 						'userLang',
@@ -324,7 +324,7 @@ class UserController extends Controller {
 						'userBillingAaddresses'
 					)
 					->orderBy('id', 'desc')
-					->where('type', 0)->paginate(Session::get('user_table_size')??10);
+					->where('type', 0)->get();
 			}
 		}
 		return $this;
@@ -352,7 +352,7 @@ class UserController extends Controller {
 						$q->where('country_id', 'like', '%'.$search.'%');
 
 					})
-					->where('type', 0)	->paginate(Session::get('user_table_size')??10);
+					->where('type', 0)->get();
 			}else{
 				$search     = Session::get('search_user');
 				$this->user = User::with('userDetail',
@@ -371,7 +371,7 @@ class UserController extends Controller {
 						$q->where('country_id', 'like', '%'.$search.'%');
 
 					})
-					->where('type', 0)	->paginate(Session::get('user_table_size')??10);
+					->where('type', 0)->get();
 			}
 		}
 		return $this;

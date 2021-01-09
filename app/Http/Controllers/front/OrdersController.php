@@ -123,10 +123,9 @@ class OrdersController extends Controller
     }
     private function active(Request $request): object
     {
+
         $this->active = Order::with('seller','gig')->where('buyer_id',auth()->user()->id)
         ->whereIsCompleted(false)
-        ->whereIsAccepted(true)
-        ->orWhere('is_accepted',false)
         ->whereIsRejected(false)
         ->whereIsLate(false)
         ->whereIsDelivered(false)
@@ -139,8 +138,8 @@ class OrdersController extends Controller
         $this->delivered = Order::with('seller','gig')->where('buyer_id',auth()->user()->id)
         ->whereIsCompleted(false)
         ->whereIsAccepted(true)
-        ->whereIsRejected(true)
-        ->whereIsDelivered(false)
+        ->whereIsRejected(false)
+        ->whereIsDelivered(true)
         ->whereIsCancelled(false)
         ->get();
         return $this;

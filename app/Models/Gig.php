@@ -10,15 +10,27 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
+use Kyslik\ColumnSortable\Sortable;
 
 class Gig extends Model implements Searchable {
 
-	use SoftDeletes;
+	use SoftDeletes,Sortable;
 
 	public $guarded = [];
+	public $sortable = [
+		'category',
+		'sub_category',
+		'gig_title',
+		'user_id',
+		'gigprice.standard_price',
+		'gigprice.premium_price',
+		'gigPrice.basic_price',
+		'created_at',
+		'is_status'
+	];
 
 	public function user() {
-		return $this->belongsTo(User::class );
+		return $this->belongsTo(User::class,'user_id' );
 	}
 	public function menu() {
 		return $this->belongsTo(Menu::class , "category");

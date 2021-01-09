@@ -23,17 +23,16 @@ class GigController extends Controller
     {
 
         if($request->user()->can('viewAny',Gig::class)){
-            $this->setPagination($request)
-            ->setSearch($request)
-            ->setStatus($request)
-            ->search($request)
-            ->view();
-
+               $this->setPagination($request)
+                ->setSearch($request)
+                ->setStatus($request)
+                ->search($request)
+                ->view();
             return view('admin.gig-manage.view',['gigs' => $this->gigs]);
         } else {
             abort(404);
         }
-    }
+    }  
     private function view()
     {
 
@@ -45,7 +44,7 @@ class GigController extends Controller
                 $status = Session::get('status_action');
                 if(!empty($status)){
                        $status = $status==10?0:Session::get('status_action');
-                    $this->gigs = Gig::with('user','menu','submenu','gigprice')
+                    $this->gigs = Gig::sortable()->with('user','menu','submenu','gigprice')
                     ->whereStatus(true)
                     ->where('is_status',$status)
                     ->orderBy('id','desc')
@@ -53,7 +52,7 @@ class GigController extends Controller
                 }else{
 
 
-                    $this->gigs = Gig::with('user','menu','submenu','gigprice')
+                    $this->gigs = Gig::sortable()->with('user','menu','submenu','gigprice')
                     ->whereStatus(true)
                     ->orderBy('id','desc')
                     ->paginate($pagination ?? 10);    
@@ -70,7 +69,7 @@ class GigController extends Controller
         
         if(!empty($search)){
 
-            $this->gigs = Gig::with('user','menu','submenu','gigprice')
+            $this->gigs = Gig::sortable()->with('user','menu','submenu','gigprice')
             ->whereStatus(1)
             ->where(function($query) use ($status){
 

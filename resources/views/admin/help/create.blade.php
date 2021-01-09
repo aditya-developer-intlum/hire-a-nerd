@@ -12,73 +12,78 @@
 										<div class="kt-portlet__head">
 											<div class="kt-portlet__head-label">
 												<h3 class="kt-portlet__head-title">
-													Edit Sub Admin
+													Create Help & Support
 												</h3>
 											</div>
 										</div>
 										
-									
 
 										<!--begin::Form-->
-<form class="kt-form kt-form--label-right" autocomplete="off" method="post" 
-action="{{ route('admin.sub-admin.update',[$user->id]) }}">
-@method('PUT')
+<form class="kt-form kt-form--label-right" autocomplete="off" method="post" action="{{ route('admin.help.store') }}" enctype="multipart/form-data">
 @csrf
-
 <div class="kt-portlet__body">
 	<div class="form-group row">
 		<div class="col-lg-6">
-			<label for='first_name'>First Name:</label>
-			<input type="text" class="form-control" placeholder="Enter first name" 
-			name="first_name" value="{{ $user->f_name ?? '' }}" autocomplete="off"
-			 maxlength="125">
-			@error('first_name')
+			<label for='title'>Help Category:</label>
+			<select name="help_category_id" class="form-control">
+				@foreach ($helpCategory as $category)
+					<option value="{{ $category->id }}" {{ old('help_category_id') == $category->id?'selected':'' }}>{{ $category->title ?? '' }}</option>
+				@endforeach
+			</select>
+			@error('help_category_id')
 				<span class="text-danger">{{ $message }}</span>
 			@enderror
 		</div>
 		<div class="col-lg-6">
-			<label for='last_name'>Last Name:</label>
-			<input type="text" class="form-control" placeholder="Enter last name" 
-			name="last_name" value="{{ $user->l_name ?? '' }}" autocomplete="off"
-			 maxlength="125">
-			@error('last_name')
+			<label for='type'>Type:</label>
+			<select class="form-control" name="type">
+				<option value="1" {{ old('type') == 1?'selected':'' }}>Seller</option>
+				<option value="2" {{ old('type') == 2?'selected':'' }}>Buyer</option>
+			</select>
+
+			@error('type')
 				<span class="text-danger">{{ $message }}</span>
 			@enderror
 		</div>
 	</div>
 	<div class="form-group row">
-		<div class="col-lg-6">
-			<label for='email'>Email:</label>
-			<input type="text" class="form-control" placeholder="Enter email " 
-			name="email" value="{{ $user->email ?? '' }}" autocomplete="off"
-			 maxlength="225">
-			@error('email')
+		<div class="col-lg-12">
+			<label for='title'>Title:</label>
+			<input 
+			type="text" 
+			class="form-control" 
+			placeholder="Enter title" 
+			name="title" 
+			value="{{ old('title') }}" 
+			autocomplete="off"
+			maxlength="255">
+			@error('title')
 				<span class="text-danger">{{ $message }}</span>
 			@enderror
 		</div>
-		<div class="col-lg-6">
-			<label for='mobile_number'>Mobile Number:</label>
-			<input type="text" class="form-control" placeholder="Enter mobile number" 
-			name="mobile_number" value="{{ $user->mobile_number }}" autocomplete="off"
-			 maxlength="10">
-			@error('mobile_number')
+	</div>
+	<div class="form-group row">
+		<div class="col-lg-12">
+			<label for='description'>Description:</label>
+			<textarea name="description" class="form-control">{{ old('description') }}</textarea>
+			
+			@error('description')
 				<span class="text-danger">{{ $message }}</span>
 			@enderror
 		</div>
 	</div>
 	
-
 																								
 </div>
 											<div class="kt-portlet__foot">
 												<div class="kt-form__actions">
 													<div class="row">
 														<div class="col-lg-6">
-															<button type="submit" class="btn btn-primary">Update</button>
+															<button type="submit" class="btn btn-primary">Save</button>
 															<button type="reset" class="btn btn-secondary">Reset</button>
 														</div>
 														<div class="col-lg-6 kt-align-right">
-															<a  href='{{ route('admin.sub-admin.index') }}' class="btn btn-danger">Back</a>
+															<a  href='{{ route('admin.help.index') }}' class="btn btn-danger">Back</a>
 														</div>
 													</div>
 												</div>

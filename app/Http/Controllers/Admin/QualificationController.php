@@ -19,11 +19,8 @@ class QualificationController extends Controller
     public function index(Request $request)
     {
         if($request->user()->can('viewAny',Qualification::class)){
-            $this->setTableSize($request)
-            ->find($request)
-            ->loadData($request)
-            ->search($request);
-
+           $this->qualification = Qualification::latest('id')->get();
+        
             return view('admin.qualification.view',['qualification'=>$this->qualification]);
         }else{
             abort(404);
@@ -132,38 +129,7 @@ class QualificationController extends Controller
         ]);
         return $this;
     }
-    private function setTableSize(Request $request)
-    {
-        if($request->has('display')){
-            Session::put('qualification_table_size',$request->display);
-        }
-        return $this;
-    }
-    private function find(Request $request)
-    {
-        if($request->has('search')){
-            Session::put('search_qualification',$request->search);    
-        }
-        return $this;
-    }
-    private function loadData(Request $request)
-    {
-        if(empty(Session::get('search_qualification'))){
-            $this->qualification = Qualification::orderBy('id','DESC')
-            ->paginate(Session::get('qualification_table_size') ?? 10);
-        }
-        return $this;
-    }
-    private function search(Request $request)
-    {
-        if(!empty(Session::get('search_qualification'))){
-             $search = Session::get('search_qualification');
-            $this->qualification = Qualification::orderBy('id','DESC')
-            ->where('name','like','%'.$search.'%')
-            ->paginate(Session::get('qualification_table_size') ?? 10);
-        }
-        return $this;
-    }
+    
     public function status(Qualification $qualification,$status)
     {
         if(Auth::user()->can('status',Qualification::class)){

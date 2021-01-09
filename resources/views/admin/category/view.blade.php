@@ -38,7 +38,7 @@
 									</div>
 								</div>
 								<div class="kt-portlet__body">
-									<div class="row">
+									{{-- <div class="row">
 										<div class="col-md-2 offset-md-10">
 											<form action="{{ route('admin.category.index') }}">
 												
@@ -53,26 +53,27 @@
 											</form>
 										</div>	
 
-									</div>
+									</div> --}}
 
 									<!--begin: Datatable -->
-									<div id="kt_table_1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12"><table class="table table-striped- table-bordered table-hover table-checkable dataTable no-footer dtr-inline" id="kt_table_1" role="grid" aria-describedby="kt_table_1_info" style="width: 1471px;">
+									<div id="kt_table_1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12">
+	<table class="table table-striped- table-bordered table-hover table-checkable dataTable no-footer dtr-inline" id="category" role="grid" aria-describedby="kt_table_1_info" style="width: 1471px;">
 										<thead>
 	<tr role="row">
 		 <th class="sorting" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" aria-label="Country: activate to sort column ascending" width="20%">
         	Serial No.
         </th>
         <th class="sorting" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" aria-label="Country: activate to sort column ascending">
-        	@sortablelink('name')
+        	Name
         </th>
         <th class="sorting" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" aria-label="Country: activate to sort column ascending">
-        	@sortablelink('slug')
+        	Slug
         </th>
          <th class="sorting" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" aria-label="Country: activate to sort column ascending">
-        	@sortablelink('is_active','Status')
+        	Status
         </th>
     @canany(['update','delete'],App\Models\Menu::class)
-        <th class="sorting" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" aria-label="Country: activate to sort column ascending" width="10%">
+        <th class="sorting" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" aria-label="Country: activate to sort column ascending" width="15%">
         	Action
         </th>
     @endcanany
@@ -82,7 +83,7 @@
 	
 		@foreach($category as $index => $_category)
 			<tr>
-				<td>{{ $index + $category->firstItem() }}</td>
+				<td>{{ ++$index }}</td>
 				<td>{{ $_category->name }}</td>
 				<td>{{ $_category->slug }}</td>
 				<td>
@@ -114,7 +115,7 @@
 									</table>
 								</div>
 							</div>
-							<div class="row">
+							{{-- <div class="row">
 								<div class="col-sm-12 col-md-5" >
 									<div class="dataTables_info" id="kt_table_1_info" role="status" aria-live="polite">Showing 
 										{{ $category->firstItem() }} to {{ $category->lastItem() }}
@@ -137,7 +138,7 @@
 									{{ $category->links() }}
 										
 									</div>
-						</div></div></div>
+						</div></div> --}}</div>
 
 									<!--end: Datatable -->
 								</div>
@@ -312,6 +313,9 @@ $("#pagination_size").change(function(){
 
 		});
 
+	$(document).ready(function() {
+    	$('#category').DataTable();
+	});
 	</script>
 @endpush	
 

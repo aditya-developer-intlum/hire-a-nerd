@@ -33,9 +33,9 @@ class UserAvatar extends Controller
     private function check(Request $request)
     {
       	$request->validate([
-      		'avatar' => ['required', 'image','dimensions:max_width=300,max_height=300']
+      		'avatar' => ['required', 'image','dimensions:max_width=320,max_height=320']
       	],[
-          'avatar.dimensions' => "Profile Picture max width 300px and max height 300px"
+          'avatar.dimensions' => "Profile Picture max width 320px and max height 320px"
         ]);
     	return $this;
     }

@@ -50,6 +50,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
+
                                         @forelse ($active as $listing)
                                             
                                             <tr>

@@ -7,7 +7,7 @@
             <div class="_headingDiv">
                 <h2 class="_headingTxt">    
 
-              {{ $title }}</h2>               
+              {{ Str::title(str_replace('-'," ",$title->slug)) }}</h2>               
             </div>
 
             <!-- End : Heading  -->

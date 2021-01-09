@@ -68,13 +68,13 @@
 										<thead>
 	<tr role="row">
 		 <th class="sorting" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" aria-label="Country: activate to sort column ascending" >
-        	Category
+        	@sortablelink('menu.name','category')
         </th>
         <th class="sorting" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" aria-label="Country: activate to sort column ascending" >
-        	Sub Category
+        	@sortablelink('subMenu.name','Sub Category')
         </th>
         <th class="sorting" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" aria-label="Country: activate to sort column ascending" >
-        	Title
+        	@sortablelink('gig_title','Title')
         </th>
         <th class="sorting" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" aria-label="Country: activate to sort column ascending">
         	Seller
@@ -92,7 +92,7 @@
         	Created At
         </th>
         <th class="sorting" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" aria-label="Country: activate to sort column ascending">
-        	Status
+        	@sortablelink('is_status','Status')
         </th>
     @canany(['accept','view','block','delete','suspend'],App\Models\Gig::class)
         <th class="sorting" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" aria-label="Country: activate to sort column ascending" >
@@ -154,7 +154,7 @@
 		                        </span>
 	                       @endcan
 					</td>
-					<td> {{ $gig->created_at }} </td>
+					<td> {{ $gig->created_at->format('d-m-Y') }} </td>
 					<td> 
 
 						@switch($gig->is_status)
@@ -365,7 +365,7 @@
   	  		Swal.fire({
 			  html: `${e.errors.number_of_days?e.errors.number_of_days:''}<br>${e.errors.region?e.errors.region:''}`,
 			  onClose: () => {
-			    suspendUser(id);
+			    suspend(id);
 			  }
 			});
   	  	}
