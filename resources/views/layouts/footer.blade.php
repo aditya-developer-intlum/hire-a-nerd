@@ -57,7 +57,7 @@ $signup = App\CmsSignup::first();
                         <li><a href="#">Discussions</a></li>
                         <li><a href="#">Products</a></li>
                         <li><a href="#">Collections</a></li>
-                        <li><a href="#">Help & Support</a></li>                            
+                        <li><a href="{{ route('help') }}">Help & Support</a></li>                            
                     </ul>
                 </div>
                 <!-- Col end    -->

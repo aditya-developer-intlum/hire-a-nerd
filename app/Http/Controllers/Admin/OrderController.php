@@ -18,8 +18,10 @@ class OrderController extends Controller
     	->search($request)
     	->searchDate($request)
     	->get($request)
-    	->refresh($request);	
-    	return view('admin.order.view',['orders'=> $this->orders]);
+    	->refresh($request);
+        //return $this->orders;	
+
+    	return view('admin.order.view',[ 'orders' => $this->orders ]);
     }
     public function init(Request $request)
     {
