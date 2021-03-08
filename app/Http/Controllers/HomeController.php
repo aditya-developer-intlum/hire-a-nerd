@@ -17,8 +17,19 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->has('token')) {
+            
+            $user = User::where('token',$request->token)->firstOrFail();
+
+            $user->status = 1;
+            $user->token = \Str::random(191);
+            $user->save();
+
+            return redirect('/');
+        }
+
         $gigs = Gig::with('user','user.userDetail','menu','subMenu')->whereStatus(true)
                 ->whereIsStatus(1)
                 ->take(20)

@@ -32,6 +32,7 @@ class GigPrice extends Model implements Searchable
     {
        	return $this->hasMany(GigScope::class);
     }
+    
     public function delete()
     { 
         $this->gigScope()->delete();

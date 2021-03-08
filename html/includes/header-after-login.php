@@ -47,23 +47,8 @@
 
                     <div class="collapse navbar-collapse" id="navbarsExample05">
                         <ul class="navbar-nav">
-                            <li class="current-menu-item menu-item-has-children">
+                            <li class="current-menu-item">
                                 <a href="#">Graphics & Design</a>
-                                <span class="clickD"></span>
-                                <ul class="sub-menu">
-                                    <li><a href="#">submenu-1</a></li>
-                                    <li><a href="#">submenu-2</a></li>
-                                    <li><a href="#">submenu-3</a></li>
-                                    <li><a href="#">submenu-1</a></li>
-                                    <li><a href="#">submenu-2</a></li>
-                                    <li><a href="#">submenu-3</a></li>
-                                    <li><a href="#">submenu-1</a></li>
-                                    <li><a href="#">submenu-2</a></li>
-                                    <li><a href="#">submenu-3</a></li>
-                                    <li><a href="#">submenu-1</a></li>
-                                    <li><a href="#">submenu-2</a></li>
-                                    <li><a href="#">submenu-3</a></li>
-                                </ul>
                             </li>
                             <li class="menu-item-has-children"><a href="#">Digital Marketing</a>
                                 <!-- <span class="clickD"></span>

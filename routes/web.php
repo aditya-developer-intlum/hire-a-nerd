@@ -11,6 +11,20 @@
 |
  */
 
+Route::get('/payments', 'PaymentsController@create');
+Route::post('/payments', 'front\OrdersController@store');
+Route::get('/thankyou', 'PaymentsController@thankyou');
+Route::get('/transfer-pay', 'PaymentsController@transferPayment');
+
+
+/*Route::get('/paypal-approve','PaymentController@payWithpaypal');
+Route::get('/self','PaymentController@self');
+Route::get('/approve','PaymentController@approve');
+Route::get('/capture','PaymentController@approve');*/
+
+
+
+
 /*
 |------------------------------------------------------------------------
 | Welcome page
@@ -39,6 +53,7 @@ Route::get('search',"GlobalSearchController@search")->name('global.search');
 |------------------------------------------------------------------------
  */
 Route::get('help-and-support','front\HelpAndSupportController@index')->name('help');
+Route::get('help-and-support/{id}','front\HelpAndSupportController@detail')->name('help.detail');
 /*
 |------------------------------------------------------------------------
 | Social Login
@@ -239,7 +254,7 @@ Route::group(["middleware" => ['auth']], function () {
 
 	Route::get("become-seller", "front\BecomeSeller")->name('become.seller');
 	Route::post("get-subcategory", "front\GigController@subCategory")->name("get.subcat");
-	Route::get("orders/{gig_id}/{package}","front\OrdersController@store")->name("make.orders");
+	Route::get("orders/{gig_id}/{package}","front\OrdersController@create")->name("make.orders");
 
 /*
 |------------------------------------------------------------------------
@@ -439,6 +454,7 @@ Route::group([
 				|------------------------------------------------------------------------
 				 */
 				Route::any('order', OrderController::class )->name('orders');
+				Route::get('order/{order}',"OrderController@orderPayment")->name('orders.payment');
 
 				/*
 				|------------------------------------------------------------------------

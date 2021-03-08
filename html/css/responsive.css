@@ -104,6 +104,37 @@
         left: 0;
     } */
     ._clientList img {}
+    .gig_detail_outer_bg .gig_detail_inner .gig_des{
+        width: 100%;
+        padding-top: 50px;
+    }
+    .buyer_tab_sec .four_popular_tropic{
+        width: 93%;
+    }
+    .how_hire .nerd_work_box .inner_work_box{
+        min-height: 210px;
+        padding: 30px;
+    }
+    .faq .center_faq_accrodin{
+        width: 85%;
+    }
+    ._bHeading.center_perfect_service{
+        font-size: 30px;
+        padding-top: 7%;
+    }
+    ._banner.service_inner_banner{
+        min-height: 350px;
+    }
+    .buyer_tab_sec .popular_tropic h5{
+        font-size: 25px;
+    }
+    .how_hire h2{
+        font-size: 25px;
+    }
+    .how_hire .nerd_work_box .inner_work_box p{
+        font-size: 18px;
+        padding-bottom: 0px;
+    }
 }
 
 @media (max-width: 1199px) {
@@ -121,6 +152,65 @@
         -ms-flex: 0 0 33.33%;
         flex: 0 0 33.33%;
         max-width: 33.33%;
+    }
+    .gig_detail_outer_bg .gig_detail_inner .gig_des{
+        padding-top: 40px;
+    }
+    .gig_detail_outer_bg .gig_detail_inner .gig_des h5{
+        padding-bottom: 15px;
+    }
+    .gig_detail_outer_bg .gig_detail_inner .gig_des .image_box{
+        padding: 35px 0;
+    }
+    .gig_detail_outer_bg .gig_detail_inner .gig_des .article{
+        margin-bottom: 40px;
+    }
+    ._bHeading.center_perfect_service{
+        padding-top: 12%;
+    }
+    .buyer_tab_sec{
+        padding: 25px 0 50px 0;
+    }
+    .buyer_tab_sec .popular_tropic h5{
+        padding-bottom: 15px;
+    }
+    .how_hire{
+        padding: 50px 0 28px 0;
+    }
+    .buyer_tab_sec .four_popular_tropic{
+        width: 100%;
+    }
+    .how_hire .nerd_work_box .inner_work_box{
+        padding: 19px;
+        min-height: 210px;
+    }
+    .how_hire .nerd_work_box .inner_work_box p{
+        padding-bottom: 0px;
+        font-size: 17px;
+    }
+    .faq{
+        padding: 45px 0;
+    }
+    .faq h2{
+        padding-bottom: 25px;
+    }
+    .faq .center_faq_accrodin{
+        width: 100%;
+    }
+    .contact_us{
+        padding: 45px 0;
+    }
+    .contact_us h2{
+        padding-bottom: 20px;
+    }
+    .contact_us .center_form ul li{
+        width: 45%;
+    }
+    .contact_us .center_form textarea{
+        width: 91%;
+    }
+    .contact_us .center_form button{
+        width: 91%;
     }
 }
 
@@ -141,6 +231,200 @@
     .navbar li>a {
         padding: 15px 10px;
     }
+    ._bHeading.center_perfect_service{
+        font-size: 25px;
+        line-height: 35px;
+    }
 }
 
-@media (max-width: 991px) {}
+
+@media (max-width: 991px) {
+    
+    .gig_detail_outer_bg .gig_detail_inner .gig_des{
+        padding: 40px 15px 0 15px;
+    }
+    .gig_detail_outer_bg{
+        padding-top: 30px;
+    }
+    .gig_detail_outer_bg .gig_detail_inner .gig_des h5{
+        font-size: 22px;
+    }
+    .gig_detail_outer_bg .gig_detail_inner .gig_des p{
+        font-size: 14px;
+        line-height: 28px;
+    }
+    .gig_detail_outer_bg .gig_detail_inner .gig_des .article{
+        margin-bottom: 30px;
+    }
+    .gig_detail_outer_bg .gig_detail_inner .gig_des .article span{
+        display: flex;
+        padding-bottom: 10px;
+    }
+    .gig_detail_outer_bg .gig_detail_inner .gig_des .image_box{
+        padding: 25px 0;
+    }
+    .gig_detail_outer_bg .gig_detail_inner .outer_pad{
+        height: auto;
+        margin-bottom: 20px;
+    }
+    .buyer_tab_sec .popular_tropic{
+        padding-top: 25px;
+    }
+    .buyer_tab_sec .four_popular_tropic .innerbox{
+        padding: 25px;
+        margin-bottom: 15px;
+        min-height: 173px;
+    }
+    .buyer_tab_sec .four_popular_tropic .innerbox .icon img {
+        max-height: 30%;
+        width: 55px;
+        height: 55px;
+	   object-fit: contain;
+    }
+    .buyer_tab_sec .four_popular_tropic .innerbox .icon{
+        align-items: center;
+        min-height: auto;
+            
+    }
+    .buyer_tab_sec{
+        padding: 25px 0 35px 0;
+    }
+    .how_hire{
+        padding: 30px 0;
+    }
+    .how_hire h2{
+        padding-bottom: 25px;
+    }
+    .how_hire .nerd_work_box{
+        width: 100%;
+    }
+    .how_hire .nerd_work_box .inner_work_box{
+        margin-bottom: 15px;
+        min-height: 156px;
+    }
+    .faq{
+        padding: 30px 0;
+    }
+    .faq h2{
+        padding-bottom: 15px;
+    }
+    .faq .center_faq_accrodin .card{
+        margin-bottom: 15px !important;
+    }
+    .contact_us .center_form{
+        width: 100%;
+    }
+    .contact_us .center_form ul li{
+        width: 49%;
+    }
+    .contact_us .center_form textarea{
+        width: 100%;
+    }
+    .contact_us .center_form button{
+        width: 100%;
+    }
+    .contact_us{
+        padding: 30px 0;
+    }
+    .faq .center_faq_accrodin .card .card-header a h5 span{
+        padding-right: 5px;
+    }
+    
+    
+}
+
+@media (max-width: 767px){
+    
+    ._topHeadeCont {
+    flex-wrap: wrap;
+}
+._topHeader-left {
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.logo {
+    width: 100%;
+    text-align: center;
+}
+
+._topHeader-right {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 10px;
+}
+._hdrUserLink._inlineList {
+    width: 100%;
+    text-align: center;
+    margin-top: 15px;
+}
+    .buyer_tab_sec .popular_tropic{
+        padding-top: 15px;
+    }
+    .buyer_tab_sec .popular_tropic h5{
+        padding-bottom: 0px;
+    }
+    .buyer_tab_sec .four_popular_tropic .innerbox{
+        padding: 20px;
+        min-height: auto;
+        
+    }
+    .buyer_tab_sec .four_popular_tropic .innerbox .icon{
+        padding-bottom: 15px;
+        min-height: auto;
+    }
+    .buyer_tab_sec .four_popular_tropic .innerbox .icon img{
+        width: 20%;
+    }
+    .how_hire{
+        padding: 15px 0;
+    }
+    .how_hire .nerd_work_box .inner_work_box{
+        min-height: auto;
+        padding: 22px;
+    }
+    .how_hire .nerd_work_box .inner_work_box p{
+        font-size: 18px;
+    }
+    .faq{
+        padding: 15px 0;
+    }
+    .contact_us{
+        padding: 15px 0;
+    }
+    .contact_us h2{
+        padding-bottom: 12px;
+    }
+    .faq .center_faq_accrodin .card .card-header a h5{
+        font-size: 15px;
+    }
+    .faq .center_faq_accrodin .card .card-header a{
+        padding: 15px;
+    }
+    .faq .center_faq_accrodin .card .card-body{
+        padding: 0 15px 15px 15px;
+    }
+    
+}
+
+@media (max-width: 575px){
+    
+    ._searchDiv{
+        width: 300px;
+    }
+    .gig_detail_outer_bg .gig_detail_inner .gig_des{
+        padding-top: 25px;
+    }
+    .contact_us .center_form ul{
+        display: block;
+    }
+    .contact_us .center_form ul li{
+        display: block;
+        width: 100%;
+    }
+    .contact_us .center_form ul li:last-child{
+        margin-bottom: 15px;
+    }
+    .contact_us .center_form textarea{
+        min-height: 90px;
+    }
+}

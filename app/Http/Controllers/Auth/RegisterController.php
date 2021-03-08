@@ -99,14 +99,14 @@ class RegisterController extends Controller
         }
         else
         {
-            $user=User::create([
-            "name"=>$request->name,
-            "email"=>$request->email,
-            "password"=>bcrypt($request->password),
-            "term_and_condition"=>1,
+            $user = User::create([
+                "name" => $request->name,
+                "email" => $request->email,
+                "password" => bcrypt($request->password),
+                "term_and_condition" => 1,
+                "token" => \Str::random(191)
             ]);
 
-            Auth::login($user);
             $this->location($user);
 
             Mail::to($request->email)->send(new WelcomeEmail($user));

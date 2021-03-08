@@ -142,10 +142,15 @@
 								@endif
 					</td>
 					<td>
-						<a onclick="return window.open('{{ url(sprintf('%s/%s/%d',$order->gig->menu->slug,$order->gig->submenu->slug,$order->gig_id)) }}','_blank')" class="btn btn-sm btn-clean btn-icon btn-icon-sm" title="view">
-											<i class="fa fa-expand"></i>
-											
-											 </a>
+						<a onclick="return window.open('{{ url(sprintf('%s/%s/%d',$order->gig->menu->slug,$order->gig->submenu->slug,$order->gig_id)) }}','_blank')" 
+							class="btn btn-sm btn-clean btn-icon btn-icon-sm" 
+							title="View">
+
+							<i class="fa fa-expand"></i>
+						</a>
+						<a href="{{ route('admin.orders.payment',$order->id) }}" class="btn btn-sm btn-clean btn-icon" title="Payment" target="_blank">
+							<i class="fa fa-credit-card"></i>
+						</a>
 
 					</td>
 					

@@ -348,7 +348,7 @@
                           @endforeach
 
                                         </span>
-                                        <div class="_ratingWrapper">
+                                        {{-- <div class="_ratingWrapper">
                                             <span class="_starRating">
                                                 <i class="fas fa-star"></i>
                                                 <i class="fas fa-star"></i>
@@ -357,7 +357,7 @@
                                                 <i class="fas fa-star"></i>
                                             </span>
                                             <span class="_textRating"><strong>5.0</strong> (0 reviews)</span>
-                                        </div>
+                                        </div> --}}
                                         <a href="#" class="btn ">Contact Me</a>
                                     </div>
                                 </div>

@@ -11,6 +11,10 @@ class Order extends Model {
 
 	public $sortable = ['gig_id'];
 
+	protected $dates = [
+        'delivered_at',
+    ];
+
 	public function transaction() {
 		return $this->hasOne('App\Transaction');
 	}

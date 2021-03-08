@@ -384,7 +384,8 @@
                             <li><a data-toggle="tab" href="#dAcc" class="active">Account</a></li>
                             <li><a data-toggle="tab" href="#dSec">Security</a></li>
                             <li><a data-toggle="tab" href="#dNoti">Notifications</a></li>
-                            <li><a data-toggle="tab" href="#dBill"> Billing</a></li>
+                            <li><a data-toggle="tab" href="#dBill">Billing</a></li>
+                            <li><a data-toggle="tab" href="#banking">Banking</a></li>
                         </ul>
                     </div>
                     <!-- Tab Cont Begin  -->
@@ -537,7 +538,7 @@
                                 </div>                        
                                 <div class="_dsBody">
                                     <div class="_dBorText">
-                                        <p>For important updates regarding your Fiverr activity, certain notifications cannot be disabled.</p>
+                                        <p>For important updates regarding your {{ env('APP_NAME') }} activity, certain notifications cannot be disabled.</p>
                                         <form action="" class="_dForm">
                                             <div class="form-group row">
                                                 <div class="col-lg-8 col-md-12">

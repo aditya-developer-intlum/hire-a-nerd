@@ -2,14 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Session;
+use App\User;
 use App\Order;
+use App\StripeTransaction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Session;
+
 class OrderController extends Controller
 {
 	private $orders;
 	private $pagination;
+    private $seller;
+    private $buyer;
 
     public function __invoke(Request $request)
     {
@@ -22,6 +27,20 @@ class OrderController extends Controller
         //return $this->orders;	
 
     	return view('admin.order.view',[ 'orders' => $this->orders ]);
+    }
+    public function orderPayment(Order $order)
+    {
+        $this->seller = User::find($order->seller_id);
+        $this->buyer = User::find($order->buyer_id);
+        $payment = StripeTransaction::where('order_id',$order->id)
+        ->first();
+
+        return view("admin.order.payment",[
+            'seller' => $this->seller,
+            'buyer'  => $this->buyer,
+            'payment' => $payment,
+            'order' => $order
+        ]);
     }
     public function init(Request $request)
     {
@@ -113,7 +132,10 @@ class OrderController extends Controller
     private function get(Request $request)
     {
     	if(!Session::has('filter') && !Session::has('order_search') && !Session::has('order_search_date')){
-    		$this->orders = Order::sortable()->with('gig','user')->paginate($this->pagination ?? 10);
+    		$this->orders = Order::sortable()
+            ->with('gig','user')
+            ->latest('id')
+            ->paginate($this->pagination ?? 10);
     	}
     	return $this;
     }

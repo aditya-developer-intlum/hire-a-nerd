@@ -30,8 +30,8 @@ class WelcomeEmail extends Mailable
      */
     public function build()
     {
-        $user=$this->user;
-        $title=env("APP_NAME");
+        $user = $this->user;
+        $title = env("APP_NAME");
 
          return $this->view('mail.user.welcome',compact('user','title'));
     }

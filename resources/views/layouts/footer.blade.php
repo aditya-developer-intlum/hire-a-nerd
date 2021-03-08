@@ -351,9 +351,11 @@ $signup = App\CmsSignup::first();
                                         </div> 
                                     </div>
                                     <div class="form-group">
+                                       
                                         <button type="submit" class="btn _submitBtn" id="register">SIGNUP</button>
                                     </div>
-                                </form>     
+                                </form> 
+                                 <img src="{{ url('public/loading.gif') }}" alt="" id="loading" style="display:none">    
 
                                 <div class="_socialMeadiaLogin">
                                     <p class="_inputMsg">Signup with social media</p>
@@ -387,8 +389,8 @@ $signup = App\CmsSignup::first();
 <script src="{{ asset("public/js/bootstrap-datetimepicker.js") }}"></script>
 <script src="{{ asset("public/js/locales/bootstrap-datetimepicker.fr.js") }}"></script>
 <script src="{{ asset("public/js/notify.js") }}"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
 
@@ -443,7 +445,10 @@ $signup = App\CmsSignup::first();
      $('#signup').on('submit', function(e){
         e.preventDefault();
     var fd = new FormData($('#signup')[0]);   
-      $("#register").hide('slow');
+        
+        $("#signup").hide();
+        $("#loading").show();
+
         $.ajax({
           url: '{{ url('register') }}',
           data: fd,
@@ -452,21 +457,28 @@ $signup = App\CmsSignup::first();
           type: 'POST',
           success: function(data){
           
-          if(data.success==false)
-          {
-            $("#register").show('slow');
-            $("#sname strong").html(data.errors.name?data.errors.name:"");
-            $("#semail strong").html(data.errors.email?data.errors.email:"");
-            $("#spassword strong").html(data.errors.password?data.errors.password:"");
-            $("#confirm_password strong").html(data.errors.password_confirmation?data.errors.password_confirmation:"");
-            $("#term_and_condi strong").html(data.errors.term_and_condition?data.errors.term_and_condition:"");
-          }
-            else if(data.success==true)
+            if(data.success != true){
+                
+                $("#loading").hide();
+                $("#signup").show();
+
+                $("#sname strong").html(data.errors.name?data.errors.name:"");
+                $("#semail strong").html(data.errors.email?data.errors.email:"");
+                $("#spassword strong").html(data.errors.password?data.errors.password:"");
+                $("#confirm_password strong").html(data.errors.password_confirmation?data.errors.password_confirmation:"");
+                $("#term_and_condi strong").html(data.errors.term_and_condition?data.errors.term_and_condition:"");
+            }
+            else if(data.success == true)
             {
                 $("#register").hide('slow');
-                location.reload();
-                /*$("#signupModal").modal("hide");
-                Swal.fire('Thanks For Register');*/
+                
+                $("#signupModal").modal("hide");
+                Swal.fire(`Thank you for sign up. 
+                    Please verify your email to login to your account.
+                `).then(() => {
+                    window.location.reload();
+                });
+
             }
           }
         });

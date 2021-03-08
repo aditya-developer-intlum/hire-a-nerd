@@ -173,3 +173,23 @@ $(document).ready(function() {
         }
     });
 });
+
+// Gig Detail Tab
+$(".creating_gig a").click(function(event) {
+            event.preventDefault();
+            $(this).parent().addClass("gig_tab_active");
+            $(this).parent().siblings().removeClass("gig_tab_active");
+            var tab = $(this).attr("href");
+            $(".gig_des_active").not(tab).css("display", "none");
+            $(tab).fadeIn();
+        });
+
+// Buyer & Seller Tab
+$(".buy_sell a").click(function(event) {
+            event.preventDefault();
+            $(this).parent().addClass("buy_active");
+            $(this).parent().siblings().removeClass("buy_active");
+            var tab = $(this).attr("href");
+            $(".buyer_seller_active").not(tab).css("display", "none");
+            $(tab).fadeIn();
+        });

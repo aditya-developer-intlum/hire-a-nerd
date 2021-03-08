@@ -2,18 +2,27 @@
 
 namespace App\Http\Controllers\front;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Gig;
-use Auth;
-use App\Order;
-use App\Earning;
+use Illuminate\Http\Request;
+use App\Models\Scope;
 use App\AdminEarning;
+use Stripe\Customer;
+use App\Models\Gig;
+use Stripe\Charge;
+use Stripe\Stripe;
+use App\Earning;
+use App\Payment;
+use App\Order;
 use App\User;
+use Exception;
+use App\StripeTransaction;
+
+use Auth;
 
 class OrdersController extends Controller
 {
 	private $amount;
+    private $deliveryTime;
 	private $sellerEarning;
 	private $AdminEarning;
 	private $admin;
@@ -26,19 +35,139 @@ class OrdersController extends Controller
     private $all; 
     private $data;   
 
-    public function store($gigId,$package)
+    public function create($gigId,$package)
     {
+        $service = Gig::with('gigPrice.gigScope')->where('id',$gigId)->firstOrFail();
+        $this->getPrice($service,$package);
+        if (empty($this->amount) && empty($this->deliveryTime)) {
+            abort(404);
+        }
+
+        $checkbox = $this->checkbox($service->gigPrice);
+        $scopes = Scope::whereIn("id",$checkbox[$package])
+        ->pluck('name')
+        ->toArray();
+        
+        return view('payments.add',[
+            'service' => $service,
+            'amount' => $this->amount,
+            'package' => $package,
+            'scopes' => $scopes,
+            'deliveryTime' => $this->deliveryTime,
+            'gigId' => $gigId,
+            'package' => $package
+        ]);
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'gigId' => 'required',
+            'package' => 'required'
+        ]);
+        $gigId = $request->gigId;
+        $package = $request->package;
+
+        $gig = Gig::with('gigPrice')->where('id',$gigId)->first();
+        $this->getPrice($gig,$package)
+        ->getAdmin()
+        ->amountSplit()
+        ->getDueDate($gig,$gigId,$package);
+
+        /** I have hard coded amount. You may fetch the amount based on customers order or anything */
+        $amount     = $this->amount * 100;
+        $currency   = 'usd';
+
+        if (empty($request->stripeToken)) {
+            session()->flash('error', 'Some error while making the payment. Please try again');
+            return back()->withInput();
+        }
+        Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+        try {
+            /** Add customer to stripe, Stripe customer */
+            $customer = Customer::create([
+                'email'     => $request->email,
+                'name'      => $request->name,
+                'source'    => $request->stripeToken,
+                'address' => [
+                    'line1' => '510 Townsend St',
+                    'postal_code' => '98140',
+                    'city' => 'San Francisco',
+                    'state' => 'CA',
+                    'country' => 'US',
+                ]
+            ]);
+        } catch (Exception $e) {
+            $apiError = $e->getMessage();
+        }
+
+        if (empty($apiError) && $customer) {
+            /** Charge a credit or a debit card */
+            try {
+                /** Stripe charge class */
+                $charge = Charge::create(array(
+                    'customer'      => $customer->id,
+                    'amount'        => $amount,
+                    'currency'      => $currency,
+                    'description'   => $gig->gig_title
+                ));
+            } catch (Exception $e) {
+                $apiError = $e->getMessage();
+            }
+
+            if (empty($apiError) && $charge) {
+                // Retrieve charge details 
+                $paymentDetails = $charge->jsonSerialize();
+                
+                if ($paymentDetails['amount_refunded'] == 0 && empty($paymentDetails['failure_code']) && $paymentDetails['paid'] == 1 && $paymentDetails['captured'] == 1) {
+                    /** You need to create model and other implementations */
+
+
+                    $this->save($gig,$gigId,$package)
+                    ->earning($gig)
+                    ->adminEarning($gig);
+                    StripeTransaction::create([
+                        "order_id" => $this->order->id,
+                        "gig_id" => $gigId,
+                        "stripe_id" => $paymentDetails['id'],
+                        "amount" => $paymentDetails['amount']/100,
+                        "description"=> $paymentDetails['description'],
+                        "receipt_url" => $paymentDetails['receipt_url'],
+                        "status" => $paymentDetails['status']
+                    ]);
+
+                    return redirect('/thankyou/?receipt_url=' . $paymentDetails['receipt_url']);
+                } else {
+                    session()->flash('error', 'Transaction failed');
+                    return back()->withInput();
+                }
+            } else {
+                session()->flash('error', 'Error in capturing amount: ' . $apiError);
+                return back()->withInput();
+            }
+        } else {
+            session()->flash('error', 'Invalid card details: ' . $apiError);
+            return back()->withInput();
+        }
+    }
+
+    /*public function store($gigId,$package)
+    {
+        return $this->create($gigId,$package);
     	$gig = Gig::with('gigPrice')->where('id',$gigId)->first();
     	$this->getPrice($gig,$package)
     	->getAdmin()
     	->amountSplit()
-        ->getDueDate($gig,$gigId,$package)
-        ->save($gig,$gigId,$package)
+        ->getDueDate($gig,$gigId,$package);
+
+        $this->save($gig,$gigId,$package)
     	->earning($gig)
     	->adminEarning($gig);
 
     	return back()->withSuccess("Order Placed Successfully");
-    }
+    }*/
     private function getDueDate(Gig $gig,$gigId,$package): object
     {
         $package .= "_delivery_time";
@@ -62,13 +191,16 @@ class OrdersController extends Controller
     {
     	switch ($package) {
     		case 'basic':
-    			$this->amount = $gig->gigPrice->basic_price;		
+    			$this->amount = $gig->gigPrice->basic_price;
+                $this->deliveryTime = $gig->gigPrice->basic_delivery_time;		
     		break;
     		case 'standard':
     			$this->amount = $gig->gigPrice->standard_price;
+                $this->deliveryTime = $gig->gigPrice->standard_delivery_time;
     		break;
     		case 'premium':
     			$this->amount = $gig->gigPrice->premium_price;
+                $this->deliveryTime = $gig->gigPrice->premium_delivery_time;
     		break;
     	}
     	return $this;
@@ -181,5 +313,47 @@ class OrdersController extends Controller
             'all' => $this->all
         ];
         return $this;
+    }
+    private function checkbox($gigPricing)
+    {
+        $basic = [];
+        $standard = [];
+        $premium = [];
+        foreach ($gigPricing->gigScope as $key => $value) {
+           $basic[] = $value->basic;
+           $standard[] = $value->standard;
+           $premium[] = $value->premium;
+        }
+        $max = max(
+                    $this->filterZero($basic),
+                    $this->filterZero($standard),
+                    $this->filterZero($premium)
+                );
+        if($this->filterZero($basic)==$max){
+            $maxNumber = "basic";
+        } else if($this->filterZero($standard)==$max) {
+
+            $maxNumber = "standard";
+        } else if($this->filterZero($premium)==$max) {
+            $maxNumber = "premium";
+        }
+            $return = [
+                "basic" => $basic,
+                "standard" => $standard,
+                "premium" => $premium,
+                "maxNumber" => $maxNumber,
+            ];
+        return $return;
+    }
+    private function filterZero($arr)
+    {
+        if(!empty(array_count_values(array_map('strval', $arr))['0'])){
+
+            return count($arr) - array_count_values(array_map('strval', $arr))['0'];
+        } else {
+
+            return count($arr);
+        }
+        
     }
 }

@@ -261,7 +261,8 @@ class AnalyticsController extends Controller
     private function earnedYearly()
     {
     	$month = strtotime(auth()->user()->created_at);
-			$end = strtotime(date('Y-m-d h:i:s'));
+		$end = strtotime(date('Y-m-d h:i:s'));
+        $data = [];
 			while($month < $end)
 			{
 			   $data[date('Y', $month)] = Order::where('seller_id',auth()->user()->id)
@@ -277,6 +278,7 @@ class AnalyticsController extends Controller
     {
     		$month = strtotime(auth()->user()->created_at);
 			$end = strtotime(date('Y-m-d h:i:s'));
+            $data = [];
 			while($month < $end)
 			{
 			   $data[date('Y', $month)] = Order::where('seller_id',auth()->user()->id)
@@ -292,6 +294,7 @@ class AnalyticsController extends Controller
     {
     	$month = strtotime(auth()->user()->created_at);
 			$end = strtotime(date('Y-m-d h:i:s'));
+            $data = [];
 			while($month < $end)
 			{
 			   $data[date('Y', $month)] = Order::where('seller_id',auth()->user()->id)
@@ -307,6 +310,7 @@ class AnalyticsController extends Controller
     {
     	$month = strtotime(auth()->user()->created_at);
 			$end = strtotime(date('Y-m-d h:i:s'));
+            $data = [];
 			while($month < $end)
 			{
 			   $data[date('Y', $month)] = Order::where('seller_id',auth()->user()->id)

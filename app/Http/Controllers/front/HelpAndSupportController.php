@@ -6,14 +6,21 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\HelpCategory;
 use App\Help;
+use App\Topic;
 
 class HelpAndSupportController extends Controller
 {
-    public function index()
+    public function index(HelpCategory $helpCategory)
     {
-    	$helpCategories = HelpCategory::with('helps')
+    	return view('front.help-and-support',compact('helpCategory'));
+    }
+
+    public function detail($id)
+    {
+    	
+    	$helps = Help::where('help_category_id',$id)
     	->get();
 
-    	return view('front.help-and-support',compact('helpCategories'));
+    	return view('front.help-and-support-detail',compact('helps'));
     }
 }

@@ -52,7 +52,7 @@ class JobDetailController extends Controller
         } else if($this->filterZero($premium)==$max) {
         	$maxNumber = "premium";
         }
-        	$return =[
+        	$return = [
         		"basic" => $basic,
         		"standard" => $standard,
         		"premium" => $premium,
