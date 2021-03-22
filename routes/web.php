@@ -97,6 +97,12 @@ Route::group(["middleware" => ['auth']], function () {
 		Route::post('/chat',"Chat@message");
 		/*
 		|------------------------------------------------------------------------
+		| Setting
+		|------------------------------------------------------------------------
+		*/
+			Route::post("setting/cookie-enable-disable","SettingController@enableDisableCookie")->name("setting.cookie");
+		/*
+		|------------------------------------------------------------------------
 		| Home
 		|------------------------------------------------------------------------
 		*/
@@ -326,6 +332,21 @@ Route::group([
 	});
 
 Route::get('admin/download-email-list', 'Seller\EmailController@downloadEmailList')->middleware(['admin','auth']);
+Route::get('become-affiliate', 'AffiliateController@becomeAffiliate')
+->middleware(['auth'])
+->name('become.affiliate');
+
+Route::post('become-affiliate', 'AffiliateController@register')
+->middleware(['auth'])
+->name('become.affiliate.register');
+
+Route::post('affiliate/generate-link', 'AffiliateController@copyAffiliateLink')
+->middleware(['auth'])
+->name('affiliate.generate-link');
+
+Route::get('affiliate/{token}', 'AffiliateController@getService')
+->name('affiliate.generate-link.token');
+
 
 /*
 |------------------------------------------------------------------------

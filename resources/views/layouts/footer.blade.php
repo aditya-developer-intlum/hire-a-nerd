@@ -54,7 +54,12 @@ $signup = App\CmsSignup::first();
                     <ul class="_footerLink">
                         <li><a href="#">Licenses</a></li>
                         <li><a href="#">Blog</a></li>
-                        <li><a href="#">Discussions</a></li>
+                        @auth
+                        <li><a href="{{ route('become.affiliate') }}" >Become Affiliate</a></li>    
+                        @endauth
+                        @guest
+                        <li><a href="#" data-toggle="modal" data-target="#loginModal">Become Affiliate</a></li>
+                        @endguest
                         <li><a href="#">Products</a></li>
                         <li><a href="#">Collections</a></li>
                         <li><a href="{{ route('help') }}">Help & Support</a></li>                            

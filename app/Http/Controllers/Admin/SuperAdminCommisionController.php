@@ -28,11 +28,11 @@ class SuperAdminCommisionController extends Controller
     {
         if($type === 'menu'){
 
-            return Commision::whereUserIdAndMenuId($request->user()->id,$id)->first();    
+            return Commision::whereMenuId($id)->first();    
 
         } else {
 
-            return Commision::whereUserIdAndSubMenuId($request->user()->id,$id)->first();
+            return Commision::whereSubMenuId($id)->first();
         }
         
     }

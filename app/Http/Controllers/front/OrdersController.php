@@ -2,22 +2,24 @@
 
 namespace App\Http\Controllers\front;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\Scope;
-use App\AdminEarning;
-use Stripe\Customer;
-use App\Models\Gig;
-use Stripe\Charge;
-use Stripe\Stripe;
-use App\Earning;
-use App\Payment;
-use App\Order;
-use App\User;
-use Exception;
-use App\StripeTransaction;
-
 use Auth;
+use App\User;
+use App\Order;
+use Exception;
+use App\Payment;
+use App\Earning;
+use Stripe\Stripe;
+use Stripe\Charge;
+use App\Models\Gig;
+use Stripe\Customer;
+use App\AdminEarning;
+use App\Models\Scope;
+use App\AffiliateLink;
+use App\AffiliateEarning;
+use App\StripeTransaction;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cookie;
 
 class OrdersController extends Controller
 {
@@ -33,7 +35,11 @@ class OrdersController extends Controller
     private $completed;
     private $cancelled;
     private $all; 
-    private $data;   
+    private $data;  
+    private $affiliate; 
+    private $adminCommissionPercent;
+    private $affiliateCommissionPercent;
+    private $gig;
 
     public function create($gigId,$package)
     {
@@ -61,6 +67,7 @@ class OrdersController extends Controller
 
     public function store(Request $request)
     {
+
         $request->validate([
             'name' => 'required',
             'email' => 'required|email',
@@ -70,13 +77,14 @@ class OrdersController extends Controller
         $gigId = $request->gigId;
         $package = $request->package;
 
-        $gig = Gig::with('gigPrice')->where('id',$gigId)->first();
-        $this->getPrice($gig,$package)
+        $this->gig = Gig::with('gigPrice')->where('id',$gigId)->first();
+        $this->getPrice($package)
         ->getAdmin()
+        ->getAffiliate()
         ->amountSplit()
-        ->getDueDate($gig,$gigId,$package);
+        ->getDueDate($gigId,$package);
 
-        /** I have hard coded amount. You may fetch the amount based on customers order or anything */
+       
         $amount     = $this->amount * 100;
         $currency   = 'usd';
 
@@ -187,20 +195,20 @@ class OrdersController extends Controller
     	$this->order->save();
     	return $this;
     }
-    private function getPrice(Gig $gig,$package): object
+    private function getPrice($package): object
     {
     	switch ($package) {
     		case 'basic':
-    			$this->amount = $gig->gigPrice->basic_price;
-                $this->deliveryTime = $gig->gigPrice->basic_delivery_time;		
+    			$this->amount = $this->gig->gigPrice->basic_price;
+                $this->deliveryTime = $this->gig->gigPrice->basic_delivery_time;		
     		break;
     		case 'standard':
-    			$this->amount = $gig->gigPrice->standard_price;
-                $this->deliveryTime = $gig->gigPrice->standard_delivery_time;
+    			$this->amount = $this->gig->gigPrice->standard_price;
+                $this->deliveryTime = $this->gig->gigPrice->standard_delivery_time;
     		break;
     		case 'premium':
-    			$this->amount = $gig->gigPrice->premium_price;
-                $this->deliveryTime = $gig->gigPrice->premium_delivery_time;
+    			$this->amount = $this->gig->gigPrice->premium_price;
+                $this->deliveryTime = $this->gig->gigPrice->premium_delivery_time;
     		break;
     	}
     	return $this;
@@ -209,6 +217,32 @@ class OrdersController extends Controller
     {
     	$this->admin = User::where('type',1)->first();
     	return $this;
+    }
+    private function getAffiliate(): object
+    {
+        $superAffiliate = Cookie::get("super_affiliate");
+        $affiliateId = Cookie::get("affiliate_id");
+
+        if ($affiliateId) {
+            
+            $isExists = AffiliateLink::where("affiliate_id",$affiliateId)
+            ->where("service_id",$this->gig->id)
+            ->exists();
+            $this->affiliate = $affiliateId;
+        }else if($superAffiliate){
+
+            $this->affiliate = $superAffiliate;
+        }else{
+
+            $this->affiliate = "";
+        }
+
+        return $this;
+        
+    }
+    private function getCommision()
+    {
+
     }
     private function amountSplit():object
     {

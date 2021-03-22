@@ -19,7 +19,6 @@
 }
 
 </style>
-
 <main class="main_body _dBody">
         <div class="container">
             <!-- Begin : Row  -->
@@ -368,6 +367,10 @@
                                          <strong>{{date('M Y',strtotime($gigs->user->created_at))  }}</strong></li>
                                         <li><span class="_uLft"><i class="fas fa-clock"></i> Avg. Response Time</span><strong> 9 hours</strong></li>
                                         <li><span class="_uLft"><i class="fas fa-paper-plane"></i> Recent Delivery</span> <strong>about 48 minutes</strong></li>
+                                        <li 
+                                        onclick="copyText('{{ $id }}')"
+                                        style="cursor: pointer;"
+                                        ><span class="_uLft"><i class="fa fa-bullhorn"></i> Promote this service</span> </li>
                                     </ul>                                
                                 </div>
                                 <div class="_seller-desc">
@@ -423,3 +426,35 @@ function myFunction() {
     }
 </script>
 @endsection
+@push('script')
+    <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.js"></script>
+    <script>
+
+        function copyScript(data) {
+
+            var dummy = document.createElement("input");
+            document.body.appendChild(dummy);
+            dummy.setAttribute("id", "dummy_id");
+            document.getElementById("dummy_id").value=data;
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+        }
+
+        function copyText(id){
+            
+            $.post('{{ route('affiliate.generate-link') }}', 
+                {service_id: id,_token: "{{ csrf_token() }}"}, 
+                function(data, textStatus, xhr) {
+                copyScript(data);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Copied',
+                    text: 'Share and receive 17.5% of sales that a user purchase'
+                })
+            });
+        }
+
+    </script>
+@endpush

@@ -16,7 +16,7 @@ class PagesController extends Controller
     		if(Auth::check()){
     			$wish = WishList::where('user_id',auth()->user()->id)->get();		
     		}else{
-    			$widh = [];
+    			$wish = [];
     		}
     	 
     	$title = Nerd::pageTitleFromSlug($parent);

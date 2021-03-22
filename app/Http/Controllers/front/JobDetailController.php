@@ -11,6 +11,7 @@ class JobDetailController extends Controller
 {
     public function __invoke($parent,$child, $id)
     {
+        $minutes = 60000000;
     	$gigs = Gig::with(
     		'user',
     		'user.userDetail',
@@ -27,7 +28,7 @@ class JobDetailController extends Controller
     	$scopes = Scope::whereIn("id",$checkbox[$checkbox['maxNumber']])->get();
     	$title = Nerd::pageTitleFromSlug($parent);
     	$subTitle = Nerd::pageSubTitleFromSlug($child);
-    	return view("front.job-detail",compact("gigs","title",'subTitle','scopes','checkbox'));
+    	return view("front.job-detail",compact("gigs","title",'subTitle','scopes','checkbox','id'));
     }
     private function checkbox($gigPricing)
     {

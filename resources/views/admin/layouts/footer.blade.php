@@ -907,6 +907,7 @@
 
     <!--begin::Page Scripts(used by this page) -->
     <script src="{{ asset('public/storage/admin/assets/js/demo1/pages/custom/apps/chat/chat.js') }}" type="text/javascript"></script>
+   
     
    {{--  <script src="{{ asset('public/storage/admin/assets/js/demo1/pages/crud/datatables/data-sources/ajax-server-side.js') }}" type="text/javascript"></script>
    --}}

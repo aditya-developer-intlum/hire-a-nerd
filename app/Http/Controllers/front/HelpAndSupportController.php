@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\HelpCategory;
 use App\Help;
-use App\Topic;
 
 class HelpAndSupportController extends Controller
 {
